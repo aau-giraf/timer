@@ -1,0 +1,18 @@
+[submodule "TimerLib"]
+	path = TimerLib
+	url = http://cs-cust06-int.cs.aau.dk/git/timer-lib.git
+[submodule "OasisLib"]
+	path = OasisLib
+	url = http://cs-cust06-int.cs.aau.dk/git/oasis-lib
+[submodule "Ambilwarna"]
+	path = Ambilwarna
+	url = http://cs-cust06-int.cs.aau.dk/git/ambilwarna
+[submodule "DrawLib"]
+	path = DrawLib
+	url = http://cs-cust06-int.cs.aau.dk/git/draw-lib
+[submodule "Tortoise"]
+	path = Tortoise
+	url = http://cs-cust06-int.cs.aau.dk/git/tortoise
+[submodule "wheel"]
+	path = wheel
+	url = http://cs-cust06-int.cs.aau.dk/git/wheel
