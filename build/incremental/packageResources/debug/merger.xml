@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\wheel\res" >
+            <file
+                name="wheel_bg"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\wheel\res\drawable\wheel_bg.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="wheel_val"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\wheel\res\drawable\wheel_val.xml"
+                qualifiers=""
+                type="drawable" />
+        </source>
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\wheel\build\res\rs\debug" />
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\wheel\build\res\generated\debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\wheel\build-types\debug\res" />
+    </dataSet>
+
+</merger>
