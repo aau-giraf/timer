@@ -1,0 +1,3 @@
+[submodule "TimerLib"]
+	path = TimerLib
+	url = http://cs-cust06-int.cs.aau.dk/git/timer-lib.git
