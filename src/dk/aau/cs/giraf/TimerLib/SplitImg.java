@@ -3,7 +3,6 @@ package dk.aau.cs.giraf.TimerLib;
 import java.util.HashMap;
 
 import dk.aau.cs.giraf.oasis.lib.Helper;
-import dk.aau.cs.giraf.oasis.lib.models.Media;
 
 public class SplitImg extends Attachment {
 	

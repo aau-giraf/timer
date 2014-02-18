@@ -2,8 +2,6 @@ package dk.aau.cs.giraf.TimerLib;
 
 import java.util.HashMap;
 
-import dk.aau.cs.giraf.oasis.lib.models.Media;
-
 public class Timer extends Attachment {
 	
 	private formFactor _form;

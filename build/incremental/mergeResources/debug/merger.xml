@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="TimerLibOasisLibUnspecified.aar" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build\exploded-bundles\TimerLibOasisLibUnspecified.aar\res" >
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build\exploded-bundles\TimerLibOasisLibUnspecified.aar\res\drawable-hdpi\ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build\exploded-bundles\TimerLibOasisLibUnspecified.aar\res\drawable-ldpi\ic_launcher.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build\exploded-bundles\TimerLibOasisLibUnspecified.aar\res\drawable-mdpi\ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="main"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build\exploded-bundles\TimerLibOasisLibUnspecified.aar\res\layout\main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build\exploded-bundles\TimerLibOasisLibUnspecified.aar\res\values\values.xml"
+                qualifiers="" >
+                <string name="app_name" >OasisLib
+                </string>
+                <string name="hello" >Hello World!
+                </string>
+            </file>
+        </source>
+    </dataSet>
+    <dataSet config="main" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res" >
+            <file
+                name="attachment_background"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\attachment_background.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="attachment_layer"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\attachment_layer.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="background"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\background.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="btn"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\btn.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="btn_normal"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\btn_normal.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="btn_pressed"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\btn_pressed.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="checkbox"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\checkbox.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="color_btn"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\color_btn.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="color_btn_normal"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\color_btn_normal.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="list"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\list.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="list_normal"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\list_normal.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="list_pressed"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\list_pressed.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="list_selected"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\list_selected.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="timer_button"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\timer_button.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="wdialog_background"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable\wdialog_background.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="checkmark"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\checkmark.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="default_profile"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\default_profile.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="last_used"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\last_used.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="predef"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\predef.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="p_done"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\p_done.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="p_gaa_til_skema"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\p_gaa_til_skema.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="p_gaa_til_taxa"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\p_gaa_til_taxa.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="p_ryd_op"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\p_ryd_op.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_attachment"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_attachment.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_digital"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_digital.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_dual_pic"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_dual_pic.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_hourglass"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_hourglass.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_progressbar"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_progressbar.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_save"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_save.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_saveas"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_saveas.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_saveas_gray"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_saveas_gray.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_save_gray"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_save_gray.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_single_pic"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_single_pic.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_start"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_start.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_start_gray"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_start_gray.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="thumbnail_timetimer"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\thumbnail_timetimer.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="wombat_icon"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\drawable-hdpi\wombat_icon.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="customize"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\customize.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="details"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\details.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="main"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profile_list"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\profile_list.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profile_list_dialog"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\profile_list_dialog.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="profile_list_item"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\profile_list_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="subprofile_list"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\subprofile_list.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="subprofile_list_item"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\subprofile_list_item.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="wdialog"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\layout\wdialog.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\values\profiles.xml"
+                qualifiers="" >
+                <integer-array name="ids" >
+                    <item>
+100001
+                    </item>
+                    <item>
+100002
+                    </item>
+                    <item>
+100003
+                    </item>
+                    <item>
+100004
+                    </item>
+                </integer-array>
+
+                <string-array name="profiles" >
+                    <item>
+Last Used
+                    </item>
+                    <item>
+Predefined
+                    </item>
+                    <item>
+Bjørn
+                    </item>
+                    <item>
+Kim
+                    </item>
+                </string-array>
+            </file>
+            <file
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\values\strings.xml"
+                qualifiers="" >
+                <string name="delete_description" >Er du sikker på du vil slette
+                </string>
+                <string name="cannot_delete_subprofile_toast" >Kan ikke slette denne tilpasning
+                </string>
+                <string name="delete_subprofile_message" >Vil du slette denne tilpasning?
+                </string>
+                <string name="profile_list_time" >Tid
+                </string>
+                <string name="customize_timetimer_description" >Ur
+                </string>
+                <string name="customize_header" >Tilpas
+                </string>
+                <string name="formfactor_singleimg" >Enkelt pictogram
+                </string>
+                <string name="minut" >minut
+                </string>
+                <string name="attachment_dialog_pick_a_picture" >Vælg et pictogram
+                </string>
+                <string name="customize_hourglass_description" >Timeglas
+                </string>
+                <string name="cant_start" >Timeren kan ikke startes endnu!
+                </string>
+                <string name="cant_save" >Timeren kan ikke gemmes endnu!
+                </string>
+                <string name="start_activity_default" >Tilpas
+                </string>
+                <string name="customize_digital_description" >Digital Ur
+                </string>
+                <string name="customize_style_description" >Stil
+                </string>
+                <string name="choose_profile" >Vælg en Profil
+                </string>
+                <string name="min_sec_devider" >:
+                </string>
+                <string name="and_divider" >og
+                </string>
+                <string name="attachment_dialog_split_left" >Vælg venstre pictogram
+                </string>
+                <string name="new_template_button_text" >Ny tilpasning
+                </string>
+                <string name="attachment_dialog_split_right" >Vælg højre pictogram
+                </string>
+                <string name="background" >Baggrund
+                </string>
+                <string name="last_used" >Sidst Brugt
+                </string>
+                <string name="formfactor_splitimg" >Dobbelt pictogram
+                </string>
+                <string name="attachment_dialog_description" >Vælg den profil du vil kopierer og vedhæfte
+                </string>
+                <string name="profile_list_header" >Profiler
+                </string>
+                <string name="donescreen_dialog_title" >Vælg type af slutbillede
+                </string>
+                <string name="delete_subprofile_toast" >Tilpasning slettet
+                </string>
+                <string name="donescreen_dialog_left" >Vælg venstre slutbilled
+                </string>
+                <string name="gradient" >Overgang
+                </string>
+                <string name="delete_no" >Nej
+                </string>
+                <string name="delete_yes" >Ja
+                </string>
+                <string name="customize_progressbar_description" >Bar
+                </string>
+                <string name="attached" >Vedhæftet
+                </string>
+                <string name="predefined" >Predefineret
+                </string>
+                <string name="attachment_button_description" >Vedhæft
+                </string>
+                <string name="cancel" >Afbryd
+                </string>
+                <string name="start_button" >Start
+                </string>
+                <string name="second" >sekund
+                </string>
+                <string name="ok" >Ok
+                </string>
+                <string name="customize_single_img_description" >Et billed
+                </string>
+                <string name="color_picker_button" >Vælg Farve
+                </string>
+                <string name="toast_text" >blev gemt på
+                </string>
+                <string name="template_list_header" >Gemte Tilpasninger
+                </string>
+                <string name="attachment_dialog_pick_a_profile" >Vælg den liste du vil kopierer og vedhæfte en profile fra
+                </string>
+                <string name="seconds" >sekunder
+                </string>
+                <string name="donescreen_dialog_single" >Vælg et slutbilled
+                </string>
+                <string name="donescreen_button_description" >Slutbillede
+                </string>
+                <string name="minutes" >minutter
+                </string>
+                <string name="select_attachment_dialog" >Vælg Vedhæft
+                </string>
+                <string name="donescreen_dialog_right" >Vælg højre slutbilled
+                </string>
+                <string name="frame" >Ramme
+                </string>
+                <string name="color_time_left" >Tid Tilbage
+                </string>
+                <string name="save_as_button" >Gem Som …
+                </string>
+                <string name="save_button" >Gem
+                </string>
+                <string name="go_back" >Gå tilbage
+                </string>
+                <string name="app_name" >Timer
+                </string>
+                <string name="profile_pic_description" >Profil Billede
+                </string>
+                <string name="customize_split_img_description" >To billeder
+                </string>
+                <string name="formfactor_timer" >Timer
+                </string>
+                <string name="colors" >Farver
+                </string>
+            </file>
+            <file
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\res\values\wombat_style.xml"
+                qualifiers="" >
+
+                <style
+                    name="WombatStyle"
+                    parent="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
+                    <item name="android:textColor">
+@color/textcolor
+                    </item>
+                    <item name="android:buttonStyle">
+@style/ButtonStyle
+                    </item>
+                </style>
+
+                <style
+                    name="ButtonStyle"
+                    parent="@android:style/Widget.Button" >
+                    <item name="android:background">
+@drawable/btn
+                    </item>
+                </style>
+
+                <style
+                    name="WombatStyle_Dialog"
+                    parent="@android:style/Theme.Dialog" >
+                    <item name="android:windowBackground">
+@drawable/wdialog_background
+                    </item>
+                </style>
+
+                <color name="textcolor" >#000000
+                </color>
+            </file>
+        </source>
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build\res\rs\debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\TimerLib\build-types\debug\res" />
+    </dataSet>
+
+</merger>
