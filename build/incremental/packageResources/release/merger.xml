@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\res" >
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\res\drawable-hdpi\ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\res\drawable-ldpi\ic_launcher.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\res\drawable-mdpi\ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\res\drawable-xhdpi\ic_launcher.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="main"
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\res\layout\main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\res\values\strings.xml"
+                qualifiers="" >
+                <string name="done_message" >Færdig
+                </string>
+                <string name="app_name" >DoneScreen
+                </string>
+                <string name="hello" >Hello World, DoneScreenActivity!
+                </string>
+            </file>
+        </source>
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\build\res\rs\release" />
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\build\res\generated\release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Workspace\GirafStart2014\DrawLib\build-types\release\res" />
+    </dataSet>
+
+</merger>
