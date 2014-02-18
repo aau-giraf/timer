@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="WombatWheelUnspecified.aar" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\Wombat\build\exploded-bundles\WombatWheelUnspecified.aar\assets" />
+    </dataSet>
+    <dataSet config="WombatOasisLibUnspecified.aar" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\Wombat\build\exploded-bundles\WombatOasisLibUnspecified.aar\assets" />
+    </dataSet>
+    <dataSet config="WombatAmbilwarnaUnspecified.aar" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\Wombat\build\exploded-bundles\WombatAmbilwarnaUnspecified.aar\assets" />
+    </dataSet>
+    <dataSet config="WombatTimerLibUnspecified.aar" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\Wombat\build\exploded-bundles\WombatTimerLibUnspecified.aar\assets" />
+    </dataSet>
+    <dataSet config="WombatDrawLibUnspecified.aar" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\Wombat\build\exploded-bundles\WombatDrawLibUnspecified.aar\assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\Wombat\assets" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="D:\Windows 7\Dokumenter\SVN\P6 - SW615F14\Temp Git\Wombat\build-types\debug\assets" />
+    </dataSet>
+
+</merger>

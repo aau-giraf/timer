@@ -1,0 +1,8 @@
+include ':OasisLib'
+include ':TimerLib'
+include ':DrawLib'
+include ':pictogram-lib'
+include ':Tortoise'
+include ':Ambilwarna'
+include ':wheel'
+include ':Wombat'

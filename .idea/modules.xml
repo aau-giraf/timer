@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Ambilwarna/Ambilwarna.iml" filepath="$PROJECT_DIR$/Ambilwarna/Ambilwarna.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DrawLib/DrawLib.iml" filepath="$PROJECT_DIR$/DrawLib/DrawLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OasisLib/OasisLib.iml" filepath="$PROJECT_DIR$/OasisLib/OasisLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TimerLib/TimerLib.iml" filepath="$PROJECT_DIR$/TimerLib/TimerLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tortoise/Tortoise.iml" filepath="$PROJECT_DIR$/Tortoise/Tortoise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Wombat.iml" filepath="$PROJECT_DIR$/Wombat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pictogram-lib/pictogram-lib.iml" filepath="$PROJECT_DIR$/pictogram-lib/pictogram-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel/wheel.iml" filepath="$PROJECT_DIR$/wheel/wheel.iml" />
+    </modules>
+  </component>
+</project>
+
