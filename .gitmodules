@@ -1,3 +1,6 @@
 [submodule "TimerLib"]
 	path = TimerLib
-	url = http://cs-cust06-int.cs.aau.dk/git/timer-lib.git
+	url = http://cs-cust06-int.cs.aau.dk/git-ro/timer-lib.git
+[submodule "OasisLib"]
+	path = OasisLib
+	url = http://cs-cust06-int.cs.aau.dk/git-ro/oasis-lib.git
