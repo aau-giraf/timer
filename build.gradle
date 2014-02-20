@@ -16,6 +16,7 @@ dependencies {
     compile project(':DrawLib')
     compile project(':Ambilwarna')
     compile project(':OasisLib')
+    compile project(':pictogram-lib')
     compile project(':Tortoise')
     compile project(':wheel')
 }
