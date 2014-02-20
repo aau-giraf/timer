@@ -291,7 +291,7 @@ public class CustomizeFragment extends Fragment {
 	/**
 	 * Sets the time on the time picker wheels
 	 * 
-	 * @param get_totalTime
+	 * @param _totalTime
 	 *            () Total time in seconds
 	 */
 	private void setTime(int _totalTime) {
@@ -334,7 +334,8 @@ public class CustomizeFragment extends Fragment {
 	/**
 	 * Update time on currSubP and updates the time text
 	 * 
-	 * @param time
+	 * @param m_minutes
+     * @param m_seconds
 	 *            Total time in seconds
 	 */
 	private void updateTime(int m_minutes, int m_seconds) {
@@ -718,7 +719,7 @@ public class CustomizeFragment extends Fragment {
 	/**
 	 * Sets the attachment to subProfile, resets if subProfile == null
 	 * 
-	 * @param subProfile
+	 * @param att
 	 *            SubProfile to be attached
 	 */
 	private void setAttachment(Attachment att) {
@@ -1284,7 +1285,7 @@ public class CustomizeFragment extends Fragment {
 	 /**
 	  * Sets the predefined settings of the chosen subprofile
 	  * 
-	  * @param subp
+	  * @param subProfile
 	  *            The Subprofile chosen
 	  */
 	 public void loadSettings(SubProfile subProfile) {
