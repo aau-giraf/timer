@@ -580,8 +580,7 @@ public class CustomizeFragment extends Fragment {
 						attachment2.setAdapter(adapter);
 						// 3. window
 
-						attachment2
-						.setOnItemClickListener(new OnItemClickListener() {
+						attachment2.setOnItemClickListener(new OnItemClickListener() {
 							public void onItemClick(
 									AdapterView<?> parent, View view,
 									int position, long id) {
@@ -1071,7 +1070,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_save), 2000);
+							 getString(R.string.cant_save), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
@@ -1218,7 +1217,7 @@ public class CustomizeFragment extends Fragment {
 
 									 Toast toast = Toast.makeText(
 											 getActivity(), toastText,
-											 3000);
+											 Toast.LENGTH_LONG);
 									 toast.show();
 
 									 ChildFragment cf = (ChildFragment) getFragmentManager()
@@ -1256,7 +1255,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_save), 2000);
+							 getString(R.string.cant_save), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
@@ -1294,7 +1293,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_start), 2000);
+							 getString(R.string.cant_start), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
