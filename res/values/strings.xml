@@ -71,4 +71,9 @@
     <string name="cant_start">Timeren kan ikke startes endnu!</string>
     <string name="cancel">Afbryd</string>
 
+    <!-- Attachment feedback strings. -->
+    <string name="attached_pictogram_toast">Pictogram vedhæftet</string>
+    <string name="attached_pictograms_toast">Pictogrammer vedhæftet</string>
+    <string name="attached_timer_toast">Timer vedhæftet</string>
+
 </resources>
