@@ -149,6 +149,7 @@
                     android:orientation="vertical" >
 
                     <LinearLayout
+                        android:orientation="vertical"
                         android:id="@+id/button_gradient_layout"
                         android:layout_width="35dp"
                         android:layout_height="35dp"/>
@@ -245,7 +246,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#FFFFFF" />
+        android:background="@color/White" />
 
     <RelativeLayout
         android:layout_width="match_parent"

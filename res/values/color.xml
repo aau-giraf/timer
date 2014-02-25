@@ -78,6 +78,10 @@
     <color name="MediumVioletRed">#C71585</color>
     <color name="DarkKhaki">#BDB76B</color>
     <color name="RosyBrown">#BC8F8F</color>
+    <color name="SoftBlue">#7CADF8</color>
+    <color name="VerySoftBlueStart">#BAD2F8</color>
+    <color name="VerySoftBlueEnd">#B5D1F2</color>
+    <color name="SlightlyDesaturatedBlue">#6995BE</color>
     <color name="MediumOrchid">#BA55D3</color>
     <color name="DarkGoldenrod">#B8860B</color>
     <color name="FireBrick">#B22222</color>
@@ -86,6 +90,9 @@
     <color name="PaleTurquoise">#AFEEEE</color>
     <color name="GreenYellow">#ADFF2F</color>
     <color name="LightBlue">#ADD8E6</color>
+    <color name="VeryDarkGray">#222222</color>
+    <color name="DarkerGray">#333333</color>
+    <color name="DarkGray1">#999999</color>
     <color name="DarkGray">#A9A9A9</color>
     <color name="Brown">#A52A2A</color>
     <color name="Sienna">#A0522D</color>

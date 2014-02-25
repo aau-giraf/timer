@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="#FFFFFF" />
+        android:background="@color/White" />
 
     <LinearLayout
         android:layout_width="350dp"
@@ -57,7 +57,7 @@
             android:layout_height="62dp"
             android:background="@drawable/list"
             android:text="@string/new_template_button_text"
-            android:textColor="#FF000000"/>
+            android:textColor="@color/Black"/>
 
         <fragment
             android:id="@+id/subprofileFragment"
@@ -70,7 +70,7 @@
     <TextView
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="#FFFFFF" />
+        android:background="@color/White" />
 
     <LinearLayout
         android:layout_width="match_parent"
