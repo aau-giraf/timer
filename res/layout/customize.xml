@@ -149,7 +149,6 @@
                     android:orientation="vertical" >
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:id="@+id/button_gradient_layout"
                         android:layout_width="35dp"
                         android:layout_height="35dp"/>

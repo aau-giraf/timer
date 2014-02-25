@@ -53,7 +53,7 @@ public class SubProfileFragment extends android.app.ListFragment {
 				
 					TextView tv = new TextView(getActivity());
 					tv.setText(getString(R.string.delete_description) + " " + guard.getChild().SubProfiles().get(row).name + "?");
-					tv.setTextColor(0xFFFFFFFF);
+					tv.setTextColor(getResources().getColor(R.color.White));
 				
 					final WDialog deleteDialog = new WDialog(getActivity(), R.string.delete_subprofile_message);
 					deleteDialog.addTextView(getString(R.string.delete_description) + " " + guard.getChild().SubProfiles().get(row).name + "?", 1);

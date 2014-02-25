@@ -106,8 +106,11 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		currSubP = new SubProfile("", "", 0xff3D3D3D, 0xffFF0000, 0xffB8B8B8,
-				0xff000000, 600, false);
+		currSubP = new SubProfile("", "",
+                                  getResources().getColor(R.color.DarkerGray2),
+                                  getResources().getColor(R.color.Red),
+                                  getResources().getColor(R.color.Gray),
+                                  getResources().getColor(R.color.Black), 600, false);
 		currSubP.save = false;
 		currSubP.saveAs = false;
 
@@ -128,8 +131,11 @@ public class CustomizeFragment extends Fragment {
 	}
 
 	public void setDefaultProfile() {
-		currSubP = new SubProfile("", "", 0xff3D3D3D, 0xffFF0000, 0xffB8B8B8,
-				0xff000000, 600, false);
+		currSubP = new SubProfile("", "",
+                getResources().getColor(R.color.DarkerGray2),
+                getResources().getColor(R.color.Red),
+                getResources().getColor(R.color.Gray),
+                getResources().getColor(R.color.Black), 600, false);
 		currSubP.save = false;
 		currSubP.saveAs = false;
 
@@ -291,7 +297,7 @@ public class CustomizeFragment extends Fragment {
 	/**
 	 * Sets the time on the time picker wheels
 	 * 
-	 * @param get_totalTime
+	 * @param _totalTime
 	 *            () Total time in seconds
 	 */
 	private void setTime(int _totalTime) {
@@ -334,8 +340,10 @@ public class CustomizeFragment extends Fragment {
 	/**
 	 * Update time on currSubP and updates the time text
 	 * 
-	 * @param time
-	 *            Total time in seconds
+	 * @param m_minutes
+	 *            Time in minutes
+     * @param m_seconds
+     *            Time in seconds
 	 */
 	private void updateTime(int m_minutes, int m_seconds) {
 		currSubP.set_totalTime((m_minutes * 60) + m_seconds);
@@ -718,8 +726,8 @@ public class CustomizeFragment extends Fragment {
 	/**
 	 * Sets the attachment to subProfile, resets if subProfile == null
 	 * 
-	 * @param subProfile
-	 *            SubProfile to be attached
+	 * @param att
+	 *            Attachment to be attached to subProfile
 	 */
 	private void setAttachment(Attachment att) {
 		int pictureRes = 0;
@@ -1284,7 +1292,7 @@ public class CustomizeFragment extends Fragment {
 	 /**
 	  * Sets the predefined settings of the chosen subprofile
 	  * 
-	  * @param subp
+	  * @param subProfile
 	  *            The Subprofile chosen
 	  */
 	 public void loadSettings(SubProfile subProfile) {

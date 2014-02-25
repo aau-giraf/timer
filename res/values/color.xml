@@ -31,6 +31,7 @@
     <color name="Gold">#FFD700</color>
     <color name="Pink">#FFC0CB</color>
     <color name="LightPink">#FFB6C1</color>
+    <color name="GIRAFOrange">#FFBB55</color>
     <color name="Orange">#FFA500</color>
     <color name="LightSalmon">#FFA07A</color>
     <color name="DarkOrange">#FF8C00</color>
@@ -91,6 +92,7 @@
     <color name="GreenYellow">#ADFF2F</color>
     <color name="LightBlue">#ADD8E6</color>
     <color name="VeryDarkGray">#222222</color>
+    <color name="DarkerGray2">#3D3D3D</color>
     <color name="DarkerGray">#333333</color>
     <color name="DarkGray1">#999999</color>
     <color name="DarkGray">#A9A9A9</color>

@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
         } else {
         	guardianId = -1;
         	childId = -3;
-        	color = 0xFFFFBB55;
+        	color = getResources().getColor(R.color.GIRAFOrange);
         }
         
         ArrayList<Art> artList = new ArrayList<Art>();
