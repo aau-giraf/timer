@@ -1,7 +1,7 @@
 package dk.aau.cs.giraf.wombat;
 
 import java.util.ArrayList;
-
+import java.util.concurrent.TimeUnit;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.NumericWheelAdapter;
@@ -826,11 +826,9 @@ public class CustomizeFragment extends Fragment {
 			switch(att.getForm()){
 			case SingleImg:
 				pictureRes = R.drawable.thumbnail_single_pic;
-
 				break;
 			case SplitImg:
 				pictureRes = R.drawable.thumbnail_dual_pic;
-
 				break;
 			}
 		} else {
@@ -873,7 +871,8 @@ public class CustomizeFragment extends Fragment {
 						final formFactor mode = modeArray.get(position);
 
 
-						final ArrayAdapter artList = new ArtAdapter(getActivity(),android.R.layout.simple_list_item_1, guard.ArtList);
+						final ArrayAdapter artList = new ArtAdapter(getActivity(),
+                                android.R.layout.simple_list_item_1, guard.ArtList);
 						switch(mode){
 						case SingleImg:
 							final WDialog singleDialog = new WDialog(getActivity(),R.string.donescreen_dialog_single);
@@ -1007,8 +1006,7 @@ public class CustomizeFragment extends Fragment {
 
 								 SubProfile m_savedSubprofile;
 								 if (preSubP != null) {
-									 m_savedSubprofile = currSubP.save(preSubP,
-											 true);
+									 m_savedSubprofile = currSubP.save(preSubP, true);
 									 preSubP = null;
 								 } else {
 									 m_savedSubprofile = guard.getChild().save(
@@ -1021,8 +1019,7 @@ public class CustomizeFragment extends Fragment {
 								 ChildFragment cf = (ChildFragment) getFragmentManager()
 										 .findFragmentById(R.id.childFragment);
 								 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
-										 .findFragmentById(
-												 R.id.subprofileFragment);
+										 .findFragmentById(R.id.subprofileFragment);
 								 guard.profileID = guard.getChild()
 										 .getProfileId();
 								 cf.loadChildren();
@@ -1040,16 +1037,14 @@ public class CustomizeFragment extends Fragment {
 						 });
 						 save1.show();
 					 } else {
-						 guard.publishList().get(guard.profilePosition)
-						 .select();
+						 guard.publishList().get(guard.profilePosition).select();
 
 						 SubProfile m_savedSubprofile;
 						 if (preSubP != null) {
 							 m_savedSubprofile = currSubP.save(preSubP, true);
 							 preSubP = null;
 						 } else {
-							 m_savedSubprofile = guard.getChild().save(currSubP,
-									 false);
+							 m_savedSubprofile = guard.getChild().save(currSubP, false);
 						 }
 						 guard.subProfileID = m_savedSubprofile.getId();
 						 loadSettings(m_savedSubprofile);
@@ -1114,6 +1109,17 @@ public class CustomizeFragment extends Fragment {
 		 return name;
 	 }
 
+    private String toTimestamp(int seconds) {
+        int millis = seconds*1000;
+        // Converts milliseconds to minutes,
+        // then to seconds which we need to subtract the amount of minutes from
+        return String.format("%02d:%02d",
+                TimeUnit.MILLISECONDS.toMinutes(millis),
+                TimeUnit.MILLISECONDS.toSeconds(millis) -
+                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis))
+        );
+    }
+
 	 private void genDescription() {
 		 String name = "";
 		 String desc = "";
@@ -1140,13 +1146,14 @@ public class CustomizeFragment extends Fragment {
 			 break;
 		 }
 
-		 int seconds = currSubP.get_totalTime() % 60;
-		 int minutes = (currSubP.get_totalTime() - seconds) / 60;
+		 //int seconds = currSubP.get_totalTime() % 60;
+		 //int minutes = (currSubP.get_totalTime() - seconds) / 60;
+		 //desc += name + " - ";
+		 //desc += "(" + minutes + ":" + seconds + ")";
 
-		 desc += name + " - ";
-		 desc += "(" + minutes + ":" + seconds + ")";
+         desc += name + " - (" + toTimestamp(currSubP.get_totalTime()) + ")";
 
-		 currSubP.desc = desc;
+         currSubP.desc = desc;
 	 }
 
 	 /**
