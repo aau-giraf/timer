@@ -8,12 +8,12 @@
     <string name="second">sekund</string>
     <string name="seconds">sekunder</string>
     <string name="and_divider">og</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="go_back">Gå tilbage</string>
     
     <!-- PROFILE LIST -->
     <string name="profile_list_header">Profiler</string>
-    <string name="predefined">Predefineret</string>
+    <string name="predefined">Prædefineret</string>
     <string name="last_used">Sidst Brugt</string>
     <string name="profile_pic_description">Profil Billede</string>
     <string name="profile_list_time">Tid</string>
@@ -63,7 +63,7 @@
     <string name="frame">Ramme</string>
     <string name="background">Baggrund</string>
     
-    <string name="toast_text">blev gemt på</string>
+    <string name="was_saved_toast">blev gemt på</string>
     <string name="new_template_button_text">Ny tilpasning</string>
     <string name="delete_subprofile_toast">Tilpasning slettet</string>
     <string name="cannot_delete_subprofile_toast">Kan ikke slette denne tilpasning</string>
