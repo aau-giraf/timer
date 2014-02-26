@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -149,13 +148,11 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the style chooser buttons
 	 */
 	private void initStyleChoser() {
-		hourglassButton = (Button) getActivity().findViewById(
-				R.id.houglassButton);
+		hourglassButton = (Button) getActivity().findViewById(R.id.houglassButton);
 		hourglassButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				selectStyle(formFactor.Hourglass);
-
 			}
 		});
 
@@ -193,7 +190,7 @@ public class CustomizeFragment extends Fragment {
 	 * Change style on currSubP according to formFactor type
 	 * 
 	 * @param formType
-	 *            Style to change to
+	 *            formFactor to change to
 	 */
 	private void selectStyle(formFactor formType) {
 		if (formType == formFactor.Hourglass) {
@@ -299,7 +296,7 @@ public class CustomizeFragment extends Fragment {
 	 * Sets the time on the time picker wheels
 	 * 
 	 * @param _totalTime
-	 *            () Total time in seconds
+	 *            Total time in seconds
 	 */
 	private void setTime(int _totalTime) {
 		int minutes, seconds;
@@ -350,7 +347,7 @@ public class CustomizeFragment extends Fragment {
 		currSubP.set_totalTime((m_minutes * 60) + m_seconds);
 
 		String timeText = "";
-		/* F�rste del med mellemrum */
+		/* Første del med mellemrum */
 		if (m_minutes == 1) {
 			timeText = "1 ";
 			timeText += this.getString(R.string.minut);
@@ -387,7 +384,7 @@ public class CustomizeFragment extends Fragment {
 		gradientButton.setOnClickListener(currSubP.gradient, new OnClickListener() {
 			
 			public void onClick(View v) {
-				currSubP.gradient = gradientButton.changeCheckedState();		
+				currSubP.gradient = gradientButton.changeCheckedState();
 			}
 		});
 		mLL.addView(gradientButton);
@@ -533,22 +530,19 @@ public class CustomizeFragment extends Fragment {
 
 						switch (form) {
 						case Timer:
-							attachment2
-							.setTitle(getString(R.string.attachment_dialog_pick_a_profile));
+							attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_profile));
 							ArrayList<Child> child = guard.publishList();
 							adapter = new ChildAdapter(getActivity(),
 									android.R.layout.simple_list_item_1, child);
 							break;
 						case SingleImg:
-							attachment2
-							.setTitle(getString(R.string.attachment_dialog_pick_a_picture));
+							attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_picture));
 							ArrayList<Art> art = guard.ArtList;
 							adapter = new ArtAdapter(getActivity(),
 									android.R.layout.simple_list_item_1, art);
 							break;
 						case SplitImg:
-							attachment2
-							.setTitle(getString(R.string.attachment_dialog_split_left));
+							attachment2.setTitle(getString(R.string.attachment_dialog_split_left));
 							ArrayList<Art> splitArt = guard.ArtList;
 							adapter = new ArtAdapter(getActivity(),
 									android.R.layout.simple_list_item_1,
@@ -556,16 +550,11 @@ public class CustomizeFragment extends Fragment {
 							break;
 						}
 
-						// SubProfileAdapter adapter = new SubProfileAdapter(
-						// getActivity(),
-						// android.R.layout.simple_list_item_1,
-						// subProfiles);
 						attachment2.addButton(R.string.go_back, 1,
 								new OnClickListener() {
 
 							public void onClick(View arg0) {
 								attachment2.cancel();
-
 							}
 						});
 
@@ -613,12 +602,9 @@ public class CustomizeFragment extends Fragment {
 								ArrayAdapter adapter = null;
 								switch (form) {
 								case Timer:
-									attachment3
-									.setTitle(getString(R.string.attachment_dialog_description));
+									attachment3.setTitle(getString(R.string.attachment_dialog_description));
 									final ArrayList<SubProfile> sp = guard
-											.publishList()
-											.get(position)
-											.SubProfiles();
+											.publishList().get(position).SubProfiles();
 									adapter = new SubProfileAdapter(
 											getActivity(),
 											android.R.layout.simple_list_item_1,
@@ -626,28 +612,28 @@ public class CustomizeFragment extends Fragment {
 
 									attachment3.setAdapter(adapter);
 
-									attachment3
-									.setOnItemClickListener(new OnItemClickListener() {
-										public void onItemClick(
-												AdapterView<?> parent,
-												View view,
-												int position,
-												long id) {
+									attachment3.setOnItemClickListener(new OnItemClickListener() {
+                                        public void onItemClick(
+                                                AdapterView<?> parent,
+                                                View view,
+                                                int position,
+                                                long id) {
 
-											Attachment attTimer = new Timer(
-													sp.get(position));
-											setAttachment(attTimer);
+                                            Attachment attTimer = new Timer(
+                                                    sp.get(position));
+                                            setAttachment(attTimer);
 
-                                            Toast t = Toast.makeText(getActivity(), getString(R.string.attached_timer_toast), Toast.LENGTH_SHORT);
-                                            t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            Toast t = Toast.makeText(getActivity(),
+                                                    getString(R.string.attached_timer_toast),
+                                                    Toast.LENGTH_SHORT);
                                             t.show();
 
-											attachment1.dismiss();
-											attachment2.dismiss();
-											attachment3.dismiss();
+                                            attachment1.dismiss();
+                                            attachment2.dismiss();
+                                            attachment3.dismiss();
 
-										}
-									});
+                                        }
+                                    });
 
 									attachment3.show();
 
@@ -659,7 +645,6 @@ public class CustomizeFragment extends Fragment {
                                     Toast t = Toast.makeText(getActivity(),
                                             getString(R.string.attached_pictogram_toast),
                                             Toast.LENGTH_SHORT);
-                                    t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                                     t.show();
 
 									attachment1.dismiss();
@@ -677,30 +662,27 @@ public class CustomizeFragment extends Fragment {
 
 									attachment3.setAdapter(adapter);
 
-									attachment3
-									.setOnItemClickListener(new OnItemClickListener() {
-										public void onItemClick(
-												AdapterView<?> parent,
-												View view,
-												int position,
-												long id) {
-											final Art art2 = guard.ArtList.get(position);
-											Attachment attSplit = new SplitImg(
-													art1, art2);
-											setAttachment(attSplit);
+									attachment3.setOnItemClickListener(new OnItemClickListener() {
+                                        public void onItemClick(
+                                                AdapterView<?> parent,
+                                                View view,
+                                                int position,
+                                                long id) {
+                                            final Art art2 = guard.ArtList.get(position);
+                                            Attachment attSplit = new SplitImg(art1, art2);
+                                            setAttachment(attSplit);
 
                                             Toast t = Toast.makeText(getActivity(),
                                                     getString(R.string.attached_pictograms_toast),
                                                     Toast.LENGTH_SHORT);
-                                            t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                                             t.show();
 
-											attachment1.dismiss();
-											attachment2.dismiss();
-											attachment3.dismiss();
+                                            attachment1.dismiss();
+                                            attachment2.dismiss();
+                                            attachment3.dismiss();
 
-										}
-									});
+                                        }
+                                    });
 									attachment3.show();
 
 									break;
@@ -858,9 +840,6 @@ public class CustomizeFragment extends Fragment {
 				R.id.customize_donescreen);
 		donePictureButton.setOnClickListener(new OnClickListener() {
 			public void onClick(final View v) {
-				final ArrayList<Art> art = guard.ArtList;
-
-
 				final WDialog doneDialog = new WDialog(getActivity(), R.string.donescreen_dialog_title);
 				ArrayAdapter adapter = new ModeAdapter(getActivity(),android.R.layout.simple_list_item_1, modeArray);	
 				doneDialog.setAdapter(adapter);
@@ -869,7 +848,6 @@ public class CustomizeFragment extends Fragment {
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						final formFactor mode = modeArray.get(position);
-
 
 						final ArrayAdapter artList = new ArtAdapter(getActivity(),
                                 android.R.layout.simple_list_item_1, guard.ArtList);
@@ -890,7 +868,6 @@ public class CustomizeFragment extends Fragment {
                                     Toast t = Toast.makeText(getActivity(),
                                             getString(R.string.attached_pictogram_toast),
                                             Toast.LENGTH_SHORT);
-                                    t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                                     t.show();
 
 								}
@@ -926,10 +903,10 @@ public class CustomizeFragment extends Fragment {
 											dualDialog.dismiss();
 											dialog1.dismiss();
 
-                                            Toast t = Toast.makeText(getActivity(), getString(R.string.attached_pictograms_toast), Toast.LENGTH_SHORT);
-                                            t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            Toast t = Toast.makeText(getActivity(),
+                                                    getString(R.string.attached_pictograms_toast),
+                                                    Toast.LENGTH_SHORT);
                                             t.show();
-
 										}
 									});
 									dialog1.addButton(R.string.cancel, 1, new OnClickListener() {
@@ -995,7 +972,7 @@ public class CustomizeFragment extends Fragment {
 					 if (preSubP == null) {
 						 final WDialog save1 = new WDialog(getActivity(),
 								 R.string.save_button);
-						 // et.setText(getName());
+
 						 save1.addEditText(getName(), 1);
 						 save1.addButton(R.string.ok, 2, new OnClickListener() {
 
@@ -1065,7 +1042,8 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_save), Toast.LENGTH_SHORT);
+							 getString(R.string.cant_save),
+                             Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
@@ -1080,7 +1058,7 @@ public class CustomizeFragment extends Fragment {
 	  */
 	 protected String getName() {
 		 String name = "";
-		 if (currSubP.name == "") {
+		 if (currSubP.name.isEmpty()) {
 
 			 switch (currSubP.formType()) {
 			 case Hourglass:
@@ -1108,7 +1086,13 @@ public class CustomizeFragment extends Fragment {
 		 }
 		 return name;
 	 }
-
+    
+    /**
+     * Converts seconds to a timestamp of the form MM:SS
+     *
+     * @param seconds
+     *        Total amount of seconds to be converted into timestamp
+     * */
     private String toTimestamp(int seconds) {
         int millis = seconds*1000;
         // Converts milliseconds to minutes,
@@ -1120,6 +1104,10 @@ public class CustomizeFragment extends Fragment {
         );
     }
 
+     /**
+      * Generates the description of the current timer configuration
+      *
+      * */
 	 private void genDescription() {
 		 String name = "";
 		 String desc = "";
@@ -1146,11 +1134,6 @@ public class CustomizeFragment extends Fragment {
 			 break;
 		 }
 
-		 //int seconds = currSubP.get_totalTime() % 60;
-		 //int minutes = (currSubP.get_totalTime() - seconds) / 60;
-		 //desc += name + " - ";
-		 //desc += "(" + minutes + ":" + seconds + ")";
-
          desc += name + " - (" + toTimestamp(currSubP.get_totalTime()) + ")";
 
          currSubP.desc = desc;
@@ -1158,6 +1141,7 @@ public class CustomizeFragment extends Fragment {
 
 	 /**
 	  * Initialize the Save As button
+      *
 	  */
 	 private void initSaveAsButton() {
 		 Drawable d;
@@ -1198,28 +1182,23 @@ public class CustomizeFragment extends Fragment {
 									 new OnClickListener() {
 
 								 public void onClick(View arg0) {
-									 currSubP.name = saveAs2
-											 .getEditTextText(1);
-									 guard.publishList()
-									 .get(guard.profilePosition)
-									 .select();
+									 currSubP.name = saveAs2.getEditTextText(1);
+									 guard.publishList().get(guard.profilePosition).select();
 
-									 Child c = guard.Children().get(
-											 position);
+									 Child c = guard.Children().get(position);
 									 getName();
 									 c.save(currSubP, false);
 									 guard.saveChild(c, currSubP);
 									 SubProfileFragment df = (SubProfileFragment) getFragmentManager()
-											 .findFragmentById(
-													 R.id.subprofileFragment);
+											 .findFragmentById(R.id.subprofileFragment);
 									 df.loadSubProfiles();
 
 									 String toastText = currSubP.name;
 									 toastText += " "
 											 + getActivity()
 											 .getApplicationContext()
-											 .getText(
-													 R.string.toast_text);
+                                             .getText(
+                                                     R.string.was_saved_toast);
 									 toastText += " " + c.name;
 
 									 Toast toast = Toast.makeText(
@@ -1228,13 +1207,10 @@ public class CustomizeFragment extends Fragment {
 									 toast.show();
 
 									 ChildFragment cf = (ChildFragment) getFragmentManager()
-											 .findFragmentById(
-													 R.id.childFragment);
+											 .findFragmentById(R.id.childFragment);
 									 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
-											 .findFragmentById(
-													 R.id.subprofileFragment);
-									 guard.profileID = guard
-											 .getChild().getProfileId();
+											 .findFragmentById(R.id.subprofileFragment);
+									 guard.profileID = guard.getChild().getProfileId();
 									 cf.loadChildren();
 									 spf.loadSubProfiles();
 									 saveAs2.dismiss();
@@ -1268,8 +1244,7 @@ public class CustomizeFragment extends Fragment {
 			 });
 		 }
 
-		 saveAsButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null,
-				 null);
+		 saveAsButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
 
 	 }
 
@@ -1306,8 +1281,7 @@ public class CustomizeFragment extends Fragment {
 			 });
 		 }
 
-		 startButton
-		 .setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+		 startButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
 	 }
 
 	 /**
