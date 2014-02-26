@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -579,8 +580,7 @@ public class CustomizeFragment extends Fragment {
 						attachment2.setAdapter(adapter);
 						// 3. window
 
-						attachment2
-						.setOnItemClickListener(new OnItemClickListener() {
+						attachment2.setOnItemClickListener(new OnItemClickListener() {
 							public void onItemClick(
 									AdapterView<?> parent, View view,
 									int position, long id) {
@@ -638,12 +638,13 @@ public class CustomizeFragment extends Fragment {
 													sp.get(position));
 											setAttachment(attTimer);
 
-											attachment1
-											.dismiss();
-											attachment2
-											.dismiss();
-											attachment3
-											.dismiss();
+                                            Toast t = Toast.makeText(getActivity(), getString(R.string.attached_timer_toast), Toast.LENGTH_SHORT);
+                                            t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            t.show();
+
+											attachment1.dismiss();
+											attachment2.dismiss();
+											attachment3.dismiss();
 
 										}
 									});
@@ -652,16 +653,20 @@ public class CustomizeFragment extends Fragment {
 
 									break;
 								case SingleImg:
-									Attachment att = new SingleImg(
-											guard.ArtList.get(position));
+									Attachment att = new SingleImg(guard.ArtList.get(position));
 									setAttachment(att);
+
+                                    Toast t = Toast.makeText(getActivity(),
+                                            getString(R.string.attached_pictogram_toast),
+                                            Toast.LENGTH_SHORT);
+                                    t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    t.show();
 
 									attachment1.dismiss();
 									attachment2.dismiss();
 									break;
 								case SplitImg:
-									attachment3
-									.setTitle(getString(R.string.attachment_dialog_split_right));
+									attachment3.setTitle(getString(R.string.attachment_dialog_split_right));
 									ArrayList<Art> splitArt = guard.ArtList;
 									final Art art1 = guard.ArtList
 											.get(position);
@@ -679,18 +684,20 @@ public class CustomizeFragment extends Fragment {
 												View view,
 												int position,
 												long id) {
-											final Art art2 = guard.ArtList
-													.get(position);
+											final Art art2 = guard.ArtList.get(position);
 											Attachment attSplit = new SplitImg(
 													art1, art2);
 											setAttachment(attSplit);
 
-											attachment1
-											.dismiss();
-											attachment2
-											.dismiss();
-											attachment3
-											.dismiss();
+                                            Toast t = Toast.makeText(getActivity(),
+                                                    getString(R.string.attached_pictograms_toast),
+                                                    Toast.LENGTH_SHORT);
+                                            t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            t.show();
+
+											attachment1.dismiss();
+											attachment2.dismiss();
+											attachment3.dismiss();
 
 										}
 									});
@@ -703,10 +710,6 @@ public class CustomizeFragment extends Fragment {
 
 						attachment2.show();
 
-						// for (SubProfile subProfile : subProfiles) {
-						// values.add(subProfile.name);
-						// }
-						//
 					}
 				});
 				attachment1.show();
@@ -885,6 +888,12 @@ public class CustomizeFragment extends Fragment {
 									doneDialog.dismiss();
 									singleDialog.dismiss();
 
+                                    Toast t = Toast.makeText(getActivity(),
+                                            getString(R.string.attached_pictogram_toast),
+                                            Toast.LENGTH_SHORT);
+                                    t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                    t.show();
+
 								}
 							});
 							singleDialog.addButton(R.string.cancel, 1, new OnClickListener() {
@@ -917,6 +926,11 @@ public class CustomizeFragment extends Fragment {
 											doneDialog.dismiss();
 											dualDialog.dismiss();
 											dialog1.dismiss();
+
+                                            Toast t = Toast.makeText(getActivity(), getString(R.string.attached_pictograms_toast), Toast.LENGTH_SHORT);
+                                            t.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                                            t.show();
+
 										}
 									});
 									dialog1.addButton(R.string.cancel, 1, new OnClickListener() {
@@ -1056,7 +1070,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_save), 2000);
+							 getString(R.string.cant_save), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
@@ -1203,7 +1217,7 @@ public class CustomizeFragment extends Fragment {
 
 									 Toast toast = Toast.makeText(
 											 getActivity(), toastText,
-											 3000);
+											 Toast.LENGTH_LONG);
 									 toast.show();
 
 									 ChildFragment cf = (ChildFragment) getFragmentManager()
@@ -1241,7 +1255,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_save), 2000);
+							 getString(R.string.cant_save), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
@@ -1279,7 +1293,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_start), 2000);
+							 getString(R.string.cant_start), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
