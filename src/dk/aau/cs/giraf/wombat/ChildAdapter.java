@@ -45,7 +45,8 @@ public class ChildAdapter extends ArrayAdapter<Child> {
 			/* Set the picture */
 			if (iv != null) {
 				//TODO: Insert pictures here
-				iv.setImageResource(R.drawable.default_profile);
+                iv.setImageResource(R.drawable.blank_shape);
+				//iv.setImageResource(R.drawable.default_profile);
 			}
 			
 			/* If this is either last used or predefined, change the name */
