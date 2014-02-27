@@ -102,11 +102,14 @@ public class DrawWatch extends View {
 		top = ((frameHeight - height) / 2) + 3;
 		bottom = (((frameHeight - height) / 2) + height) - 3;
 
-
-		double percent = timenow / (totalTime/1000);
-		
-		// 0.1 is what 1 second corresponds to in degrees
-		rotation = (0.1 * (endTime - System.currentTimeMillis()) / 1000) + 0.999;
+        // totalTime is the amount of time the timer needs to run in milliseconds
+        // timenow is the time left, in milliseconds
+        // percent, double between 0..1, is used to determine the current angle and the color
+        // rt is the percent multiplied by 360 to make it fit between 0..360
+        // rotation is then negative rt added to 360, because the clock needs to run counter clockwise
+		double percent = timenow/totalTime;
+        double rt = percent*360.0;
+		rotation = -rt+360;
 
 		// Draw the timer
 		paint.setColor(timeleft2);
