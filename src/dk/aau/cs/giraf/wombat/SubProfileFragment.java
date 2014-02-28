@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
+import android.widget.ImageButton;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.TimerLib.SubProfile;
 import dk.aau.cs.giraf.oasis.lib.Helper;
@@ -20,6 +23,7 @@ import dk.aau.cs.giraf.oasis.lib.Helper;
 public class SubProfileFragment extends android.app.ListFragment {
 	Guardian guard = Guardian.getInstance();
 	ListView thisListView;
+    ImageButton btn;
 
 	@Override
 	// Start the list empty
@@ -45,54 +49,58 @@ public class SubProfileFragment extends android.app.ListFragment {
 		}else {
 			setListAdapter(null);
 		}
+
 		ListView lv = getListView();
-		lv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-			public boolean onItemLongClick(AdapterView<?> arg0, View v,
-					final int row, long arg3) {
-				
-					TextView tv = new TextView(getActivity());
-					tv.setText(getString(R.string.delete_description) + " " + guard.getChild().SubProfiles().get(row).name + "?");
-					tv.setTextColor(getResources().getColor(R.color.White));
-				
-					final WDialog deleteDialog = new WDialog(getActivity(), R.string.delete_subprofile_message);
-					deleteDialog.addTextView(getString(R.string.delete_description) + " " + guard.getChild().SubProfiles().get(row).name + "?", 1);
-					deleteDialog.addButton(R.string.delete_yes, 2, new View.OnClickListener() {
-						
-						public void onClick(View v) {
-							if (guard.getChild() != null && guard.getChild().deleteCheck()) {
-								guard.getChild().SubProfiles().get(row)
-										.delete();
-								CustomizeFragment cf = (CustomizeFragment) getFragmentManager()
-										.findFragmentById(R.id.customizeFragment);
-								cf.setDefaultProfile();
-								Toast t = Toast.makeText(getActivity(),
-										R.string.delete_subprofile_toast,
-										5000);
-								t.show();
-								loadSubProfiles();
-								} else {
-									Toast t = Toast.makeText(getActivity(),
-											R.string.cannot_delete_subprofile_toast, 5000);
-									t.show();
-								}
-							deleteDialog.dismiss();
-						}
-					});
+        lv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-					deleteDialog.addButton(R.string.delete_no, 3, new View.OnClickListener() {
-						
-						public void onClick(View v) {
-							deleteDialog.cancel();
-							
-						}
-					});
+            public boolean onItemLongClick(AdapterView<?> arg0, View v,
+                                           final int row, long arg3) {
 
-					deleteDialog.show();
-				return true;
-			}
-		});
+                TextView tv = new TextView(getActivity());
+                tv.setText(getString(R.string.delete_description) + " " + guard.getChild().SubProfiles().get(row).name + "?");
+                tv.setTextColor(getResources().getColor(R.color.White));
+
+                final WDialog deleteDialog = new WDialog(getActivity(), R.string.delete_subprofile_message);
+                deleteDialog.addTextView(getString(R.string.delete_description) + " " + guard.getChild().SubProfiles().get(row).name + "?", 1);
+                deleteDialog.addButton(R.string.delete_yes, 2, new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        if (guard.getChild() != null && guard.getChild().deleteCheck()) {
+                            guard.getChild().SubProfiles().get(row).delete();
+                            deletedItem();
+                        } else {
+                            Toast t = Toast.makeText(getActivity(),
+                                    R.string.cannot_delete_subprofile_toast, 5000);
+                            t.show();
+                        }
+                        deleteDialog.dismiss();
+                    }
+                });
+
+                deleteDialog.addButton(R.string.delete_no, 3, new View.OnClickListener() {
+
+                    public void onClick(View v) {
+                        deleteDialog.cancel();
+
+                    }
+                });
+
+                deleteDialog.show();
+                return true;
+            }
+        });
 	}
+
+    public void deletedItem() {
+        CustomizeFragment cf = (CustomizeFragment) getFragmentManager().findFragmentById(R.id.customizeFragment);
+        cf.setDefaultProfile();
+        Toast t = Toast.makeText(getActivity(),
+                R.string.delete_subprofile_toast,
+                5000);
+        t.show();
+        loadSubProfiles();
+    }
 
 	@Override
 	public void onResume() {
@@ -134,5 +142,23 @@ public class SubProfileFragment extends android.app.ListFragment {
 				.findFragmentById(R.id.customizeFragment);
 		fragment.loadSettings(guard.getChild().SubProfiles().get(position));
 	}
+
+    /*@Override
+    public void onClick(View v) {
+        //Log.v("Butts", v.getParent().toString());
+        Integer position = (Integer)v.getTag();
+        if (guard.getChild() != null && guard.getChild().deleteCheck()) {
+            guard.getChild().SubProfiles().get(position)
+                    .delete();
+            CustomizeFragment cf = (CustomizeFragment) getFragmentManager().findFragmentById(R.id.customizeFragment);
+            cf.setDefaultProfile();
+            Toast t = Toast.makeText(getActivity(),R.string.delete_subprofile_toast,5000);
+            t.show();
+            loadSubProfiles();
+        } else {
+            Toast t = Toast.makeText(getActivity(),R.string.cannot_delete_subprofile_toast, 5000);
+            t.show();
+        }
+    }*/
 
 }

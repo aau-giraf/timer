@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.TimerLib.SubProfile;
 /**
@@ -27,7 +30,7 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
 	}
 	
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent){
+	public View getView(final int position, View convertView, ViewGroup parent){
 		View v = convertView;
 		if(v == null){
 			LayoutInflater vi = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -40,8 +43,18 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
 			ImageView ivBG = (ImageView)v.findViewById(R.id.subProfilePicBackground);
 			TextView tvName = (TextView)v.findViewById(R.id.subProfileName);
 			TextView tvDesc = (TextView)v.findViewById(R.id.subProfileDesc);
-			
-			/* Add a picture corresponding to the content */
+            ImageButton deleteButton = (ImageButton)v.findViewById(R.id.subProfileDelete);
+            deleteButton.setTag(position);
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    if(guard.getChild() != null && guard.getChild().deleteCheck()) {
+                        guard.getChild().SubProfiles().get(position).delete();
+                        notifyDataSetChanged();
+                    }
+                }
+            });
 			if(iv != null){
 				switch(sp.formType()){
 				case Hourglass:
@@ -88,4 +101,6 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
 		}
 		return v;
 	}
+
+
 }
