@@ -32,8 +32,9 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent){
 		View v = convertView;
+        final Context c = getContext();
 		if(v == null){
-			LayoutInflater vi = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater vi = (LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.subprofile_list, null);
 		}
 		SubProfile sp = items.get(position);
@@ -51,7 +52,12 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
                 public void onClick(View arg0) {
                     if(guard.getChild() != null && guard.getChild().deleteCheck()) {
                         guard.getChild().SubProfiles().get(position).delete();
+                        Toast t = Toast.makeText(c,
+                                R.string.delete_subprofile_toast,
+                                5000);
+                        t.show();
                         notifyDataSetChanged();
+
                     }
                 }
             });
