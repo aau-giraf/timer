@@ -11,7 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.TimerLib.SubProfile;
 /**
@@ -50,17 +51,45 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    if(guard.getChild() != null && guard.getChild().deleteCheck()) {
-                        guard.getChild().SubProfiles().get(position).delete();
-                        Toast t = Toast.makeText(c,
-                                R.string.delete_subprofile_toast,
-                                5000);
-                        t.show();
-                        notifyDataSetChanged();
+                    final WDialog deleteDialog = new WDialog(c, R.string.delete_subprofile_message);
+                    deleteDialog.addTextView(c.getResources().getText(R.string.delete_description) + " " + guard.getChild().SubProfiles().get(position).name + "?", 1);
 
-                    }
+                    deleteDialog.addButton(R.string.delete_yes, 2, new View.OnClickListener() {
+                        public void onClick(View v) {
+                            if(guard.getChild() != null && guard.getChild().deleteCheck()) {
+                                guard.getChild().SubProfiles().get(position).delete();
+                                Toast t = Toast.makeText(c,
+                                        R.string.delete_subprofile_toast,
+                                        Toast.LENGTH_LONG);
+                                t.show();
+                                notifyDataSetChanged();
+                            }
+                            else {
+                                Toast t = Toast.makeText(c,
+                                        R.string.cannot_delete_subprofile_toast,
+                                        Toast.LENGTH_LONG);
+                                t.show();
+                            }
+
+                            deleteDialog.dismiss();
+                        }
+
+                    });
+
+                    deleteDialog.addButton(R.string.delete_no, 3, new View.OnClickListener() {
+
+                        public void onClick(View v) {
+                            deleteDialog.cancel();
+
+                        }
+                    });
+
+                    deleteDialog.show();
                 }
             });
+
+
+
 			if(iv != null){
 				switch(sp.formType()){
 				case Hourglass:
@@ -107,6 +136,4 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
 		}
 		return v;
 	}
-
-
 }
