@@ -9,6 +9,9 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -52,6 +55,7 @@ public class CustomizeFragment extends Fragment {
 	private Button progressbarButton;
 	private Button digitalButton;
 	private Button startButton;
+    private Button switchLayoutButton;
 	private Button saveButton;
 	private Button saveAsButton;
 	private Button attachmentButton;
@@ -67,6 +71,7 @@ public class CustomizeFragment extends Fragment {
 	private WheelView secs;
 
 	private TextView timeDescription;
+    SharedPreferences pref;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -80,7 +85,15 @@ public class CustomizeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Populate the fragment according to the details layout
-		return inflater.inflate(R.layout.customize, container, false);
+
+        pref = this.getActivity().getSharedPreferences("LayoutPrefFile", 0);
+        if (pref.getBoolean("verticalLayout", false)){
+            return inflater.inflate(R.layout.customize, container, false);
+        } else {
+            return inflater.inflate(R.layout.customize_vertical, container, false);
+
+        }
+
 	}
 
 	@Override
@@ -378,6 +391,7 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the color picker buttons, change colors here etc.
 	 */
 	private void initColorButtons() {
+        /*
 		LinearLayout mLL = (LinearLayout) getActivity().findViewById(
 				R.id.button_gradient_layout);
 		gradientButton = new WCheckbox(getActivity());
@@ -388,7 +402,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 		mLL.addView(gradientButton);
-		
+		*/
 		colorGradientButton1 = (Button) getActivity().findViewById(
 				R.id.gradientButton_1);
 
@@ -955,6 +969,7 @@ public class CustomizeFragment extends Fragment {
 		initDonePictureButton();
 		initSaveButton();
 		initSaveAsButton();
+        initSwitchButton();
 		initStartButton();
 	}
 
@@ -1247,6 +1262,59 @@ public class CustomizeFragment extends Fragment {
 		 saveAsButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
 
 	 }
+
+    /**
+     * Initialize the switch button
+     */
+    private void initSwitchButton() {
+        switchLayoutButton = (Button) getActivity().findViewById(
+                R.id.switch_activity_button);
+
+                    switchLayoutButton.setOnClickListener(new OnClickListener() {
+                @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = pref.edit();
+                if (pref.getBoolean("verticalLayout", false)){
+                    editor.clear();
+                    editor.putBoolean("verticalLayout", false);
+                } else {
+                    editor.clear();
+                    editor.putBoolean("verticalLayout", true);
+                }
+                editor.commit();
+                Intent intent = getActivity().getIntent();
+                getActivity().finish();
+                getActivity().startActivity(intent);
+            }
+        });
+        /*
+        Drawable d;
+        if (currSubP.saveAs) {
+            d = getResources().getDrawable(R.drawable.thumbnail_start);
+            startButton.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    currSubP.addLastUsed(preSubP);
+                    guard.saveGuardian(currSubP);
+                    currSubP.select();
+                    Intent i = new Intent(
+                            getActivity().getApplicationContext(),
+                            DrawLibActivity.class);
+                    startActivity(i);
+                }
+            });
+        } else {
+            d = getResources().getDrawable(R.drawable.thumbnail_start_gray);
+            startButton.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v) {
+                    Toast t = Toast.makeText(getActivity(),
+                            getString(R.string.cant_start), Toast.LENGTH_SHORT);
+                    t.show();
+                }
+            });
+            */
+        }
 
 	 /**
 	  * Initialize the start button

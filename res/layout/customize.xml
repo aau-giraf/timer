@@ -105,141 +105,168 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#FFFFFF" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical" >
-
-        <!-- COLOR PICKER -->
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:paddingLeft="20dp"
-            android:text="@string/colors"
-            android:textSize="22dp"
-            android:textStyle="bold" />
-
-        <RelativeLayout
+        android:orientation="horizontal" >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <!-- COLOR PICKER -->
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:gravity="left"
                 android:paddingLeft="20dp"
-                android:text="@string/color_time_left"
-                android:textSize="16dp" />
+                android:text="@string/colors"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal" >
+                android:layout_height="wrap_content" >
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="@string/color_time_left"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="vertical" >
-
+                    android:orientation="horizontal" >
+                    <!-- Fjernet overgang
                     <LinearLayout
-                        android:id="@+id/button_gradient_layout"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"/>
-
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/gradient"/>
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/button_gradient_layout"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gradient"/>
+                    </LinearLayout>
+                    -->
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/color_btn_normal" >
+
+                        <Button
+                            android:id="@+id/gradientButton_1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/color_btn" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/color_btn_normal" >
+
+                        <Button
+                            android:id="@+id/gradientButton_2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/color_btn" />
+                    </LinearLayout>
                 </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="@string/frame"
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_centerInParent="true"
                     android:layout_margin="10dp"
                     android:background="@drawable/color_btn_normal" >
 
                     <Button
-                        android:id="@+id/gradientButton_1"
+                        android:id="@+id/frameColorButton"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/color_btn" />
                 </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="@string/background"
+                    android:textSize="16dp" />
 
                 <LinearLayout
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:layout_centerInParent="true"
                     android:layout_margin="10dp"
                     android:background="@drawable/color_btn_normal" >
 
                     <Button
-                        android:id="@+id/gradientButton_2"
+                        android:id="@+id/backgroundColorButton"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="@drawable/color_btn" />
                 </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <RelativeLayout
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent"
+            android:layout_weight="3"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp">
+            <Button
+                android:id="@+id/switch_activity_button"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:drawableTop="@drawable/thumbnail_single_pic"
+                android:paddingTop="20dp"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:text="@string/frame"
-                android:textSize="16dp" />
-
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:layout_margin="10dp"
-                android:background="@drawable/color_btn_normal" >
-
-                <Button
-                    android:id="@+id/frameColorButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/color_btn" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:text="@string/background"
-                android:textSize="16dp" />
-
-            <LinearLayout
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:layout_margin="10dp"
-                android:background="@drawable/color_btn_normal" >
-
-                <Button
-                    android:id="@+id/backgroundColorButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/color_btn" />
-            </LinearLayout>
-        </RelativeLayout>
+                android:text="@string/switch_layout_button"
+                android:textSize="14dp"
+                android:layout_gravity="right|bottom"/>
+        </LinearLayout>
     </LinearLayout>
 
     <View
@@ -305,6 +332,8 @@
                 android:paddingTop="20dp"
                 android:text="@string/save_as_button"
                 android:textSize="14dp" />
+
+
         </LinearLayout>
 
         <LinearLayout

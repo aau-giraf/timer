@@ -57,6 +57,7 @@
     <string name="donescreen_dialog_single">Vælg et slutbilled</string>
     <string name="choose_profile">Vælg en Profil</string>
     <string name="start_button">Start</string>
+    <string name="switch_layout_button">Skift Layout</string>
     <string name="save_button">Gem</string>
     <string name="save_as_button">Gem Som &#8230;</string>
     <string name="gradient">Overgang</string>
