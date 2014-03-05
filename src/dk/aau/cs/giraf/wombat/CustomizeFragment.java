@@ -1027,14 +1027,15 @@ public class CustomizeFragment extends Fragment {
 								 guard.subProfileID = m_savedSubprofile
 										 .getId();
 								 loadSettings(m_savedSubprofile);
-
+                                 /* Fjernet profile delen
 								 ChildFragment cf = (ChildFragment) getFragmentManager()
 										 .findFragmentById(R.id.childFragment);
+							     */
 								 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
 										 .findFragmentById(R.id.subprofileFragment);
 								 guard.profileID = guard.getChild()
 										 .getProfileId();
-								 cf.loadChildren();
+								 // cf.loadChildren(); Fjernet profile delen
 								 spf.loadSubProfiles();
 								 save1.dismiss();
 							 }
@@ -1060,13 +1061,14 @@ public class CustomizeFragment extends Fragment {
 						 }
 						 guard.subProfileID = m_savedSubprofile.getId();
 						 loadSettings(m_savedSubprofile);
-
+                        /* Fjernet profile delen
 						 ChildFragment cf = (ChildFragment) getFragmentManager()
 								 .findFragmentById(R.id.childFragment);
+						*/
 						 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
 								 .findFragmentById(R.id.subprofileFragment);
 						 guard.profileID = guard.getChild().getProfileId();
-						 cf.loadChildren();
+						 // cf.loadChildren(); Fjernet profile delen
 						 spf.loadSubProfiles();
 					 }
 				 }
@@ -1240,13 +1242,14 @@ public class CustomizeFragment extends Fragment {
 											 getActivity(), toastText,
 											 Toast.LENGTH_LONG);
 									 toast.show();
-
+                                    /* Fjernet profile delen
 									 ChildFragment cf = (ChildFragment) getFragmentManager()
 											 .findFragmentById(R.id.childFragment);
+									*/
 									 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
 											 .findFragmentById(R.id.subprofileFragment);
 									 guard.profileID = guard.getChild().getProfileId();
-									 cf.loadChildren();
+									 // cf.loadChildren(); Fjernet profile delen
 									 spf.loadSubProfiles();
 									 saveAs2.dismiss();
 									 saveAs1.dismiss();
