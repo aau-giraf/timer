@@ -239,14 +239,29 @@ public class CustomizeFragment extends Fragment {
 		initBottomMenu();
 	}
 
+    /**
+     * Determine if the current timer configuration is saveable.
+     *
+     * */
 	private boolean setSave() {
 		boolean complete = false;
-		if (guard.getChild() != null) {
-			currSubP.save = true;
-		} else {
-			currSubP.save = false;
-		}
-		currSubP.saveAs = true;
+        if(currSubP.get_totalTime() > 0 &&
+                (currSubP.formType() == formFactor.Hourglass ||
+                 currSubP.formType() == formFactor.TimeTimer ||
+                 currSubP.formType() == formFactor.ProgressBar ||
+                 currSubP.formType() == formFactor.DigitalClock)) {
+
+            if (guard.getChild() != null) {
+                currSubP.save = true;
+            } else {
+                currSubP.save = false;
+            }
+            currSubP.saveAs = true;
+        }
+        else {
+            currSubP.save = false;
+            currSubP.saveAs = false;
+        }
 
 		return complete;
 	}
@@ -295,19 +310,24 @@ public class CustomizeFragment extends Fragment {
 					secs.setCyclic(true);
 					previousMins = 0;
 				}
+
+                setSave();
+                initBottomMenu();
 			}
 		});
 
 		secs.addChangingListener(new OnWheelChangedListener() {
-			public void onChanged(WheelView wheel, int oldValue, int newValue) {
-				updateTime(mins.getCurrentItem(), secs.getCurrentItem());
-			}
-		});
+            public void onChanged(WheelView wheel, int oldValue, int newValue) {
+                updateTime(mins.getCurrentItem(), secs.getCurrentItem());
+                setSave();
+                initBottomMenu();
+            }
+        });
 	}
 
 	/**
 	 * Sets the time on the time picker wheels
-	 * 
+	 *
 	 * @param _totalTime
 	 *            Total time in seconds
 	 */
@@ -350,7 +370,7 @@ public class CustomizeFragment extends Fragment {
 
 	/**
 	 * Update time on currSubP and updates the time text
-	 * 
+	 *
 	 * @param m_minutes
 	 *            Time in minutes
      * @param m_seconds
@@ -396,7 +416,7 @@ public class CustomizeFragment extends Fragment {
 				R.id.button_gradient_layout);
 		gradientButton = new WCheckbox(getActivity());
 		gradientButton.setOnClickListener(currSubP.gradient, new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				currSubP.gradient = gradientButton.changeCheckedState();
 			}
@@ -724,7 +744,7 @@ public class CustomizeFragment extends Fragment {
 
 	/**
 	 * Sets the attachment to subProfile, resets if subProfile == null
-	 * 
+	 *
 	 * @param att
 	 *            Attachment to be attached to subProfile
 	 */
@@ -795,27 +815,27 @@ public class CustomizeFragment extends Fragment {
 		}
 
 		LayerDrawable ld = (LayerDrawable) getResources().getDrawable(R.drawable.attachment_layer);
-		
+
 		PorterDuffColorFilter filter = new PorterDuffColorFilter(color,PorterDuff.Mode.SRC_ATOP);
-		
+
 		Drawable d = getResources().getDrawable(R.drawable.attachment_background);
-		
+
 		d.setAlpha(alpha);
-		
+
 		d.setColorFilter(filter);
-		
+
 		ld.setDrawableByLayerId(R.id.first_attachment_layer, d);
-		
+
 		ld.setDrawableByLayerId(R.id.second_attachment_layer, getResources().getDrawable(pictureRes));
 
 		attachmentButton.setCompoundDrawablesWithIntrinsicBounds(null, ld,null, null);
-		
+
 		attachmentButton.setText(textRes);
-		
+
 		attView.setText(attachText);
 	}
 
-	private void setDonePicture(Attachment att){		
+	private void setDonePicture(Attachment att){
 		int pictureRes = 0;
 
 		if(att != null){
@@ -830,19 +850,19 @@ public class CustomizeFragment extends Fragment {
 		} else {
 			pictureRes = R.drawable.thumbnail_attachment;
 		}
-		
+
 		LayerDrawable ld = (LayerDrawable) getResources().getDrawable(R.drawable.attachment_layer);
-		
+
 		PorterDuffColorFilter filter = new PorterDuffColorFilter(0xFFF,	PorterDuff.Mode.SRC_ATOP);
-		
+
 		Drawable d = getResources().getDrawable(R.drawable.attachment_background);
-		
+
 		d.setAlpha(0);
 		d.setColorFilter(filter);
-		
+
 		ld.setDrawableByLayerId(R.id.first_attachment_layer, d);
 		ld.setDrawableByLayerId(R.id.second_attachment_layer, getResources().getDrawable(pictureRes));
-		
+
 		donePictureButton.setCompoundDrawablesWithIntrinsicBounds(null, ld,	null, null);
 	}
 
@@ -855,7 +875,7 @@ public class CustomizeFragment extends Fragment {
 		donePictureButton.setOnClickListener(new OnClickListener() {
 			public void onClick(final View v) {
 				final WDialog doneDialog = new WDialog(getActivity(), R.string.donescreen_dialog_title);
-				ArrayAdapter adapter = new ModeAdapter(getActivity(),android.R.layout.simple_list_item_1, modeArray);	
+				ArrayAdapter adapter = new ModeAdapter(getActivity(),android.R.layout.simple_list_item_1, modeArray);
 				doneDialog.setAdapter(adapter);
 				doneDialog.setOnItemClickListener(new OnItemClickListener() {
 
@@ -931,7 +951,7 @@ public class CustomizeFragment extends Fragment {
 											dialog1.cancel();
 										}
 									});
-									dialog1.show();	
+									dialog1.show();
 								}
 							});
 							dualDialog.addButton(R.string.cancel, 1, new OnClickListener() {
@@ -1101,7 +1121,7 @@ public class CustomizeFragment extends Fragment {
 		 }
 		 return name;
 	 }
-    
+
     /**
      * Converts seconds to a timestamp of the form MM:SS
      *
@@ -1354,7 +1374,7 @@ public class CustomizeFragment extends Fragment {
 
 	 /**
 	  * Sets the predefined settings of the chosen subprofile
-	  * 
+	  *
 	  * @param subProfile
 	  *            The Subprofile chosen
 	  */
@@ -1398,7 +1418,7 @@ public class CustomizeFragment extends Fragment {
 
 		 /* Set Attachment */
 		 setAttachment(currSubP.getAttachment());
-		 
+
 		 /* Set Done picture */
 		 setDonePicture(currSubP.getDoneArt());
 	 }
