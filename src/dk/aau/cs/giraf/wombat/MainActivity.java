@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.TextView;
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 /**
@@ -58,6 +59,11 @@ public class MainActivity extends Activity {
 		Drawable d = getResources().getDrawable(R.drawable.background);
 		d.setColorFilter(color, PorterDuff.Mode.OVERLAY);
 		findViewById(R.id.mainLayout).setBackgroundDrawable(d);
+
+        // Set the name of the child in the customizeHeader TextView
+        TextView tv = (TextView) findViewById(R.id.customizeHeader);
+        CharSequence cs = "Test";
+        tv.setText(cs);
 	}
 	
 	/**
