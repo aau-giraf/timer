@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
+import dk.aau.cs.giraf.oasis.lib.Helper;
+import dk.aau.cs.giraf.oasis.lib.controllers.ProfilesHelper;
+import dk.aau.cs.giraf.oasis.lib.models.Profile;
 /**
  * This class is an MainActivity used to initiate WOMBAT
  * Layer: Main
@@ -22,7 +25,10 @@ public class MainActivity extends Activity {
 		
 		long guardianId;
 		long childId;
-		int color;	
+		int color;
+        String childName;
+        ProfilesHelper profileHelper = new ProfilesHelper(getBaseContext());
+        Profile childProfile;
 
 		/* Get the data sent from the launcher (if there is any) */
 		Bundle extras = getIntent().getExtras();
@@ -30,6 +36,7 @@ public class MainActivity extends Activity {
         	guardianId = extras.getLong("currentGuardianID");
         	childId = extras.getLong("currentChildID");
         	color = extras.getInt("appBackgroundColor");
+            childProfile = profileHelper.getProfileById(childId);
         } else {
         	guardianId = -1;
         	childId = -3;
@@ -62,7 +69,7 @@ public class MainActivity extends Activity {
 
         // Set the name of the child in the customizeHeader TextView
         TextView tv = (TextView) findViewById(R.id.customizeHeader);
-        CharSequence cs = "Test";
+        CharSequence cs = childProfile.getFirstname() + " " + childProfile.getSurname();
         tv.setText(cs);
 	}
 	
