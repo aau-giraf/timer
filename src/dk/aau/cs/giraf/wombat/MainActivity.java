@@ -26,8 +26,7 @@ public class MainActivity extends Activity {
 		long guardianId;
 		long childId;
 		int color;
-        String childName;
-        ProfilesHelper profileHelper = new ProfilesHelper(getBaseContext());
+        ProfilesHelper profileHelper = new ProfilesHelper(this);
         Profile childProfile;
 
 		/* Get the data sent from the launcher (if there is any) */
@@ -41,6 +40,7 @@ public class MainActivity extends Activity {
         	guardianId = -1;
         	childId = -3;
         	color = getResources().getColor(R.color.GIRAFOrange);
+            childProfile = null;
         }
         
         ArrayList<Art> artList = new ArrayList<Art>();
@@ -68,9 +68,12 @@ public class MainActivity extends Activity {
 		findViewById(R.id.mainLayout).setBackgroundDrawable(d);
 
         // Set the name of the child in the customizeHeader TextView
-        TextView tv = (TextView) findViewById(R.id.customizeHeader);
-        CharSequence cs = childProfile.getFirstname() + " " + childProfile.getSurname();
-        tv.setText(cs);
+        if(childProfile != null) {
+            TextView tv = (TextView) findViewById(R.id.customizeHeader);
+            CharSequence cs = childProfile.getFirstname() + " " + childProfile.getSurname();
+            tv.setText(cs);
+        }
+
 	}
 	
 	/**
