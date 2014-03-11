@@ -10,8 +10,6 @@ import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -27,7 +25,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import dk.aau.cs.giraf.TimerLib.Art;
@@ -49,6 +46,8 @@ public class CustomizeFragment extends Fragment {
 	private SubProfile preSubP;
 	private SubProfile currSubP;
 	private Guardian guard = Guardian.getInstance();
+    private ArrayList<Child> children = guard.publishList();
+    private Child child;
 
 	private Button hourglassButton;
 	private Button timetimerButton;
@@ -64,8 +63,6 @@ public class CustomizeFragment extends Fragment {
 	private Button colorGradientButton2;
 	private Button colorFrameButton;
 	private Button colorBackgroundButton;
-
-	private WCheckbox gradientButton;
 
 	private WheelView mins;
 	private WheelView secs;
@@ -100,6 +97,7 @@ public class CustomizeFragment extends Fragment {
 	// Start the list empty
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+
 		Button b = (Button) getActivity()
 				.findViewById(R.id.new_template_button);
 		b.setOnClickListener(new OnClickListener() {
@@ -127,6 +125,18 @@ public class CustomizeFragment extends Fragment {
 		currSubP.save = false;
 		currSubP.saveAs = false;
 
+        for (Child _child : children) {
+            if(_child.getProfileId() == guard.profileID) {
+                children.get(children.indexOf(_child)).select();
+                child = _child;
+                break;
+            }
+        }
+
+        TextView tv = (TextView) getActivity().findViewById(R.id.customizeHeader);
+        CharSequence cs = child.name;
+        tv.setText(cs);
+
 		/********* TIME CHOSER *********/
 		initStyleChoser();
 
@@ -141,6 +151,7 @@ public class CustomizeFragment extends Fragment {
 
 		/******** BOTTOM MENU ***********/
 		initBottomMenu();
+        Log.v("guardChildId", "" + guard.profileID);
 	}
 
 	public void setDefaultProfile() {
@@ -411,18 +422,6 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the color picker buttons, change colors here etc.
 	 */
 	private void initColorButtons() {
-        /*
-		LinearLayout mLL = (LinearLayout) getActivity().findViewById(
-				R.id.button_gradient_layout);
-		gradientButton = new WCheckbox(getActivity());
-		gradientButton.setOnClickListener(currSubP.gradient, new OnClickListener() {
-
-			public void onClick(View v) {
-				currSubP.gradient = gradientButton.changeCheckedState();
-			}
-		});
-		mLL.addView(gradientButton);
-		*/
 		colorGradientButton1 = (Button) getActivity().findViewById(
 				R.id.gradientButton_1);
 
@@ -755,9 +754,6 @@ public class CustomizeFragment extends Fragment {
 		int alpha = 255;
 		String attachText = getString(R.string.attached);
 
-		TextView attView = (TextView) getActivity().findViewById(
-				R.id.customize_attachment_text);
-
 		if (att != null) {
 
 			currSubP.setAttachment(att);
@@ -828,11 +824,9 @@ public class CustomizeFragment extends Fragment {
 
 		ld.setDrawableByLayerId(R.id.second_attachment_layer, getResources().getDrawable(pictureRes));
 
-		attachmentButton.setCompoundDrawablesWithIntrinsicBounds(null, ld,null, null);
+		attachmentButton.setCompoundDrawablesWithIntrinsicBounds(null, ld, null, null);
 
 		attachmentButton.setText(textRes);
-
-		attView.setText(attachText);
 	}
 
 	private void setDonePicture(Attachment att){
@@ -1013,8 +1007,6 @@ public class CustomizeFragment extends Fragment {
 
 							 public void onClick(View arg0) {
 								 currSubP.name = save1.getEditTextText(1);
-								 guard.publishList()
-								 .get(guard.profilePosition).select();
 
 								 SubProfile m_savedSubprofile;
 								 if (preSubP != null) {
@@ -1027,15 +1019,15 @@ public class CustomizeFragment extends Fragment {
 								 guard.subProfileID = m_savedSubprofile
 										 .getId();
 								 loadSettings(m_savedSubprofile);
-                                 /* Fjernet profile delen
-								 ChildFragment cf = (ChildFragment) getFragmentManager()
-										 .findFragmentById(R.id.childFragment);
-							     */
+                                 /* Fjernet profile delen*/
+								 /*ChildFragment cf = (ChildFragment) getFragmentManager()
+										 .findFragmentById(R.id.childFragment);*/
+
 								 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
 										 .findFragmentById(R.id.subprofileFragment);
 								 guard.profileID = guard.getChild()
 										 .getProfileId();
-								 // cf.loadChildren(); Fjernet profile delen
+								 //cf.loadChildren(); //Fjernet profile delen
 								 spf.loadSubProfiles();
 								 save1.dismiss();
 							 }
@@ -1050,7 +1042,6 @@ public class CustomizeFragment extends Fragment {
 						 });
 						 save1.show();
 					 } else {
-						 guard.publishList().get(guard.profilePosition).select();
 
 						 SubProfile m_savedSubprofile;
 						 if (preSubP != null) {
@@ -1061,14 +1052,14 @@ public class CustomizeFragment extends Fragment {
 						 }
 						 guard.subProfileID = m_savedSubprofile.getId();
 						 loadSettings(m_savedSubprofile);
-                        /* Fjernet profile delen
-						 ChildFragment cf = (ChildFragment) getFragmentManager()
-								 .findFragmentById(R.id.childFragment);
-						*/
+                        /* Fjernet profile delen*/
+						 /*ChildFragment cf = (ChildFragment) getFragmentManager()
+								 .findFragmentById(R.id.childFragment);*/
+
 						 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
 								 .findFragmentById(R.id.subprofileFragment);
 						 guard.profileID = guard.getChild().getProfileId();
-						 // cf.loadChildren(); Fjernet profile delen
+						 //cf.loadChildren(); //Fjernet profile delen
 						 spf.loadSubProfiles();
 					 }
 				 }
@@ -1220,7 +1211,6 @@ public class CustomizeFragment extends Fragment {
 
 								 public void onClick(View arg0) {
 									 currSubP.name = saveAs2.getEditTextText(1);
-									 guard.publishList().get(guard.profilePosition).select();
 
 									 Child c = guard.Children().get(position);
 									 getName();
@@ -1242,14 +1232,14 @@ public class CustomizeFragment extends Fragment {
 											 getActivity(), toastText,
 											 Toast.LENGTH_LONG);
 									 toast.show();
-                                    /* Fjernet profile delen
-									 ChildFragment cf = (ChildFragment) getFragmentManager()
-											 .findFragmentById(R.id.childFragment);
-									*/
+                                    /* Fjernet profile delen*/
+									 /*ChildFragment cf = (ChildFragment) getFragmentManager()
+											 .findFragmentById(R.id.childFragment);*/
+
 									 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
 											 .findFragmentById(R.id.subprofileFragment);
 									 guard.profileID = guard.getChild().getProfileId();
-									 // cf.loadChildren(); Fjernet profile delen
+									 //cf.loadChildren(); //Fjernet profile delen
 									 spf.loadSubProfiles();
 									 saveAs2.dismiss();
 									 saveAs1.dismiss();
@@ -1276,7 +1266,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v) {
 					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_save), Toast.LENGTH_SHORT);
+                             getString(R.string.cant_save), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
 			 });
@@ -1392,7 +1382,6 @@ public class CustomizeFragment extends Fragment {
 		 setTime(currSubP.get_totalTime());
 
 		 /* Set Colors */
-		 gradientButton.setChecked(currSubP.gradient);
 		 setColor(colorGradientButton1.getBackground(), currSubP.timeLeftColor);
 		 setColor(colorGradientButton2.getBackground(), currSubP.timeSpentColor);
 		 setColor(colorFrameButton.getBackground(), currSubP.frameColor);
@@ -1413,7 +1402,6 @@ public class CustomizeFragment extends Fragment {
 		 setTime(currSubP.get_totalTime());
 
 		 /* Set Colors */
-		 gradientButton.setChecked(currSubP.gradient);
 		 setColor(colorGradientButton1.getBackground(), currSubP.timeLeftColor);
 		 setColor(colorGradientButton2.getBackground(), currSubP.timeSpentColor);
 		 setColor(colorFrameButton.getBackground(), currSubP.frameColor);
