@@ -3,6 +3,8 @@ package dk.aau.cs.giraf.wombat;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -37,6 +39,18 @@ public class MainActivity extends Activity {
         	color = extras.getInt("appBackgroundColor");
             childProfile = profileHelper.getProfileById(childId);
         } else {
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+
+            dlgAlert.setMessage("App'en skal startes gennem GIRAF");
+            dlgAlert.setTitle("Timer");
+            dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            dlgAlert.setCancelable(false);
+            dlgAlert.create().show();
+
         	guardianId = -1;
         	childId = -3;
         	color = getResources().getColor(R.color.GIRAFOrange);
