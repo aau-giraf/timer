@@ -7,6 +7,9 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.oasis.lib.Helper;
@@ -27,7 +30,7 @@ public class MainActivity extends Activity {
 		long childId;
 		int color;
         String childName;
-        ProfilesHelper profileHelper = new ProfilesHelper(getBaseContext());
+        ProfilesHelper profileHelper = new ProfilesHelper(getApplicationContext());
         Profile childProfile;
 
 		/* Get the data sent from the launcher (if there is any) */
@@ -38,6 +41,18 @@ public class MainActivity extends Activity {
         	color = extras.getInt("appBackgroundColor");
             childProfile = profileHelper.getProfileById(childId);
         } else {
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+
+            dlgAlert.setMessage("App'en skal startes gennem GIRAF");
+            dlgAlert.setTitle("Timer");
+            dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            dlgAlert.setCancelable(false);
+            dlgAlert.create().show();
+
         	guardianId = -1;
         	childId = -3;
         	color = getResources().getColor(R.color.GIRAFOrange);
@@ -68,9 +83,9 @@ public class MainActivity extends Activity {
 		findViewById(R.id.mainLayout).setBackgroundDrawable(d);
 
         // Set the name of the child in the customizeHeader TextView
-        TextView tv = (TextView) findViewById(R.id.customizeHeader);
-        CharSequence cs = childProfile.getFirstname() + " " + childProfile.getSurname();
-        tv.setText(cs);
+        //TextView tv = (TextView) findViewById(R.id.customizeHeader);
+        //CharSequence cs = childProfile.getFirstname() + " " + childProfile.getSurname();
+        //tv.setText(cs);
 	}
 	
 	/**
