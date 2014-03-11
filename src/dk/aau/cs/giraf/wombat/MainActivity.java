@@ -8,12 +8,8 @@ import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.widget.TextView;
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
-import dk.aau.cs.giraf.oasis.lib.Helper;
-import dk.aau.cs.giraf.oasis.lib.controllers.ProfilesHelper;
-import dk.aau.cs.giraf.oasis.lib.models.Profile;
 /**
  * This class is an MainActivity used to initiate WOMBAT
  * Layer: Main
@@ -28,8 +24,6 @@ public class MainActivity extends Activity {
 		long guardianId;
 		long childId;
 		int color;
-        ProfilesHelper profileHelper = new ProfilesHelper(this);
-        Profile childProfile;
 
 		/* Get the data sent from the launcher (if there is any) */
 		Bundle extras = getIntent().getExtras();
@@ -37,7 +31,6 @@ public class MainActivity extends Activity {
         	guardianId = extras.getLong("currentGuardianID");
         	childId = extras.getLong("currentChildID");
         	color = extras.getInt("appBackgroundColor");
-            childProfile = profileHelper.getProfileById(childId);
         } else {
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 
@@ -54,7 +47,6 @@ public class MainActivity extends Activity {
         	guardianId = -1;
         	childId = -3;
         	color = getResources().getColor(R.color.GIRAFOrange);
-            childProfile = null;
         }
         
         ArrayList<Art> artList = new ArrayList<Art>();
@@ -80,14 +72,6 @@ public class MainActivity extends Activity {
 		Drawable d = getResources().getDrawable(R.drawable.background);
 		d.setColorFilter(color, PorterDuff.Mode.OVERLAY);
 		findViewById(R.id.mainLayout).setBackgroundDrawable(d);
-
-        // Set the name of the child in the customizeHeader TextView
-        if(childProfile != null) {
-            TextView tv = (TextView) findViewById(R.id.customizeHeader);
-            CharSequence cs = childProfile.getFirstname() + " " + childProfile.getSurname();
-            tv.setText(cs);
-        }
-
 	}
 	
 	/**

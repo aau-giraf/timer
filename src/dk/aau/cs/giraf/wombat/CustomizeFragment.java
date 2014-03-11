@@ -125,11 +125,13 @@ public class CustomizeFragment extends Fragment {
 		currSubP.save = false;
 		currSubP.saveAs = false;
 
-        for (Child _child : children) {
-            if(_child.getProfileId() == guard.profileID) {
-                children.get(children.indexOf(_child)).select();
-                child = _child;
-                break;
+        if(children == null || !children.isEmpty()) {
+            for (Child _child : children) {
+                if(_child.getProfileId() == guard.profileID) {
+                    children.get(children.indexOf(_child)).select();
+                    child = _child;
+                    break;
+                }
             }
         }
 
