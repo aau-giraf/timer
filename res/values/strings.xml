@@ -10,6 +10,7 @@
     <string name="and_divider">og</string>
     <string name="ok">OK</string>
     <string name="go_back">Gå tilbage</string>
+    <string name="launch_from_giraf">Denne app skal startes gennem GIRAF</string>
     
     <!-- PROFILE LIST -->
     <string name="profile_list_header">Profiler</string>

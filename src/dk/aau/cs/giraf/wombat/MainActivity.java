@@ -4,10 +4,14 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+import android.util.Log;
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 /**
@@ -21,8 +25,8 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		long guardianId;
-		long childId;
+		long guardianId = -1;
+		long childId = -3;
 		int color;
 
 		/* Get the data sent from the launcher (if there is any) */
@@ -32,23 +36,17 @@ public class MainActivity extends Activity {
         	childId = extras.getLong("currentChildID");
         	color = extras.getInt("appBackgroundColor");
         } else {
-            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-
-            dlgAlert.setMessage("App'en skal startes gennem GIRAF");
-            dlgAlert.setTitle("Timer");
-            dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            dlgAlert.setCancelable(false);
-            dlgAlert.create().show();
-
-        	guardianId = -1;
-        	childId = -3;
-        	color = getResources().getColor(R.color.GIRAFOrange);
+            new AlertDialog.Builder(this)
+                    .setTitle("Timer")
+                    .setMessage(R.string.launch_from_giraf)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    }).show();
+        	color = getResources().getColor(R.color.Black);
         }
-        
+
         ArrayList<Art> artList = new ArrayList<Art>();
         
         /* Insert hard coded pictograms */
