@@ -158,6 +158,8 @@ public class DrawLibActivity extends Activity {
 			return new DrawDigital(getApplicationContext(), sub, frameWidth);
 		case TimeTimer:
 			return new DrawWatch(getApplicationContext(), sub, frameWidth);
+        case TimeTimerStandard:
+            return new DrawStandardWatch(getApplicationContext(), sub, frameWidth);
 		default:
 			return null;
 		}
