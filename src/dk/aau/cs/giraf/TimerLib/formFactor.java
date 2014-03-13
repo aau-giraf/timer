@@ -1,6 +1,6 @@
 package dk.aau.cs.giraf.TimerLib;
 
-public enum formFactor {undefined, SubProfile, Hourglass, TimeTimer, ProgressBar, DigitalClock, Timer, SingleImg, SplitImg;
+public enum formFactor {undefined, SubProfile, Hourglass, TimeTimer, TimeTimerStandard, ProgressBar, DigitalClock, Timer, SingleImg, SplitImg;
 
 static formFactor convert(Object input){
 	

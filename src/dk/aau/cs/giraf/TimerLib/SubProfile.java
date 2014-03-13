@@ -76,8 +76,6 @@ public class SubProfile implements Comparable<SubProfile>{
 	
 	/**
 	 * Generates a hashmap with settings of the subprofile
-	 * @param p
-	 * 		The subprofile which is supposed to be stored to the hashmap
 	 * @return
 	 * 		A hashmap with the settings stored in
 	 */
@@ -139,7 +137,7 @@ public class SubProfile implements Comparable<SubProfile>{
 	
 	/**
 	 * Sets the time of the subprofile and its attachment
-	 * @param time
+	 * @param _totalTime
 	 * 		Total runtime of the subprofile (in seconds)
 	 */
 	public void set_totalTime(int _totalTime) {
@@ -292,6 +290,14 @@ public class SubProfile implements Comparable<SubProfile>{
 			form.setDoneArt(this._doneArt);
 		return form;
 	}
+
+    public SubProfile toTimeTimerStandard() {
+        TimeTimerStandard form = new TimeTimerStandard(this.name, this.desc, this.bgcolor, this.timeLeftColor, this.timeSpentColor, this.frameColor, this._totalTime, this.gradient);
+        form.setId(this.getId());
+        form.setAttachment(this._attachment);
+        form.setDoneArt(this._doneArt);
+        return form;
+    }
 
 	public SubProfile toDigitalClock() {
 		DigitalClock form = new DigitalClock(this.name, this.desc, this.bgcolor, this.timeLeftColor, this.timeSpentColor, this.frameColor, this._totalTime, this.gradient);
