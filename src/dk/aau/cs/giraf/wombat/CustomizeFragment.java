@@ -1002,7 +1002,7 @@ public class CustomizeFragment extends Fragment {
 	private void initBottomMenu() {
 		initDonePictureButton();
 		initSaveButton();
-		initSaveAsButton();
+		//initSaveAsButton();
         initSwitchButton();
 		initStartButton();
 	}
@@ -1193,9 +1193,10 @@ public class CustomizeFragment extends Fragment {
 	  */
 	 private void initSaveAsButton() {
 		 Drawable d;
-
+        /* Har også fjernet initSaveAsButton for samlet init gruppe
 		 saveAsButton = (Button) getActivity().findViewById(
 				 R.id.customize_save_as);
+         */
 		 // If this is a profile which is "saveable", enable the save
 		 // functionality
 		 if (currSubP.saveAs) {
