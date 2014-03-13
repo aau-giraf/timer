@@ -798,6 +798,10 @@ public class CustomizeFragment extends Fragment {
 					pictureRes = R.drawable.thumbnail_timetimer;
 					textRes = R.string.customize_timetimer_description;
 					break GETOUT;
+                case TimeTimerStandard:
+                    pictureRes = R.drawable.thumbnail_timetimer;
+                    textRes = R.string.customize_timetimer_standard_description;
+                    break GETOUT;
 				default:
 					pictureRes = R.drawable.thumbnail_attachment;
 					textRes = R.string.attachment_button_description;
@@ -1125,6 +1129,9 @@ public class CustomizeFragment extends Fragment {
 				 name += getString(R.string.customize_timetimer_description);
 				 break;
 
+             case TimeTimerStandard:
+                 name += getString(R.string.customize_timetimer_standard_description);
+                 break;
 			 default:
 				 name += "";
 				 break;
@@ -1176,6 +1183,10 @@ public class CustomizeFragment extends Fragment {
 		 case TimeTimer:
 			 name += getString(R.string.customize_timetimer_description);
 			 break;
+
+         case TimeTimerStandard:
+             name += getString(R.string.customize_timetimer_standard_description);
+             break;
 
 		 default:
 			 name += "";
