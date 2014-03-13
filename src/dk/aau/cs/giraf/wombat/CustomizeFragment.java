@@ -51,6 +51,7 @@ public class CustomizeFragment extends Fragment {
 
 	private Button hourglassButton;
 	private Button timetimerButton;
+    private Button timetimerStandardButton;
 	private Button progressbarButton;
 	private Button digitalButton;
 	private Button startButton;
@@ -192,6 +193,15 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
+        timetimerStandardButton = (Button) getActivity().findViewById(R.id.timetimerStandardButton);
+        timetimerStandardButton.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+                selectStyle(formFactor.TimeTimerStandard);
+
+            }
+        });
+
 		progressbarButton = (Button) getActivity().findViewById(
 				R.id.progressbarButton);
 		progressbarButton.setOnClickListener(new OnClickListener() {
@@ -234,6 +244,13 @@ public class CustomizeFragment extends Fragment {
 		} else {
 			timetimerButton.setSelected(false);
 		}
+        if (formType == formFactor.TimeTimerStandard) {
+            currSubP = currSubP.toTimeTimerStandard();
+            timetimerStandardButton.setSelected(true);
+            setSave();
+        } else {
+            timetimerStandardButton.setSelected(false);
+        }
 		if (formType == formFactor.ProgressBar) {
 			currSubP = currSubP.toProgressBar();
 			progressbarButton.setSelected(true);
@@ -261,6 +278,7 @@ public class CustomizeFragment extends Fragment {
         if(currSubP.get_totalTime() > 0 &&
                 (currSubP.formType() == formFactor.Hourglass ||
                  currSubP.formType() == formFactor.TimeTimer ||
+                 currSubP.formType() == formFactor.TimeTimerStandard ||
                  currSubP.formType() == formFactor.ProgressBar ||
                  currSubP.formType() == formFactor.DigitalClock)) {
 

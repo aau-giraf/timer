@@ -23,15 +23,26 @@
             android:textSize="14dp" />
 
         <Button
-            android:id="@+id/timetimerButton"
+        android:id="@+id/timetimerButton"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:background="@drawable/btn"
+        android:drawableTop="@drawable/thumbnail_timetimer"
+        android:paddingTop="20dp"
+        android:text="@string/customize_timetimer_description"
+        android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/timetimerStandardButton"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_gravity="center"
             android:background="@drawable/btn"
             android:drawableTop="@drawable/thumbnail_timetimer"
             android:paddingTop="20dp"
-            android:text="@string/customize_timetimer_description"
-            android:textSize="14dp" />
+            android:text="@string/customize_timetimer_standard_description"
+            android:textSize="14dp"/>
 
         <Button
             android:id="@+id/progressbarButton"
