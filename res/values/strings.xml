@@ -65,6 +65,7 @@
     <string name="gradient">Overgang</string>
     <string name="frame">Ramme</string>
     <string name="background">Baggrund</string>
+    <string name="clear">Ryd</string>
     
     <string name="was_saved_toast">blev gemt på</string>
     <string name="new_template_button_text">Ny tilpasning</string>
