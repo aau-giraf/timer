@@ -104,6 +104,9 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
 				case TimeTimer:
 					iv.setImageResource(R.drawable.thumbnail_timetimer);
 					break;
+                case TimeTimerStandard:
+                    iv.setImageResource(R.drawable.thumbnail_timetimer);
+                    break;
 				default:
 					iv.setImageResource(R.drawable.thumbnail_hourglass);
 					break;
