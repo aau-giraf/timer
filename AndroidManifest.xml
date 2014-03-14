@@ -3,7 +3,7 @@
       package="kankan.wheel" android:versionCode="2" android:versionName="2.1">
 
     <uses-sdk
-        android:minSdkVersion="17"
+        android:minSdkVersion="15"
         android:targetSdkVersion="19"/>
 
     <application android:label="Android Wheel Widget">
