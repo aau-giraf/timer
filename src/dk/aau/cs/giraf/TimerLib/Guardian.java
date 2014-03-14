@@ -39,7 +39,7 @@ public class Guardian {
 	private Profile m_oGuard;
 	
 	private long childId;
-	private long guardianId;
+	public long guardianId;
 	Context m_context;
 	
 	public int profilePosition;
@@ -214,7 +214,7 @@ public class Guardian {
 	
 	/**
 	 * Stores the subprofile on the guardian in Oasis
-	 * @param sp
+	 * @param currSubP
 	 * 		The subprofile which is to be stored
 	 * @return
 	 * 		Returns true if it completed, else returns false
