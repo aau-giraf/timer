@@ -260,7 +260,7 @@
                 android:id="@+id/switch_activity_button"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:drawableTop="@drawable/thumbnail_single_pic"
+                android:drawableTop="@drawable/thumbnail_change_orientation"
                 android:paddingTop="20dp"
 
                 android:text="@string/switch_layout_button"
