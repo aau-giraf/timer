@@ -35,6 +35,17 @@
             android:textSize="14dp" />
 
         <Button
+            android:id="@+id/timetimerStandardButton"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn"
+            android:drawableTop="@drawable/thumbnail_timetimer"
+            android:paddingTop="20dp"
+            android:text="@string/customize_timetimer_standard_description"
+            android:textSize="14dp"/>
+
+        <Button
             android:id="@+id/progressbarButton"
             android:layout_width="110dp"
             android:layout_height="110dp"
@@ -115,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="bottom|center_horizontal"
-                    android:paddingBottom="20dp" />
+                    android:paddingBottom="5dp" />
             </FrameLayout>
 
             <View
@@ -317,18 +328,19 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/customize_save"
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:layout_gravity="left|bottom"
-                        android:background="@drawable/btn"
-                        android:drawableTop="@drawable/thumbnail_save"
-                        android:paddingTop="20dp"
-                        android:text="@string/save_button"
-                        android:textSize="14dp"/>
 
-                    <Button
+                        <Button
+                            android:id="@+id/customize_save"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_gravity="left|bottom"
+                            android:background="@drawable/btn"
+                            android:drawableTop="@drawable/thumbnail_save"
+                            android:paddingTop="20dp"
+                            android:text="@string/save_button"
+                            android:textSize="14dp"/>
+
+                    <!--<Button
                         android:id="@+id/customize_save_as"
                         android:layout_width="110dp"
                         android:layout_height="110dp"
@@ -337,7 +349,7 @@
                         android:drawableTop="@drawable/thumbnail_saveas"
                         android:paddingTop="20dp"
                         android:text="@string/save_as_button"
-                        android:textSize="14dp" />
+                        android:textSize="14dp" />-->
                     </LinearLayout>
 
                     <LinearLayout

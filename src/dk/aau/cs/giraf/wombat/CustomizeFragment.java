@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -51,6 +50,7 @@ public class CustomizeFragment extends Fragment {
 
 	private Button hourglassButton;
 	private Button timetimerButton;
+    private Button timetimerStandardButton;
 	private Button progressbarButton;
 	private Button digitalButton;
 	private Button startButton;
@@ -192,6 +192,15 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
+        timetimerStandardButton = (Button) getActivity().findViewById(R.id.timetimerStandardButton);
+        timetimerStandardButton.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+                selectStyle(formFactor.TimeTimerStandard);
+
+            }
+        });
+
 		progressbarButton = (Button) getActivity().findViewById(
 				R.id.progressbarButton);
 		progressbarButton.setOnClickListener(new OnClickListener() {
@@ -234,6 +243,13 @@ public class CustomizeFragment extends Fragment {
 		} else {
 			timetimerButton.setSelected(false);
 		}
+        if (formType == formFactor.TimeTimerStandard) {
+            currSubP = currSubP.toTimeTimerStandard();
+            timetimerStandardButton.setSelected(true);
+            setSave();
+        } else {
+            timetimerStandardButton.setSelected(false);
+        }
 		if (formType == formFactor.ProgressBar) {
 			currSubP = currSubP.toProgressBar();
 			progressbarButton.setSelected(true);
@@ -261,6 +277,7 @@ public class CustomizeFragment extends Fragment {
         if(currSubP.get_totalTime() > 0 &&
                 (currSubP.formType() == formFactor.Hourglass ||
                  currSubP.formType() == formFactor.TimeTimer ||
+                 currSubP.formType() == formFactor.TimeTimerStandard ||
                  currSubP.formType() == formFactor.ProgressBar ||
                  currSubP.formType() == formFactor.DigitalClock)) {
 
@@ -548,6 +565,14 @@ public class CustomizeFragment extends Fragment {
 					}
 				});
 
+                attachment1.addButton(R.string.clear, 2, new OnClickListener() {
+                    public void onClick(View arg0) {
+                        setAttachment(null);
+                        attachment1.cancel();
+                    }
+
+                });
+
 				// 2. window
 				attachment1.setOnItemClickListener(new OnItemClickListener() {
 
@@ -732,15 +757,6 @@ public class CustomizeFragment extends Fragment {
 				attachment1.show();
 			}
 		});
-
-		// Long click to remove
-		attachmentButton.setOnLongClickListener(new OnLongClickListener() {
-
-			public boolean onLongClick(View v) {
-				setAttachment(null);
-				return true;
-			}
-		});
 	}
 
 	/**
@@ -780,6 +796,10 @@ public class CustomizeFragment extends Fragment {
 					pictureRes = R.drawable.thumbnail_timetimer;
 					textRes = R.string.customize_timetimer_description;
 					break GETOUT;
+                case TimeTimerStandard:
+                    pictureRes = R.drawable.thumbnail_timetimer;
+                    textRes = R.string.customize_timetimer_standard_description;
+                    break GETOUT;
 				default:
 					pictureRes = R.drawable.thumbnail_attachment;
 					textRes = R.string.attachment_button_description;
@@ -968,15 +988,16 @@ public class CustomizeFragment extends Fragment {
 						doneDialog.cancel();
 					}
 				});
-				doneDialog.show();
-			}
-		});
-		donePictureButton.setOnLongClickListener(new OnLongClickListener() {
 
-			public boolean onLongClick(View v) {
-				currSubP.setDoneArt(null);
-				setDonePicture(null);
-				return true;
+                doneDialog.addButton(R.string.clear, 2, new OnClickListener() {
+
+                    public void onClick(View arg0) {
+                        currSubP.setDoneArt(null);
+                        setDonePicture(null);
+                        doneDialog.cancel();
+                    }
+                });
+				doneDialog.show();
 			}
 		});
 	}
@@ -984,7 +1005,7 @@ public class CustomizeFragment extends Fragment {
 	private void initBottomMenu() {
 		initDonePictureButton();
 		initSaveButton();
-		initSaveAsButton();
+		//initSaveAsButton();
         initSwitchButton();
 		initStartButton();
 	}
@@ -1107,6 +1128,9 @@ public class CustomizeFragment extends Fragment {
 				 name += getString(R.string.customize_timetimer_description);
 				 break;
 
+             case TimeTimerStandard:
+                 name += getString(R.string.customize_timetimer_standard_description);
+                 break;
 			 default:
 				 name += "";
 				 break;
@@ -1159,6 +1183,10 @@ public class CustomizeFragment extends Fragment {
 			 name += getString(R.string.customize_timetimer_description);
 			 break;
 
+         case TimeTimerStandard:
+             name += getString(R.string.customize_timetimer_standard_description);
+             break;
+
 		 default:
 			 name += "";
 			 break;
@@ -1175,9 +1203,10 @@ public class CustomizeFragment extends Fragment {
 	  */
 	 private void initSaveAsButton() {
 		 Drawable d;
-
+        /* Har også fjernet initSaveAsButton for samlet init gruppe
 		 saveAsButton = (Button) getActivity().findViewById(
 				 R.id.customize_save_as);
+         */
 		 // If this is a profile which is "saveable", enable the save
 		 // functionality
 		 if (currSubP.saveAs) {

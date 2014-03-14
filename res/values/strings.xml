@@ -10,6 +10,7 @@
     <string name="and_divider">og</string>
     <string name="ok">OK</string>
     <string name="go_back">Gå tilbage</string>
+    <string name="launch_from_giraf">Denne app skal startes gennem GIRAF</string>
     
     <!-- PROFILE LIST -->
     <string name="profile_list_header">Profiler</string>
@@ -35,6 +36,7 @@
     <string name="customize_style_description">Stil</string>
     <string name="customize_hourglass_description">Timeglas</string>
     <string name="customize_timetimer_description">Ur</string>
+    <string name="customize_timetimer_standard_description">TimeTimer</string>
     <string name="customize_progressbar_description">Bar</string>
     <string name="customize_digital_description">Digital Ur</string>
     <string name="customize_single_img_description">Et billed</string>
@@ -64,6 +66,7 @@
     <string name="gradient">Overgang</string>
     <string name="frame">Ramme</string>
     <string name="background">Baggrund</string>
+    <string name="clear">Ryd</string>
     
     <string name="was_saved_toast">blev gemt på</string>
     <string name="new_template_button_text">Ny tilpasning</string>
