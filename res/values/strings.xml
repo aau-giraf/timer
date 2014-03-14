@@ -45,11 +45,10 @@
     <string name="color_time_left">Tid Tilbage</string>
     <string name="color_picker_button">Vælg Farve</string>
     <string name="attachment_button_description">Vedhæft</string>
-    <string name="attachment_dialog_pick_a_profile">Vælg den liste du vil kopierer og vedhæfte en profile fra</string>
+    <string name="attachment_dialog_pick_a_timer">Vælg en subprofil</string>
     <string name="attachment_dialog_pick_a_picture">Vælg et pictogram</string>
     <string name="attachment_dialog_split_left">Vælg venstre pictogram</string>
     <string name="attachment_dialog_split_right">Vælg højre pictogram</string>
-    <string name="attachment_dialog_description">Vælg den profil du vil kopierer og vedhæfte</string>
     
     <string name="select_attachment_dialog">Vælg Vedhæft</string>
     <string name="attached">Vedhæftet</string>

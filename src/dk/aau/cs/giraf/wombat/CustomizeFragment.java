@@ -545,218 +545,190 @@ public class CustomizeFragment extends Fragment {
 		// 1. window
 		attachmentButton.setOnClickListener(new OnClickListener() {
 
-			// First onClick
-			public void onClick(final View v) {
-				final ArrayList<formFactor> mode = guard.getMode();
+            // First onClick
+            public void onClick(final View v) {
+                final ArrayList<formFactor> mode = guard.getMode();
 
-				final WDialog attachment1 = new WDialog(getActivity(),
-						R.string.attachment_dialog_description);
+                final WDialog attachment1 = new WDialog(getActivity(),
+                        R.string.attachment_dialog_description);
 
-				ModeAdapter adapter = new ModeAdapter(getActivity(),
-						android.R.layout.simple_list_item_1, mode);
+                ModeAdapter adapter = new ModeAdapter(getActivity(),
+                        android.R.layout.simple_list_item_1, mode);
 
-				attachment1.setAdapter(adapter);
+                attachment1.setAdapter(adapter);
 
-				attachment1.addButton(R.string.cancel, 1,
-						new OnClickListener() {
+                attachment1.addButton(R.string.cancel, 1,
+                        new OnClickListener() {
 
-					public void onClick(View arg0) {
-						attachment1.cancel();
-					}
-				});
+                            public void onClick(View arg0) {
+                                attachment1.cancel();
+                            }
+                        });
+                if(currSubP.getAttachment() != null) {
+                    attachment1.addButton(R.string.clear, 2, new OnClickListener() {
+                        public void onClick(View arg0) {
+                            setAttachment(null);
+                            attachment1.cancel();
+                        }
 
-                attachment1.addButton(R.string.clear, 2, new OnClickListener() {
-                    public void onClick(View arg0) {
-                        setAttachment(null);
-                        attachment1.cancel();
+                    });
+                }
+
+                // 2. window
+                attachment1.setOnItemClickListener(new OnItemClickListener() {
+
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        // List<String> values = new ArrayList<String>();
+                        final formFactor form = mode.get(position);
+
+                        // Cast values to CharSequence and put it in the builder
+                        final WDialog attachment2 = new WDialog(getActivity());
+
+                        // New listview
+
+                        ArrayAdapter adapter = null;
+
+                        switch (form) {
+                            case Timer:
+                                attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_timer));
+                                final ArrayList<SubProfile> sp = child.SubProfiles();
+                                adapter = new SubProfileAdapter(
+                                        getActivity(),
+                                        android.R.layout.simple_list_item_1,
+                                        sp);
+                                break;
+                            case SingleImg:
+                                attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_picture));
+                                ArrayList<Art> art = guard.ArtList;
+                                adapter = new ArtAdapter(getActivity(),
+                                        android.R.layout.simple_list_item_1, art);
+                                break;
+                            case SplitImg:
+                                attachment2.setTitle(getString(R.string.attachment_dialog_split_left));
+                                ArrayList<Art> splitArt = guard.ArtList;
+                                adapter = new ArtAdapter(getActivity(),
+                                        android.R.layout.simple_list_item_1,
+                                        splitArt);
+                                break;
+                        }
+
+                        attachment2.addButton(R.string.go_back, 1,
+                                new OnClickListener() {
+
+                                    public void onClick(View arg0) {
+                                        attachment2.cancel();
+                                    }
+                                });
+
+                        attachment2.addButton(R.string.cancel, 2,
+                                new OnClickListener() {
+
+                                    public void onClick(View arg0) {
+                                        attachment1.cancel();
+                                        attachment2.cancel();
+                                    }
+                                });
+                        attachment2.setAdapter(adapter);
+                        // 3. window
+
+                        attachment2.setOnItemClickListener(new OnItemClickListener() {
+                            public void onItemClick(
+                                    AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                                // Cast values to CharSequence and put
+                                // it in the builder
+                                final WDialog attachment3 = new WDialog(
+                                        getActivity());
+                                // New listview
+                                attachment3.addButton(R.string.go_back, 1,
+                                        new OnClickListener() {
+
+                                            public void onClick(
+                                                    View arg0) {
+                                                attachment3.cancel();
+
+                                            }
+                                        });
+
+                                attachment3.addButton(R.string.cancel,
+                                        2, new OnClickListener() {
+
+                                    public void onClick(
+                                            View arg0) {
+                                        attachment1.cancel();
+                                        attachment2.cancel();
+                                        attachment3.cancel();
+                                    }
+                                });
+                                ArrayAdapter adapter = null;
+                                switch (form) {
+                                    case Timer:
+                                        Attachment attTimer = new Timer(child.SubProfiles().get(position));
+                                        setAttachment(attTimer);
+                                        attachment1.dismiss();
+                                        attachment2.dismiss();
+                                        break;
+                                    case SingleImg:
+                                        Attachment att = new SingleImg(guard.ArtList.get(position));
+                                        setAttachment(att);
+
+                                        Toast t = Toast.makeText(getActivity(),
+                                                getString(R.string.attached_pictogram_toast),
+                                                Toast.LENGTH_SHORT);
+                                        t.show();
+
+                                        attachment1.dismiss();
+                                        attachment2.dismiss();
+                                        break;
+                                    case SplitImg:
+                                        attachment3.setTitle(getString(R.string.attachment_dialog_split_right));
+                                        ArrayList<Art> splitArt = guard.ArtList;
+                                        final Art art1 = guard.ArtList
+                                                .get(position);
+                                        adapter = new ArtAdapter(
+                                                getActivity(),
+                                                android.R.layout.simple_list_item_1,
+                                                splitArt);
+
+                                        attachment3.setAdapter(adapter);
+
+                                        attachment3.setOnItemClickListener(new OnItemClickListener() {
+                                            public void onItemClick(
+                                                    AdapterView<?> parent,
+                                                    View view,
+                                                    int position,
+                                                    long id) {
+                                                final Art art2 = guard.ArtList.get(position);
+                                                Attachment attSplit = new SplitImg(art1, art2);
+                                                setAttachment(attSplit);
+
+                                                Toast t = Toast.makeText(getActivity(),
+                                                        getString(R.string.attached_pictograms_toast),
+                                                        Toast.LENGTH_SHORT);
+                                                t.show();
+
+                                                attachment1.dismiss();
+                                                attachment2.dismiss();
+                                                attachment3.dismiss();
+
+                                            }
+                                        });
+                                        attachment3.show();
+
+                                        break;
+                                }
+                            }
+                        });
+
+                        attachment2.show();
+
                     }
-
                 });
-
-				// 2. window
-				attachment1.setOnItemClickListener(new OnItemClickListener() {
-
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						// List<String> values = new ArrayList<String>();
-						final formFactor form = mode.get(position);
-
-						// Cast values to CharSequence and put it in the builder
-						final WDialog attachment2 = new WDialog(getActivity());
-
-						// New listview
-
-						ArrayAdapter adapter = null;
-
-						switch (form) {
-						case Timer:
-							attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_profile));
-							ArrayList<Child> child = guard.publishList();
-							adapter = new ChildAdapter(getActivity(),
-									android.R.layout.simple_list_item_1, child);
-							break;
-						case SingleImg:
-							attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_picture));
-							ArrayList<Art> art = guard.ArtList;
-							adapter = new ArtAdapter(getActivity(),
-									android.R.layout.simple_list_item_1, art);
-							break;
-						case SplitImg:
-							attachment2.setTitle(getString(R.string.attachment_dialog_split_left));
-							ArrayList<Art> splitArt = guard.ArtList;
-							adapter = new ArtAdapter(getActivity(),
-									android.R.layout.simple_list_item_1,
-									splitArt);
-							break;
-						}
-
-						attachment2.addButton(R.string.go_back, 1,
-								new OnClickListener() {
-
-							public void onClick(View arg0) {
-								attachment2.cancel();
-							}
-						});
-
-						attachment2.addButton(R.string.cancel, 2,
-								new OnClickListener() {
-
-							public void onClick(View arg0) {
-								attachment1.cancel();
-								attachment2.cancel();
-							}
-						});
-						attachment2.setAdapter(adapter);
-						// 3. window
-
-						attachment2.setOnItemClickListener(new OnItemClickListener() {
-							public void onItemClick(
-									AdapterView<?> parent, View view,
-									int position, long id) {
-
-								// Cast values to CharSequence and put
-								// it in the builder
-								final WDialog attachment3 = new WDialog(
-										getActivity());
-								// New listview
-								attachment3.addButton(R.string.go_back, 1,
-										new OnClickListener() {
-
-									public void onClick(
-											View arg0) {
-										attachment3.cancel();
-
-									}
-								});
-
-								attachment3.addButton(R.string.cancel,
-										2, new OnClickListener() {
-
-									public void onClick(
-											View arg0) {
-										attachment1.cancel();
-										attachment2.cancel();
-										attachment3.cancel();
-									}
-								});
-								ArrayAdapter adapter = null;
-								switch (form) {
-								case Timer:
-									attachment3.setTitle(getString(R.string.attachment_dialog_description));
-									final ArrayList<SubProfile> sp = guard
-											.publishList().get(position).SubProfiles();
-									adapter = new SubProfileAdapter(
-											getActivity(),
-											android.R.layout.simple_list_item_1,
-											sp);
-
-									attachment3.setAdapter(adapter);
-
-									attachment3.setOnItemClickListener(new OnItemClickListener() {
-                                        public void onItemClick(
-                                                AdapterView<?> parent,
-                                                View view,
-                                                int position,
-                                                long id) {
-
-                                            Attachment attTimer = new Timer(
-                                                    sp.get(position));
-                                            setAttachment(attTimer);
-
-                                            Toast t = Toast.makeText(getActivity(),
-                                                    getString(R.string.attached_timer_toast),
-                                                    Toast.LENGTH_SHORT);
-                                            t.show();
-
-                                            attachment1.dismiss();
-                                            attachment2.dismiss();
-                                            attachment3.dismiss();
-
-                                        }
-                                    });
-
-									attachment3.show();
-
-									break;
-								case SingleImg:
-									Attachment att = new SingleImg(guard.ArtList.get(position));
-									setAttachment(att);
-
-                                    Toast t = Toast.makeText(getActivity(),
-                                            getString(R.string.attached_pictogram_toast),
-                                            Toast.LENGTH_SHORT);
-                                    t.show();
-
-									attachment1.dismiss();
-									attachment2.dismiss();
-									break;
-								case SplitImg:
-									attachment3.setTitle(getString(R.string.attachment_dialog_split_right));
-									ArrayList<Art> splitArt = guard.ArtList;
-									final Art art1 = guard.ArtList
-											.get(position);
-									adapter = new ArtAdapter(
-											getActivity(),
-											android.R.layout.simple_list_item_1,
-											splitArt);
-
-									attachment3.setAdapter(adapter);
-
-									attachment3.setOnItemClickListener(new OnItemClickListener() {
-                                        public void onItemClick(
-                                                AdapterView<?> parent,
-                                                View view,
-                                                int position,
-                                                long id) {
-                                            final Art art2 = guard.ArtList.get(position);
-                                            Attachment attSplit = new SplitImg(art1, art2);
-                                            setAttachment(attSplit);
-
-                                            Toast t = Toast.makeText(getActivity(),
-                                                    getString(R.string.attached_pictograms_toast),
-                                                    Toast.LENGTH_SHORT);
-                                            t.show();
-
-                                            attachment1.dismiss();
-                                            attachment2.dismiss();
-                                            attachment3.dismiss();
-
-                                        }
-                                    });
-									attachment3.show();
-
-									break;
-								}
-							}
-						});
-
-						attachment2.show();
-
-					}
-				});
-				attachment1.show();
-			}
-		});
+                attachment1.show();
+            }
+        });
 	}
 
 	/**
@@ -773,7 +745,6 @@ public class CustomizeFragment extends Fragment {
 		String attachText = getString(R.string.attached);
 
 		if (att != null) {
-
 			currSubP.setAttachment(att);
 			color = att.getColor();
 			GETOUT: switch (att.getForm()) {
@@ -889,117 +860,118 @@ public class CustomizeFragment extends Fragment {
 		donePictureButton = (Button) getActivity().findViewById(
 				R.id.customize_donescreen);
 		donePictureButton.setOnClickListener(new OnClickListener() {
-			public void onClick(final View v) {
-				final WDialog doneDialog = new WDialog(getActivity(), R.string.donescreen_dialog_title);
-				ArrayAdapter adapter = new ModeAdapter(getActivity(),android.R.layout.simple_list_item_1, modeArray);
-				doneDialog.setAdapter(adapter);
-				doneDialog.setOnItemClickListener(new OnItemClickListener() {
+            public void onClick(final View v) {
+                final WDialog doneDialog = new WDialog(getActivity(), R.string.donescreen_dialog_title);
+                ArrayAdapter adapter = new ModeAdapter(getActivity(), android.R.layout.simple_list_item_1, modeArray);
+                doneDialog.setAdapter(adapter);
+                doneDialog.setOnItemClickListener(new OnItemClickListener() {
 
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						final formFactor mode = modeArray.get(position);
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        final formFactor mode = modeArray.get(position);
 
-						final ArrayAdapter artList = new ArtAdapter(getActivity(),
+                        final ArrayAdapter artList = new ArtAdapter(getActivity(),
                                 android.R.layout.simple_list_item_1, guard.ArtList);
-						switch(mode){
-						case SingleImg:
-							final WDialog singleDialog = new WDialog(getActivity(),R.string.donescreen_dialog_single);
-							singleDialog.setAdapter(artList);
-							singleDialog.setOnItemClickListener(new OnItemClickListener() {
+                        switch (mode) {
+                            case SingleImg:
+                                final WDialog singleDialog = new WDialog(getActivity(), R.string.donescreen_dialog_single);
+                                singleDialog.setAdapter(artList);
+                                singleDialog.setOnItemClickListener(new OnItemClickListener() {
 
-								public void onItemClick(AdapterView<?> parent, View view,
-										int position, long id) {
-									Attachment atta1 = new SingleImg(guard.ArtList.get(position));
-									setDonePicture(atta1);
-									currSubP.setDoneArt(atta1);
-									doneDialog.dismiss();
-									singleDialog.dismiss();
+                                    public void onItemClick(AdapterView<?> parent, View view,
+                                                            int position, long id) {
+                                        Attachment atta1 = new SingleImg(guard.ArtList.get(position));
+                                        setDonePicture(atta1);
+                                        currSubP.setDoneArt(atta1);
+                                        doneDialog.dismiss();
+                                        singleDialog.dismiss();
 
-                                    Toast t = Toast.makeText(getActivity(),
-                                            getString(R.string.attached_pictogram_toast),
-                                            Toast.LENGTH_SHORT);
-                                    t.show();
+                                        Toast t = Toast.makeText(getActivity(),
+                                                getString(R.string.attached_pictogram_toast),
+                                                Toast.LENGTH_SHORT);
+                                        t.show();
 
-								}
-							});
-							singleDialog.addButton(R.string.cancel, 1, new OnClickListener() {
+                                    }
+                                });
+                                singleDialog.addButton(R.string.cancel, 1, new OnClickListener() {
 
-								public void onClick(View arg0) {
-									doneDialog.cancel();
-									singleDialog.cancel();
-								}
-							});
-							singleDialog.show();
-							break;
-						case SplitImg:
-							final WDialog dualDialog = new WDialog(getActivity(),R.string.donescreen_dialog_left);
-							dualDialog.setAdapter(artList);
-							dualDialog.setOnItemClickListener(new OnItemClickListener() {
+                                    public void onClick(View arg0) {
+                                        doneDialog.cancel();
+                                        singleDialog.cancel();
+                                    }
+                                });
+                                singleDialog.show();
+                                break;
+                            case SplitImg:
+                                final WDialog dualDialog = new WDialog(getActivity(), R.string.donescreen_dialog_left);
+                                dualDialog.setAdapter(artList);
+                                dualDialog.setOnItemClickListener(new OnItemClickListener() {
 
-								public void onItemClick(AdapterView<?> parent, View view,
-										int position, long id) {
-									final Art art1 = guard.ArtList.get(position);
-									final WDialog dialog1 = new WDialog(getActivity(),R.string.donescreen_dialog_right);
-									dialog1.setAdapter(artList);
-									dialog1.setOnItemClickListener(new OnItemClickListener() {
+                                    public void onItemClick(AdapterView<?> parent, View view,
+                                                            int position, long id) {
+                                        final Art art1 = guard.ArtList.get(position);
+                                        final WDialog dialog1 = new WDialog(getActivity(), R.string.donescreen_dialog_right);
+                                        dialog1.setAdapter(artList);
+                                        dialog1.setOnItemClickListener(new OnItemClickListener() {
 
-										public void onItemClick(AdapterView<?> parent, View view,
-												int position, long id) {
-											final Art art2 = guard.ArtList.get(position);
-											Attachment atta = new SplitImg(art1,art2);
-											currSubP.setDoneArt(atta);
-											setDonePicture(atta);
-											doneDialog.dismiss();
-											dualDialog.dismiss();
-											dialog1.dismiss();
+                                            public void onItemClick(AdapterView<?> parent, View view,
+                                                                    int position, long id) {
+                                                final Art art2 = guard.ArtList.get(position);
+                                                Attachment atta = new SplitImg(art1, art2);
+                                                currSubP.setDoneArt(atta);
+                                                setDonePicture(atta);
+                                                doneDialog.dismiss();
+                                                dualDialog.dismiss();
+                                                dialog1.dismiss();
 
-                                            Toast t = Toast.makeText(getActivity(),
-                                                    getString(R.string.attached_pictograms_toast),
-                                                    Toast.LENGTH_SHORT);
-                                            t.show();
-										}
-									});
-									dialog1.addButton(R.string.cancel, 1, new OnClickListener() {
+                                                Toast t = Toast.makeText(getActivity(),
+                                                        getString(R.string.attached_pictograms_toast),
+                                                        Toast.LENGTH_SHORT);
+                                                t.show();
+                                            }
+                                        });
+                                        dialog1.addButton(R.string.cancel, 1, new OnClickListener() {
 
-										public void onClick(View arg0) {
-											doneDialog.cancel();
-											dualDialog.cancel();
-											dialog1.cancel();
-										}
-									});
-									dialog1.show();
-								}
-							});
-							dualDialog.addButton(R.string.cancel, 1, new OnClickListener() {
+                                            public void onClick(View arg0) {
+                                                doneDialog.cancel();
+                                                dualDialog.cancel();
+                                                dialog1.cancel();
+                                            }
+                                        });
+                                        dialog1.show();
+                                    }
+                                });
+                                dualDialog.addButton(R.string.cancel, 1, new OnClickListener() {
 
-								public void onClick(View arg0) {
-									doneDialog.cancel();
-									dualDialog.cancel();
-								}
-							});
-							dualDialog.show();
-							break;
-						}
-					}
-				});
-				doneDialog.addButton(R.string.cancel, 1, new OnClickListener() {
-
-					public void onClick(View arg0) {
-						doneDialog.cancel();
-					}
-				});
-
-                doneDialog.addButton(R.string.clear, 2, new OnClickListener() {
+                                    public void onClick(View arg0) {
+                                        doneDialog.cancel();
+                                        dualDialog.cancel();
+                                    }
+                                });
+                                dualDialog.show();
+                                break;
+                        }
+                    }
+                });
+                doneDialog.addButton(R.string.cancel, 1, new OnClickListener() {
 
                     public void onClick(View arg0) {
-                        currSubP.setDoneArt(null);
-                        setDonePicture(null);
                         doneDialog.cancel();
                     }
                 });
-				doneDialog.show();
-			}
-		});
+                if(currSubP.getDoneArt() != null) {
+                    doneDialog.addButton(R.string.clear, 2, new OnClickListener() {
+
+                        public void onClick(View arg0) {
+                            currSubP.setDoneArt(null);
+                            setDonePicture(null);
+                            doneDialog.cancel();
+                        }
+                    });
+                }
+                doneDialog.show();
+            }
+        });
 	}
 
 	private void initBottomMenu() {
