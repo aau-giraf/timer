@@ -330,15 +330,6 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/switch_activity_button"
-                            android:layout_width="110dp"
-                            android:layout_height="110dp"
-                            android:drawableTop="@drawable/thumbnail_single_pic"
-                            android:paddingTop="20dp"
-                            android:text="@string/switch_layout_button"
-                            android:textSize="14dp" />
-
-                        <Button
                             android:id="@+id/customize_save"
                             android:layout_width="110dp"
                             android:layout_height="110dp"
@@ -348,6 +339,15 @@
                             android:paddingTop="20dp"
                             android:text="@string/save_button"
                             android:textSize="14dp"/>
+
+                        <Button
+                            android:id="@+id/switch_activity_button"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:drawableTop="@drawable/thumbnail_change_orientation"
+                            android:paddingTop="20dp"
+                            android:text="@string/switch_layout_button"
+                            android:textSize="14dp" />
 
                     <!--<Button
                         android:id="@+id/customize_save_as"
@@ -366,6 +366,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:orientation="horizontal">
+
+
 
                         <Button
                             android:id="@+id/customize_start_button"
