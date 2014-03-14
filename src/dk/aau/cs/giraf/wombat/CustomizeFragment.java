@@ -593,7 +593,7 @@ public class CustomizeFragment extends Fragment {
                             case Timer:
                                 attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_timer));
                                 final ArrayList<SubProfile> sp = child.SubProfiles();
-                                adapter = new SubProfileAdapter(
+                                adapter = new SubProfileAttachmentAdapter(
                                         getActivity(),
                                         android.R.layout.simple_list_item_1,
                                         sp);
