@@ -33,6 +33,7 @@
     <!-- CUSTOMIZE -->
     <string name="start_activity_default">Tilpas</string>
     <string name="customize_header">Tilpas</string>
+    <string name="customize_header_switch_user">Skift Bruger</string>
     <string name="customize_style_description">Stil</string>
     <string name="customize_hourglass_description">Timeglas</string>
     <string name="customize_timetimer_description">Ur</string>
