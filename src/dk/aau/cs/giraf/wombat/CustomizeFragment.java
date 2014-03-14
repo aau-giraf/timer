@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -566,6 +565,14 @@ public class CustomizeFragment extends Fragment {
 					}
 				});
 
+                attachment1.addButton(R.string.clear, 2, new OnClickListener() {
+                    public void onClick(View arg0) {
+                        setAttachment(null);
+                        attachment1.cancel();
+                    }
+
+                });
+
 				// 2. window
 				attachment1.setOnItemClickListener(new OnItemClickListener() {
 
@@ -748,15 +755,6 @@ public class CustomizeFragment extends Fragment {
 					}
 				});
 				attachment1.show();
-			}
-		});
-
-		// Long click to remove
-		attachmentButton.setOnLongClickListener(new OnLongClickListener() {
-
-			public boolean onLongClick(View v) {
-				setAttachment(null);
-				return true;
 			}
 		});
 	}
@@ -990,15 +988,16 @@ public class CustomizeFragment extends Fragment {
 						doneDialog.cancel();
 					}
 				});
-				doneDialog.show();
-			}
-		});
-		donePictureButton.setOnLongClickListener(new OnLongClickListener() {
 
-			public boolean onLongClick(View v) {
-				currSubP.setDoneArt(null);
-				setDonePicture(null);
-				return true;
+                doneDialog.addButton(R.string.clear, 2, new OnClickListener() {
+
+                    public void onClick(View arg0) {
+                        currSubP.setDoneArt(null);
+                        setDonePicture(null);
+                        doneDialog.cancel();
+                    }
+                });
+				doneDialog.show();
 			}
 		});
 	}

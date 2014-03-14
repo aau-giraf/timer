@@ -67,11 +67,18 @@ public class MainActivity extends Activity {
     	guard.backgroundColor = color;
     	
 		// Set content view according to main, which implements two fragments
-		setContentView(R.layout.main);
+        if(extras != null) {
+            setContentView(R.layout.main);
+            Drawable d = getResources().getDrawable(R.drawable.background);
+            d.setColorFilter(color, PorterDuff.Mode.OVERLAY);
+            findViewById(R.id.mainLayout).setBackgroundDrawable(d);
+        }
+        else {
+            setContentView(R.layout.blank);
+        }
+
 		
-		Drawable d = getResources().getDrawable(R.drawable.background);
-		d.setColorFilter(color, PorterDuff.Mode.OVERLAY);
-		findViewById(R.id.mainLayout).setBackgroundDrawable(d);
+
 	}
 	
 	/**
