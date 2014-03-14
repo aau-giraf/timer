@@ -83,19 +83,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/switch_user"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="@string/customize_header_switch_user"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white"
-                android:textSize="30dip"
-                android:onClick="switchUser"
-                android:clickable="true"/>
-
-            <TextView
                 android:id="@+id/customizeHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
