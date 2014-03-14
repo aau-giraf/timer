@@ -137,6 +137,7 @@ public class DrawLibActivity extends Activity {
 	public void onDestroy(){
 		super.onDestroy();
 		mHandler.removeCallbacks(mRunnable);
+
 	}
 	
 	/**
