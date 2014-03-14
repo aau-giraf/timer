@@ -16,6 +16,7 @@ import dk.aau.cs.giraf.TimerLib.SubProfile;
  *
  */
 public class DrawWatch extends View {
+    // Mikkel tvang mig
 	private SubProfile sp;
 
 	private int background;
