@@ -341,6 +341,9 @@ public class CRUD {
 		case TimeTimer:
 			p = new TimeTimer(p.name, p.desc, p.bgcolor, p.timeLeftColor, p.timeSpentColor, p.frameColor, p.get_totalTime(), p.gradient);
 			break;
+        case TimeTimerStandard:
+            p = new TimeTimerStandard(p.name, p.desc, p.bgcolor, p.timeLeftColor, p.timeSpentColor, p.frameColor, p.get_totalTime(), p.gradient);
+            break;
 		case ProgressBar:
 			p = new ProgressBar(p.name, p.desc, p.bgcolor, p.timeLeftColor, p.timeSpentColor, p.frameColor, p.get_totalTime(), p.gradient);
 			break;
