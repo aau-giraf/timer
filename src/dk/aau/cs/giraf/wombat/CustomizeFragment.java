@@ -667,6 +667,12 @@ public class CustomizeFragment extends Fragment {
                                     case Timer:
                                         Attachment attTimer = new Timer(child.SubProfiles().get(position));
                                         setAttachment(attTimer);
+
+                                        Toast tAttachedTimer = Toast.makeText(getActivity(),
+                                                getString(R.string.attached_timer_toast),
+                                                Toast.LENGTH_SHORT);
+                                        tAttachedTimer.show();
+
                                         attachment1.dismiss();
                                         attachment2.dismiss();
                                         break;
@@ -674,10 +680,10 @@ public class CustomizeFragment extends Fragment {
                                         Attachment att = new SingleImg(guard.ArtList.get(position));
                                         setAttachment(att);
 
-                                        Toast t = Toast.makeText(getActivity(),
+                                        Toast tAttachedPictogram = Toast.makeText(getActivity(),
                                                 getString(R.string.attached_pictogram_toast),
                                                 Toast.LENGTH_SHORT);
-                                        t.show();
+                                        tAttachedPictogram.show();
 
                                         attachment1.dismiss();
                                         attachment2.dismiss();
@@ -704,10 +710,10 @@ public class CustomizeFragment extends Fragment {
                                                 Attachment attSplit = new SplitImg(art1, art2);
                                                 setAttachment(attSplit);
 
-                                                Toast t = Toast.makeText(getActivity(),
+                                                Toast tAttachedPictograms = Toast.makeText(getActivity(),
                                                         getString(R.string.attached_pictograms_toast),
                                                         Toast.LENGTH_SHORT);
-                                                t.show();
+                                                tAttachedPictograms.show();
 
                                                 attachment1.dismiss();
                                                 attachment2.dismiss();
