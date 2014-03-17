@@ -119,8 +119,8 @@ public class CustomizeFragment extends Fragment {
 
 		currSubP = new SubProfile("", "",
                                   getResources().getColor(R.color.DarkerGray2),
-                                  getResources().getColor(R.color.Red),
                                   getResources().getColor(R.color.Gray),
+                                  getResources().getColor(R.color.White),
                                   getResources().getColor(R.color.Black), 600, false);
 		currSubP.save = false;
 		currSubP.saveAs = false;
@@ -159,8 +159,8 @@ public class CustomizeFragment extends Fragment {
 	public void setDefaultProfile() {
 		currSubP = new SubProfile("", "",
                 getResources().getColor(R.color.DarkerGray2),
-                getResources().getColor(R.color.Red),
                 getResources().getColor(R.color.Gray),
+                getResources().getColor(R.color.White),
                 getResources().getColor(R.color.Black), 600, false);
 		currSubP.save = false;
 		currSubP.saveAs = false;
