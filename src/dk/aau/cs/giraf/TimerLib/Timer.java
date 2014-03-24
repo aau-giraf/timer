@@ -42,6 +42,9 @@ public class Timer extends Attachment {
 		case TimeTimer:
 			sp = new TimeTimer("undefined", "undefined", this._bgColor, this._timeLeftColor, this._timeSpentColor, this._frameColor, this._time, this._gradient);
 			break;
+        case TimeTimerStandard:
+            sp = new TimeTimerStandard("undefined", "undefined", this._bgColor, this._timeLeftColor, this._timeSpentColor, this._frameColor, this._time, this._gradient);
+            break;
 		case Hourglass:
 			sp = new Hourglass("undefined", "undefined", this._bgColor, this._timeLeftColor, this._timeSpentColor, this._frameColor, this._time, this._gradient);
 			break;
