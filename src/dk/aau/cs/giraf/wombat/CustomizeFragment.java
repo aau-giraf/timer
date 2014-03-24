@@ -8,6 +8,7 @@ import kankan.wheel.widget.adapters.NumericWheelAdapter;
 import yuku.ambilwarna.AmbilWarnaDialog;
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -26,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.LinearLayout;
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Attachment;
 import dk.aau.cs.giraf.TimerLib.Child;
@@ -67,6 +69,7 @@ public class CustomizeFragment extends Fragment {
 	private WheelView mins;
 	private WheelView secs;
 
+    private WCheckbox gradientButton;
 	private TextView timeDescription;
     SharedPreferences pref;
 
@@ -441,6 +444,21 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the color picker buttons, change colors here etc.
 	 */
 	private void initColorButtons() {
+        LinearLayout mLL = (LinearLayout) getActivity().findViewById(
+                R.id.button_gradient_layout);
+        float[] hsv = new float[3];
+        Color.colorToHSV(guard.backgroundColor, hsv);
+        hsv[0] = (hsv[0]+180) % 360;
+        mLL.setBackgroundColor(Color.HSVToColor(hsv));
+        gradientButton = new WCheckbox(getActivity());
+        gradientButton.setOnClickListener(currSubP.gradient, new OnClickListener() {
+
+            public void onClick(View v) {
+                currSubP.gradient = gradientButton.changeCheckedState();
+            }
+        });
+        mLL.addView(gradientButton);
+
 		colorGradientButton1 = (Button) getActivity().findViewById(
 				R.id.gradientButton_1);
 
