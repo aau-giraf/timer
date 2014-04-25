@@ -38,7 +38,7 @@ public class DrawProgressBar extends View {
 	public DrawProgressBar(Context context, SubProfile sub, int frameWidth) {
 		super(context);
 		this.frameWidth = frameWidth;
-		width = (DrawLibActivity.frameHeight / 8) * 5;
+		width = (DrawLibActivity.frameHeight / 4) * 5;
 		height = (int) (width * 0.2);
 
 		sp = sub;
@@ -64,11 +64,11 @@ public class DrawProgressBar extends View {
 		double timenow = (endTime - System.currentTimeMillis());
 		timenow = (endTime - System.currentTimeMillis());
 
-		paint.setColor(background);
+		paint.setColor(background & 0x00);
 		c.drawPaint(paint);
 		/* Fill the canvas with the background color */
-		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
-		paint.setShader(lg);
+/*		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background & 0x00, 0x00000000, Shader.TileMode.CLAMP);
+		paint.setShader(lg);*/
 		c.drawPaint(paint);
 		paint.setShader(null);
 		

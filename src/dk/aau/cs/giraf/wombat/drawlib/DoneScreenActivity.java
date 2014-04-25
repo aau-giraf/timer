@@ -78,9 +78,10 @@ public class DoneScreenActivity extends Activity {
 			public void onClick(View v) {
 				// Start 
 				/* We do not want to login every time a timer ends */
-				//Intent i = new Intent("dk.aau.cs.giraf.launcher.AUTHENTICATE");
-				//i.addCategory("dk.aau.cs.giraf.launcher.GIRAF");
-				//startActivity(i);
+				Intent i = new Intent("dk.aau.cs.giraf.launcher.AUTHENTICATE");
+//                i.addCategory("dk.aau.cs.giraf.launcher.GIRAF");
+//                startActivity(i);
+//                guard.reset();
 				finish();
 			}
 		});

@@ -25,6 +25,7 @@ public class DrawLibActivity extends Activity {
 
 	public static int frameHeight;
 	public static int frameWidth;
+    public static int scale = 8;
 	
 	private Handler mHandler;
 	private Runnable mRunnable;
@@ -32,7 +33,7 @@ public class DrawLibActivity extends Activity {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);	
+		super.onCreate(savedInstanceState);
 		/* Hide the status bar */
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		  View main_layout = findViewById(android.R.id.content).getRootView();
@@ -41,22 +42,22 @@ public class DrawLibActivity extends Activity {
 //		SubProfile sub = new ProgressBar("", "", 0xff3D3D3D, 0xff000066, 0xffB8B8B8, 0xff000000, 3, false);
 //		SubProfile sub2 = new ProgressBar("", "", 0xff3D3D3D, 0xff000066, 0xffB8B8B8, 0xff000000, 900, true);
 //		sub.setAttachment(sub2);
-		  
+
+
 		/* Get the guardian from timerlib */
 		Guardian guard = Guardian.getInstance();
 		SubProfile sub = guard.getSubProfile();
-		
+
 		
 		// Get display size
 		WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 		Display disp = wm.getDefaultDisplay();
-		frameHeight = disp.getHeight();
-		frameWidth = disp.getWidth();
-				
-		
+		frameHeight = disp.getHeight()/scale;
+		frameWidth = disp.getWidth()/scale;
+
 		if (sub.getAttachment() == null) {
 			/* Set the drawing class as the content view */
-			View v = genDrawView(sub,frameWidth);
+            View v = genDrawView(sub,frameWidth);
 			v.setKeepScreenOn(true);
 			setContentView(v);
 		} else {
@@ -64,6 +65,9 @@ public class DrawLibActivity extends Activity {
 			LinearLayout frame = new LinearLayout(this);
 			frame.setKeepScreenOn(true);
 			GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[] {sub.bgcolor, 0xFF000000});
+            scale = scale-3;
+            frameHeight = disp.getHeight()/scale;
+            frameWidth = disp.getWidth()/scale;
 			
 			/* Initialize views */
 			View v = null;
@@ -74,7 +78,7 @@ public class DrawLibActivity extends Activity {
 			switch(sub.getAttachment().getForm()){
 			case Timer: // Attach another timer
 				frameWidth = frameWidth/2;
-				 v = genDrawView(sub,frameWidth);
+				v = genDrawView(sub,frameWidth);
 				frame.addView(v, frameWidth, frameHeight);
 				v2 = genDrawView(sub.getAttachment().genSub(),frameWidth);
 				frame.addView(v2, frameWidth, frameHeight);
@@ -149,7 +153,7 @@ public class DrawLibActivity extends Activity {
 	 * @return
 	 * 		A view of the subprofile
 	 */
-	private View genDrawView(SubProfile sub, int frameWidth) {
+	public View genDrawView(SubProfile sub, int frameWidth) {
 		switch (sub.formType()) {
 		case ProgressBar:
 			return new DrawProgressBar(getApplicationContext(), sub, frameWidth);

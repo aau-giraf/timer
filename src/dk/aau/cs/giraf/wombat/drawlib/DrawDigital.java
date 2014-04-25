@@ -28,7 +28,6 @@ public class DrawDigital extends View {
 	private int timespent;
 	private int totalTime;
 	private double endTime;
-	private 
 
 	Paint paint = new Paint();
 	Rect r;
@@ -55,11 +54,11 @@ public class DrawDigital extends View {
 		frameHeight = DrawLibActivity.frameHeight;
 		this.frameWidth = frameWidth;
 		
-		background = sp.bgcolor;
-		frame = sp.frameColor;
-		timeleft = sp.timeLeftColor;
-		timeleft2 = sp.timeLeftColor;
-		timespent = sp.timeSpentColor;
+		background = sp.bgcolor & 0xD0FFFFFF;
+		frame = sp.frameColor & 0xD0FFFFFF;
+		timeleft = sp.timeLeftColor & 0xD0FFFFFF;
+		timeleft2 = sp.timeLeftColor & 0xD0FFFFFF;
+		timespent = sp.timeSpentColor & 0xD0FFFFFF;
 		totalTime = ((sp.get_totalTime() - 1) + 2) * 1000;
 		endTime = System.currentTimeMillis() + totalTime;
 
@@ -70,7 +69,7 @@ public class DrawDigital extends View {
 		
 		numWidth = frameWidth/8;
 		numHeight = numWidth * 2;
-		numSpace = numWidth/3;
+		numSpace = numWidth/(DrawLibActivity.scale >= 5 ? 2 : 3);
 		lineSpace = 2;
 		lineWidth = numHeight / 16;
 		
@@ -101,17 +100,17 @@ public class DrawDigital extends View {
 		x = numWidth/2 + numWidth * 2 + (numSpace);
 		c.drawPath(drawNumberPath(8, x, y), paint);
 		
-		/* Draw third number */
+		/* Draw third number*/
 		x =  numWidth/2 + numWidth * 3 + (numSpace * 3);
 		c.drawPath(drawNumberPath(8, x, y), paint);
 		
-		/* Draw second number */
+		 /*Draw second number */
 		x = numWidth/2 + numWidth * 4 + (numSpace * 4);
 		c.drawPath(drawNumberPath(8, x, y), paint);
 		
 		paint.setColor(frame);
-		c.drawCircle((int) (numWidth * 4.25), (frameHeight / 2) - numSpace, lineWidth / 2, paint);
-		c.drawCircle((int) (numWidth * 4.25), (frameHeight / 2) + numSpace, lineWidth / 2, paint);
+		c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) - numSpace, lineWidth / 2, paint);
+		c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) + numSpace, lineWidth / 2, paint);
 	}
 
 	@Override

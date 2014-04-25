@@ -65,14 +65,14 @@ public class DrawHourglass extends View {
 			timespent = timeleft;
 		}
 		
-		width = 300;
-		height = 500;
+		width = 300/DrawLibActivity.scale;
+		height = 500/DrawLibActivity.scale;
 		frameHeight = height / 20;
 		indent = frameHeight;
 		glassThickness = 3;
 		glassThicknessBot = glassThickness - 1;
 		glassThicknessTop = glassThickness - 1;
-		glassBendHeight = 135;
+		glassBendHeight = 135/DrawLibActivity.scale;
 
 		bitmap = Bitmap.createBitmap(windowWidth, windowHeight,
 				Bitmap.Config.ARGB_8888);
@@ -82,9 +82,14 @@ public class DrawHourglass extends View {
 	}
 
 	private Canvas drawFrame(Canvas c) {
+
+        int oneohfive = 105/DrawLibActivity.scale;
+        int twofouroh = 240/DrawLibActivity.scale;
+        int twosixoh = 260/DrawLibActivity.scale;
 		/* Fill the canvas with the background color */
-		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
-		paint.setShader(lg);
+/*		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background & 0x00, 0x00000000, Shader.TileMode.CLAMP);
+		paint.setShader(lg);*/
+        paint.setColor(background & 0x00);
 		c.drawPaint(paint);
 		paint.setShader(null);
 
@@ -115,8 +120,8 @@ public class DrawHourglass extends View {
 		p.lineTo(left + width - (indent / 2) - frameHeight, top + frameHeight);
 		p.lineTo(left + width - (indent / 2) - frameHeight, top
 				+ glassBendHeight);
-		p.lineTo(left + width - (indent / 2) - frameHeight - 105, top + 240);
-		p.lineTo(left + (indent / 2) + frameHeight + 105, top + 240);
+		p.lineTo(left + width - (indent / 2) - frameHeight - oneohfive, top + twofouroh);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive, top + twofouroh);
 		p.lineTo(left + (indent / 2) + frameHeight, top + glassBendHeight);
 		c.drawPath(p, paint);
 
@@ -128,10 +133,10 @@ public class DrawHourglass extends View {
 				top + frameHeight);
 		p.lineTo(left + width - (indent / 2) - frameHeight - glassThickness,
 				top + glassBendHeight - glassThicknessTop);
-		p.lineTo(left + width - (indent / 2) - frameHeight - 105
-				- glassThickness, top + 240 - glassThicknessTop);
-		p.lineTo(left + (indent / 2) + frameHeight + 105 + glassThickness, top
-				+ 240 - glassThicknessTop);
+		p.lineTo(left + width - (indent / 2) - frameHeight - oneohfive
+				- glassThickness, top + twofouroh - glassThicknessTop);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive + glassThickness, top
+				+ twofouroh - glassThicknessTop);
 		p.lineTo(left + (indent / 2) + frameHeight + glassThickness, top
 				+ glassBendHeight - glassThicknessTop);
 		paint.setColor(background);
@@ -145,9 +150,9 @@ public class DrawHourglass extends View {
 				+ height);
 		p.lineTo(left + width - (indent / 2) - frameHeight, top
 				- glassBendHeight + height);
-		p.lineTo(left + width - (indent / 2) - frameHeight - 105, top - 240
+		p.lineTo(left + width - (indent / 2) - frameHeight - oneohfive, top - twofouroh
 				+ height);
-		p.lineTo(left + (indent / 2) + frameHeight + 105, top - 240 + height);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive, top - twofouroh + height);
 		p.lineTo(left + (indent / 2) + frameHeight, top - glassBendHeight
 				+ height);
 		c.drawPath(p, paint);
@@ -161,10 +166,10 @@ public class DrawHourglass extends View {
 				top - frameHeight + height);
 		p.lineTo(left + width - (indent / 2) - frameHeight - glassThickness,
 				top - glassBendHeight + height + glassThicknessBot);
-		p.lineTo(left + width - (indent / 2) - frameHeight - 105
-				- glassThickness, top - 240 + height + glassThicknessBot);
-		p.lineTo(left + (indent / 2) + frameHeight + 105 + glassThickness, top
-				- 240 + height + glassThicknessBot);
+		p.lineTo(left + width - (indent / 2) - frameHeight - oneohfive
+				- glassThickness, top - twofouroh + height + glassThicknessBot);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive + glassThickness, top
+				- twofouroh + height + glassThicknessBot);
 		p.lineTo(left + (indent / 2) + frameHeight + glassThickness, top
 				- glassBendHeight + height + glassThicknessBot);
 		c.drawPath(p, paint);
@@ -172,23 +177,23 @@ public class DrawHourglass extends View {
 		/* Draw the "glass" middle piece */
 		p = new Path();
 		paint.setColor(frame);
-		p.moveTo(left + width - (indent / 2) - frameHeight - 105, top + 240);
-		p.lineTo(left + width - (indent / 2) - frameHeight - 105, top + 260);
-		p.lineTo(left + (indent / 2) + frameHeight + 105, top + 260);
-		p.lineTo(left + (indent / 2) + frameHeight + 105, top + 240);
+		p.moveTo(left + width - (indent / 2) - frameHeight - oneohfive, top + twofouroh);
+		p.lineTo(left + width - (indent / 2) - frameHeight - oneohfive, top + twosixoh);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive, top + twosixoh);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive, top + twofouroh);
 		c.drawPath(p, paint);
 
 		/* Color the "glass" middle piece */
 		p = new Path();
 		paint.setColor(background);
-		p.moveTo(left + width - (indent / 2) - frameHeight - 105
-				- glassThickness, top + 240 - glassThickness);
-		p.lineTo(left + width - (indent / 2) - frameHeight - 105
-				- glassThickness, top + 260 + glassThickness);
-		p.lineTo(left + (indent / 2) + frameHeight + 105 + glassThickness, top
-				+ 260 + glassThickness);
-		p.lineTo(left + (indent / 2) + frameHeight + 105 + glassThickness, top
-				+ 240 - glassThickness);
+		p.moveTo(left + width - (indent / 2) - frameHeight - oneohfive
+				- glassThickness, top + twofouroh - glassThickness);
+		p.lineTo(left + width - (indent / 2) - frameHeight - oneohfive
+				- glassThickness, top + twosixoh + glassThickness);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive + glassThickness, top
+				+ twosixoh + glassThickness);
+		p.lineTo(left + (indent / 2) + frameHeight + oneohfive + glassThickness, top
+				+ twofouroh - glassThickness);
 		c.drawPath(p, paint);
 
 		return c;
@@ -203,21 +208,21 @@ public class DrawHourglass extends View {
 		double percent = timenow / totalTime;
 
 		if (percent > 0.4) {
-			sandTopHeight = (int) (120 * percent) - 40;
-			triBotMidY = (frameHeight * 5) + 4 - (int) (130 * percent);
+			sandTopHeight = (int) (((120 * percent) - 40/DrawLibActivity.scale));
+			triBotMidY = (frameHeight * 5) + (4 - (int) ((130 * percent))/DrawLibActivity.scale);
 		} else {
 			sandTopHeight = 8;
 		}
 
 		if (percent < 0.4) {
-			sandBotHeight = (int) (86 - frameHeight - (percent * 150));
-			triTopX = (int) (111 - ((280 * percent)));
+			sandBotHeight = (int) ((86 - frameHeight - (percent * 150))/DrawLibActivity.scale);
+			triTopX = (int) ((111 - (280 * percent))/DrawLibActivity.scale);
 			triTopY = triTopX;
 			triBotY = sandBotHeight;
 		}
 
 		if (percent < 0.01) {
-			midFallSandY = (int) startTime * 100;
+			midFallSandY = (int) startTime * 100/DrawLibActivity.scale;
 		} else {
 			midFallSandY = 0;
 		}
@@ -226,7 +231,7 @@ public class DrawHourglass extends View {
 
 		//
 		/* Draw the "sand" in the hourglass */
-		//	
+		//
 
 		/* Draw the "sand" in the top and bottom rectangles of the hourglass */
 		timeTop = new Rect(left + (indent / 2) + frameHeight + glassThickness,
@@ -239,21 +244,23 @@ public class DrawHourglass extends View {
 						- (indent / 2) - frameHeight - glassThickness, top
 						+ height - frameHeight);
 
-		/* setting paint2 to gradient color on the sand */	
+
+
+		/* setting paint2 to gradient color on the sand */
 		Paint paint2 = new Paint();
-		
+
 		if (sp.gradient) {
 			col = new ColorDrawable(timeleft2);
 			col.setAlpha((int) (255 * (1 - percent)));
 			paint2.setColor(col.getColor());
-			
+
 			c.drawRect(timeTop, paint);
 			c.drawRect(timeBot, paint);
 			c.drawRect(timeTop, paint2);
 			c.drawRect(timeBot, paint2);
 		}else {
 			paint2 = paint;
-		
+
 			paint.setColor(timeleft);
 			c.drawRect(timeTop, paint);
 			paint.setColor(timespent);
@@ -263,32 +270,32 @@ public class DrawHourglass extends View {
 			paint2.setColor(timespent);
 			c.drawRect(timeBot, paint2);
 		}
-		
+
 
 		/* Draw the the sand in the triangle in the top of the glass */
 		Path tp = new Path();
 			paint.setColor(timeleft);
-		
-		tp.moveTo((left + (indent / 2) + frameHeight + glassThickness + triTopX),
-				top + glassBendHeight - glassThicknessTop + triTopY); // change as time progress + on both x & y
-		tp.lineTo(left + (indent / 2) + frameHeight + 110 + glassThickness, top
-				+ 245 - glassThicknessTop);
+
+		tp.moveTo((left + (indent / (2)) + frameHeight + glassThickness + triTopX),
+                (top + glassBendHeight - glassThicknessTop + triTopY)); // change as time progress + on both x & y
+		tp.lineTo((left + (indent / (2 * DrawLibActivity.scale)) + frameHeight + 110/DrawLibActivity.scale + glassThickness), (top
+				+ 245/DrawLibActivity.scale - glassThicknessTop));
 		tp.lineTo((left + width - (indent / 2) - frameHeight - glassThickness - triTopX),
-				top + glassBendHeight - glassThicknessTop + triTopY); // change as time progress - on x, + on y
+                (top + glassBendHeight - glassThicknessTop + triTopY)); // change as time progress - on x, + on y
 
 		c.drawPath(tp, paint);
 		c.drawPath(tp, paint2);
-		
+
 		/* Draw the falling sand in the middle */
 		tp = new Path();
 		paint.setColor(timeleft);
-		tp.moveTo(left + (indent / 2) + frameHeight + 109 + glassThickness, top
-				- glassThicknessTop + 245 - midFallSandY);
-		tp.lineTo(left + (indent / 2) + frameHeight + 111 + glassThickness, top
-				- glassThicknessTop + 245 - midFallSandY);
-		tp.lineTo(left + (indent / 2) + frameHeight + 111 + glassThickness, top
+		tp.moveTo(left + (indent / 2) + frameHeight + 109/DrawLibActivity.scale + glassThickness, top
+				- glassThicknessTop + 245/DrawLibActivity.scale - midFallSandY);
+		tp.lineTo(left + (indent / 2) + frameHeight + 111/DrawLibActivity.scale + glassThickness, top
+				- glassThicknessTop + 245/DrawLibActivity.scale - midFallSandY);
+		tp.lineTo(left + (indent / 2) + frameHeight + 111/DrawLibActivity.scale + glassThickness, top
 				+ height - frameHeight - triBotMidY);
-		tp.lineTo(left + (indent / 2) + frameHeight + 109 + glassThickness, top
+		tp.lineTo(left + (indent / 2) + frameHeight + 109/DrawLibActivity.scale + glassThickness, top
 				+ height - frameHeight - triBotMidY);
 		c.drawPath(tp, paint);
 		c.drawPath(tp, paint2);

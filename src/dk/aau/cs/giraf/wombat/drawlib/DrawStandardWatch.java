@@ -27,7 +27,6 @@ public class DrawStandardWatch extends View {
 	private int timespent;
 	private int totalTime;
 	private double endTime;
-
 	private double rotation;
 
 	private Paint paint = new Paint();
@@ -80,8 +79,9 @@ public class DrawStandardWatch extends View {
 		double timenow = (endTime - System.currentTimeMillis());
 		
 		/* Fill the canvas with the background color */
-		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
-		paint.setShader(lg);
+/*		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background & 0x00, 0x00000000, Shader.TileMode.CLAMP);
+		paint.setShader(lg);*/
+        paint.setColor(background & 0x00);
 		c.drawPaint(paint);
 		paint.setShader(null);
 
@@ -107,7 +107,7 @@ public class DrawStandardWatch extends View {
         double percent = timenow / (totalTime/1000);
 
         // 0.1 is what 1 second corresponds to in degrees
-        rotation = (0.1 * (endTime - System.currentTimeMillis()) / 1000) + 0.999;
+        rotation = -((0.1 * (endTime - System.currentTimeMillis()) / 1000) + 0.999);
 
 		// Draw the timer
 		paint.setColor(timeleft2);
@@ -121,21 +121,22 @@ public class DrawStandardWatch extends View {
 		c.drawArc(rf, 270 - (int) rotation, (int) rotation, true, paint);
 
 		/* Draw the center */
+        int indicatorWidth = DrawLibActivity.scale > 6 ? 1 : DrawLibActivity.scale > 3 ? 2 : 3;
+        int indicatorLength = DrawLibActivity.scale >= 6 ? 3 : DrawLibActivity.scale >= 3 ? 2 : 1;
 		paint.setColor(frame);
-		c.drawCircle(frameWidth/2, frameHeight/2, 8, paint);
+		c.drawCircle(frameWidth/2, frameHeight/2, indicatorWidth, paint);
 		
 		/* Draw the indicators 0, 3, 6, 9 */
-		r = new Rect(frameWidth / 2 - 4, ((frameHeight - height) / 2) + 15,
-				frameWidth / 2 + 4, ((frameHeight - height) / 2) + 15 + 40);
+		r = new Rect((frameWidth / 2 - indicatorWidth), (((frameHeight - height) / 2) + 15*indicatorLength),
+                (frameWidth / 2 + indicatorWidth), (((frameHeight - height) / 2) + 15 + 40));
 
 		for (int i = 0; i < 4; i++) {
 			c.rotate(90, frameWidth / 2, frameHeight / 2);
 			c.drawRect(r, paint);
 		}
-
-		/* Draw the small indicators */
-		r = new Rect(frameWidth / 2 - 2, ((frameHeight - height) / 2) + 17,
-				frameWidth / 2 + 2, ((frameHeight - height) / 2) + 15 + 35);
+		// Draw the small indicators
+		r = new Rect(frameWidth / 2 - 1, ((frameHeight - height) / 2) + 15*indicatorLength+((indicatorLength-1)*2),
+				frameWidth / 2 + 1, ((frameHeight - height) / 2) + 15 + 30+(indicatorLength*3));
 
 		for (int i = 0; i < 12; i++) {
 			c.rotate(30, frameWidth / 2, frameHeight / 2);
