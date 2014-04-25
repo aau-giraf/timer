@@ -188,7 +188,7 @@ public class Guardian {
 			// If thats not valid either, make the default guard
 			if(m_oGuard == null){
                 //Profile(String name, long phone, Bitmap picture, String email, Roles role, String address, Setting<String, String, String> settings, int userId, int departmentId, int author)
-				m_oGuard = new Profile("Mette Als", 88888888, null, "Mette@yoMomma.dk", Profile.Roles.GUARDIAN, "yoMommaLane 62", null, 1, 1, 1);
+				m_oGuard = new Profile("Mette Als", 88888888, null, "Mette@yoMomma.dk", Profile.Roles.GUARDIAN, "yoMommaLane 62", null, 1, 1);
 				m_oGuard.setId(oHelp.profilesHelper.insertProfile(m_oGuard));
                 ProfileApplication profApp = new ProfileApplication();
                 profApp.setProfileId(m_oGuard.getId());
@@ -216,7 +216,7 @@ public class Guardian {
 			names.add("Nikolaj");
 			
 			for (String s : names) {
-				Profile newProf = new Profile(s, 88888888, null, "kiddo@yoMomma.dk", Profile.Roles.CHILD, "kiddoLane 61", null, 1, 1, 1);
+				Profile newProf = new Profile(s, 88888888, null, "kiddo@yoMomma.dk", Profile.Roles.CHILD, "kiddoLane 61", null, 1, 1);
                 newProf.setId(oHelp.profilesHelper.insertProfile(newProf));
 				oHelp.profilesHelper.attachChildToGuardian(newProf, m_oGuard);
                 ProfileApplication profApp = new ProfileApplication();
