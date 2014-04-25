@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class SubProfile implements Comparable<SubProfile>{
 	
 	Guardian guard = Guardian.getInstance();
-	private long _id = -1;
+	private int _id = -1;
 	public String name = "Default";
 	public String desc = "Default desc";
 	public int bgcolor = 0xffffffff;
@@ -18,12 +18,12 @@ public class SubProfile implements Comparable<SubProfile>{
 	public boolean saveAs = true;
 	protected Attachment _attachment = null;
 	boolean _AttaBool = false;
-	private long DB_id = -1;
+	private int DB_id = -1;
 	private Attachment _doneArt = null;
 	int lastUsedTime = -1;
-	long refChild = -1;
-	long refPro = -1;
-	long timeKey = 0;
+	int refChild = -1;
+	int refPro = -1;
+	int timeKey = 0;
 
 	//constructor
 	public SubProfile(String name, String description, int bgcolor, int timeLeftColor, int timeSpentColor, int frameColor, int totalTime, boolean changeColor){
@@ -171,11 +171,11 @@ public class SubProfile implements Comparable<SubProfile>{
 		}
 	}
 	
-	public long getId(){
+	public int getId(){
 		return this._id;
 	}
 	
-	protected void setId(long l){
+	protected void setId(int l){
 		this._id = l;
 	}
 	
@@ -229,7 +229,7 @@ public class SubProfile implements Comparable<SubProfile>{
 		} else {
 		this._id = oldProfile._id;
 		this.refPro = oldProfile.DB_id;
-		long ref = 0;
+		int ref = 0;
 		for(Child c : guard.Children()){
 			for(SubProfile p : c.SubProfiles()){
 				if(p.getId() == this.getId()){
@@ -307,11 +307,11 @@ public class SubProfile implements Comparable<SubProfile>{
 		return form;
 	}
 
-	public long getDB_id() {
+	public int getDB_id() {
 		return DB_id;
 	}
 
-	public void setDB_id(long dB_id) {
+	public void setDB_id(int dB_id) {
 		if(this.DB_id < 0){
 			this.DB_id = dB_id;
 		}

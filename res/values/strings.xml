@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GENERAL -->
-    <string name="app_name">Timer</string>
+    <string name="app_name">Tidstager</string>
     <string name="min_sec_devider">:</string>
     <string name="minut">minut</string>
     <string name="minutes">minutter</string>
@@ -17,13 +17,13 @@
     <string name="last_used">Sidst Brugt</string>
     <string name="profile_pic_description">Profil Billede</string>
     <string name="profile_list_time">Tid</string>
-    <string name="formfactor_timer">Timer</string>
+    <string name="formfactor_timer">Tidstager</string>
     <string name="formfactor_singleimg">Enkelt pictogram</string>
     <string name="formfactor_splitimg">Dobbelt pictogram</string>
     
     <!-- TEMPLATE LIST -->
-    <string name="template_list_header">Gemte Tilpasninger</string>
-    <string name="delete_subprofile_message">Vil du slette denne tilpasning?</string>
+    <string name="template_list_header">Gemte tidstagerer</string>
+    <string name="delete_subprofile_message">Vil du slette denne tidstager?</string>
     <string name="delete_description">Er du sikker på du vil slette</string>
     <string name="delete_yes">Ja</string>
     <string name="delete_no">Nej</string>
@@ -64,11 +64,11 @@
     <string name="background">Baggrund</string>
     
     <string name="toast_text">blev gemt på</string>
-    <string name="new_template_button_text">Ny tilpasning</string>
-    <string name="delete_subprofile_toast">Tilpasning slettet</string>
-    <string name="cannot_delete_subprofile_toast">Kan ikke slette denne tilpasning</string>
-    <string name="cant_save">Timeren kan ikke gemmes endnu!</string>
-    <string name="cant_start">Timeren kan ikke startes endnu!</string>
+    <string name="new_template_button_text">Ny tidstager</string>
+    <string name="delete_subprofile_toast">Tidstager slettet</string>
+    <string name="cannot_delete_subprofile_toast">Kan ikke slette denne tidstager</string>
+    <string name="cant_save">Tidstageren kan ikke gemmes endnu!</string>
+    <string name="cant_start">Tidstageren kan ikke startes endnu!</string>
     <string name="cancel">Afbryd</string>
 
 </resources>

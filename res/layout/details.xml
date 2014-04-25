@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ListView android:id="@+id/list"
+    <dk.aau.cs.giraf.gui.GList android:id="@+id/list"
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent">
         
-    </ListView>
+    </dk.aau.cs.giraf.gui.GList>
 
 </LinearLayout>

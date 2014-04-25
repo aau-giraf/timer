@@ -24,7 +24,7 @@ public class TimerHelper {
 
 	public void loadPredef(){
 		
-		long profileId = -2;
+		int profileId = -2;
 		
 		Guardian guard = Guardian.getInstance();
 		guard.predefined().clear();

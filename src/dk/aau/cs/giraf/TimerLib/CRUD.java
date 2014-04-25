@@ -8,26 +8,27 @@ import java.util.Set;
 
 import android.content.Context;
 import dk.aau.cs.giraf.oasis.lib.Helper;
-import dk.aau.cs.giraf.oasis.lib.models.App;
+import dk.aau.cs.giraf.oasis.lib.models.Application;
 import dk.aau.cs.giraf.oasis.lib.models.Profile;
+import dk.aau.cs.giraf.oasis.lib.models.ProfileApplication;
 import dk.aau.cs.giraf.oasis.lib.models.Setting;
 
 public class CRUD {
 	Context context;
 	Helper oHelp;
 	Guardian guard = Guardian.getInstance();
-	private long appId; 
+	private int appId; 
 	private String _lastUsed = "lastUsed";
 	private String _subprofile = "SUBPROFILE";
 	private ArrayList<String> lastUsedList;
 
-	public CRUD(long appID, Context context){
+	public CRUD(int appID, Context context){
 		this.context = context;
 		oHelp = new Helper(context);
 		this.appId = appID;
 	}
 
-	void removeLastUsed(Child c, SubProfile p, long profileId){
+	void removeLastUsed(Child c, SubProfile p, int profileId){
 		removeSubprofileFromProfileId(p,profileId);
 	}
 
@@ -42,7 +43,7 @@ public class CRUD {
 
 		String timeKey = year+""+day+""+hour+""+min+""+sec;
 
-		p.timeKey = Long.valueOf(timeKey);
+		p.timeKey = Integer.valueOf(timeKey);
 
 		saveChild(c,p);
 	}
@@ -52,15 +53,16 @@ public class CRUD {
 		return sp;
 	}
 
-	void initLastUsed(long profileId){
+	void initLastUsed(int profileId){
 		// Find the guardian by Id
 		Profile prof = oHelp.profilesHelper.getProfileById(profileId);
 
 		//Retrieve app by id and profileId
-		App app = oHelp.appsHelper.getAppByIds(appId, profileId);
+        Application app = oHelp.applicationHelper.getApplicationById(appId);
+		ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, prof);
 
 		//Retrieve the settings
-		Setting<String,String,String> settings = app.getSettings();
+		Setting<String,String,String> settings = profApp.getSettings();
 
 		if(settings != null){
 			Set<String> keys = settings.keySet();
@@ -110,7 +112,7 @@ public class CRUD {
 	//		Media m = mp.getMediaById(id)
 	//	}
 
-	public void loadGuardian(long guardianID){
+	public void loadGuardian(int guardianID){
 		// Load the guardian form Oasis
 		Profile mGuardian = oHelp.profilesHelper.getProfileById(guardianID);
 
@@ -125,15 +127,8 @@ public class CRUD {
 			Child mC;
 			String mName;
 			// Generate the name of the child
-			mName = c.getFirstname();
+			mName = c.getName();
 
-			if(c.getMiddlename() != null){
-				String[] midNames = c.getMiddlename().split(" ");
-				for (String s : midNames) {
-					mName += " " + s.charAt(0) + ".";
-				}
-			}
-			mName += " " + c.getSurname();
 			mC = new Child(mName);
 			mC.setProfileId(c.getId());
 
@@ -144,15 +139,18 @@ public class CRUD {
 			}
 
 			// Get the biggest ID from the database
-			long id = -1;
-			App app = oHelp.appsHelper.getAppByIds(appId, c.getId());
-			if(app.getSettings() != null){
-				Setting<String, String, String> settings = app.getSettings();
+			int id = -1;
+
+            Application app = oHelp.applicationHelper.getApplicationById(appId);
+            
+            ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, c);
+			if(profApp.getSettings() != null){
+				Setting<String, String, String> settings = profApp.getSettings();
 				Set<String> keys = settings.keySet();
 
 				for (String key : keys) {
 					if(id < Long.valueOf(key)){
-						id = Long.valueOf(key);
+						id = Integer.valueOf(key);
 					}					
 				}	
 			}			
@@ -179,16 +177,19 @@ public class CRUD {
 		HashMap<String, String> hm = sp.getHashMap();
 
 		// Find the app settings on the profileID
-		App app = oHelp.appsHelper.getAppByIds(appId, c.getProfileId());
-		Setting<String, String, String> settings = app.getSettings();
+        Application app = oHelp.applicationHelper.getApplicationById(appId);
+        Profile prof = oHelp.profilesHelper.getProfileById((int)c.getProfileId());        
+        ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, prof);
+        
+		Setting<String, String, String> settings = profApp.getSettings();
 		if(settings == null){
 			settings = new Setting<String, String, String>();
 		}
 		// Insert the hashmap with the subprofile ID as key
 		settings.put(String.valueOf(sp.getDB_id()), hm);
-		app.setSettings(settings);
-		Profile newProf = oHelp.profilesHelper.getProfileById(c.getProfileId());
-		oHelp.appsHelper.modifyAppByProfile(app, newProf);
+        profApp.setSettings(settings);
+//		Profile newProf = oHelp.profilesHelper.getProfileById((int)c.getProfileId());
+		oHelp.profileApplicationHelper.modifyProfileApplication(profApp);
 
 		return true;	
 	}
@@ -202,22 +203,25 @@ public class CRUD {
 	 * @return
 	 * 		Returns true if it completed, else returns false
 	 */
-	public boolean saveGuardian(long guardianId, SubProfile sp){
+	public boolean saveGuardian(int guardianId, SubProfile sp){
 		// Convert the subprofile to a hashmap
 		HashMap<String, String> hm = sp.getHashMap();
 
 		// Find the app settings on the profileID
-		App app = oHelp.appsHelper.getAppByIds(appId, guardianId);
-		Setting<String, String, String> settings = app.getSettings();
+		Application app = oHelp.applicationHelper.getApplicationById(appId);
+        Profile prof = oHelp.profilesHelper.getProfileById(guardianId);
+        ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app,prof);
+
+		Setting<String, String, String> settings = profApp.getSettings();
 		if(settings == null){
 			settings = new Setting<String, String, String>();
 		}
 
 		// Insert the hashmap with the subprofile ID as key
 		settings.put(String.valueOf(sp.getDB_id()), hm);
-		app.setSettings(settings);
-		Profile newProf = oHelp.profilesHelper.getProfileById(guardianId);
-		oHelp.appsHelper.modifyAppByProfile(app, newProf);
+        profApp.setSettings(settings);
+//		Profile newProf = oHelp.profilesHelper.getProfileById(guardianId);
+        oHelp.profileApplicationHelper.modifyProfileApplication(profApp);
 
 		return true;	
 	}
@@ -230,12 +234,15 @@ public class CRUD {
 	 * @return
 	 * 		A list of subprofiles extracted from the settings
 	 */
-	private ArrayList<SubProfile> findProfileSettings(long id) {
+	private ArrayList<SubProfile> findProfileSettings(int id) {
 		ArrayList<SubProfile> mSubs = new ArrayList<SubProfile>();
 
-		App app = oHelp.appsHelper.getAppByIds(appId, id);
-		if(app.getSettings() != null){
-			Setting<String, String, String> settings = app.getSettings();
+        Application app = oHelp.applicationHelper.getApplicationById(appId);
+        Profile prof = oHelp.profilesHelper.getProfileById(id);
+        ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, prof);
+
+		if(profApp.getSettings() != null){
+			Setting<String, String, String> settings = profApp.getSettings();
 			Set<String> keys = settings.keySet();
 
 			for (String key : keys) {
@@ -269,15 +276,15 @@ public class CRUD {
 		p.set_totalTime(Integer.valueOf((String)hm.get("totalTime")));
 		p.gradient = Boolean.valueOf((String)hm.get("gradient"));
 		formFactor factor = formFactor.convert(hm.get("type"));
-		p.refChild = Long.valueOf(hm.get("refChild"));
-		p.refPro = Long.valueOf(hm.get("refPro"));
-		p.timeKey = Long.valueOf(hm.get("timeKey"));
+		p.refChild = Integer.valueOf(hm.get("refChild"));
+		p.refPro = Integer.valueOf(hm.get("refPro"));
+		p.timeKey = Integer.valueOf(hm.get("timeKey"));
 
 
 		/* Change the subprofile to the correct type */
 		p = convertType(p,factor);
 
-		p.setDB_id(Long.valueOf(hm.get("db_id")));
+		p.setDB_id(Integer.valueOf(hm.get("db_id")));
 		p.save = Boolean.valueOf((String)hm.get("save"));
 		p.saveAs = Boolean.valueOf((String)hm.get("saveAs"));
 
@@ -366,20 +373,23 @@ public class CRUD {
 	 * @param profileId
 	 * 		The profile which the subprofile is going to be removed from
 	 */
-	public void removeSubprofileFromProfileId(SubProfile p, long profileId) {
+	public void removeSubprofileFromProfileId(SubProfile p, int profileId) {
 		// Find the profile by Id
-		Profile prof = oHelp.profilesHelper.getProfileById(profileId);
 
 		// Find the Wombat App
-		App app = oHelp.appsHelper.getAppByIds(appId, profileId);
+        Application app = oHelp.applicationHelper.getApplicationById(appId);
+        Profile prof = oHelp.profilesHelper.getProfileById(profileId);
+        ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, prof);
 
 		// Get the settings from the profile and update
-		Setting<String, String, String> settings = app.getSettings();
+		Setting<String, String, String> settings = profApp.getSettings();
 		settings.remove(String.valueOf(p.getDB_id()));
-		app.setSettings(settings);
+        profApp.setSettings(settings);
 
 		// Update the app
-		oHelp.appsHelper.modifyAppByProfile(app, prof);
+//		oHelp.appsHelper.modifyAppByProfile(app, prof);
+
+        oHelp.profileApplicationHelper.modifyProfileApplication(profApp);
 
 	}
 

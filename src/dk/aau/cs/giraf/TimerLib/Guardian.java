@@ -5,9 +5,12 @@ import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+
 import dk.aau.cs.giraf.oasis.lib.Helper;
-import dk.aau.cs.giraf.oasis.lib.models.App;
+import dk.aau.cs.giraf.oasis.lib.models.Application;
 import dk.aau.cs.giraf.oasis.lib.models.Profile;
+import dk.aau.cs.giraf.oasis.lib.models.ProfileApplication;
 
 public class Guardian {
 	
@@ -34,17 +37,17 @@ public class Guardian {
 	
 	private int _artId = -1;
 	
-	private App m_app;
+	private Application m_app;
 	private Helper oHelp;
 	private Profile m_oGuard;
 	
-	private long childId;
-	public long guardianId;
+	private int childId;
+	public int guardianId;
 	Context m_context;
 	
 	public int profilePosition;
-	public long profileID;
-	public long subProfileID; 			// Stores the id of the saved subprofile
+	public int profileID;
+	public int subProfileID; 			// Stores the id of the saved subprofile
 	public boolean subProfileFirstClick;	// When a subprofile is saved, this is set to true
 												// When something is clicked in the subprofile list, set to false
 	public boolean profileFirstClick;
@@ -96,22 +99,23 @@ public class Guardian {
 	 * Guardian guard = Guadian.getInstance();
 	 * @return Guardian instance
 	 */
-	public static Guardian getInstance(long m_childId, long m_guardianId, Context c, ArrayList<Art> artList){
+	public static Guardian getInstance(int m_childId, int m_guardianId, Context c, ArrayList<Art> artList){
 		if(_instance == null){
+
 			_instance = new Guardian();
 			
 			_instance.ArtList = artList;
 		
 			
 			TimerHelper help = new TimerHelper();
+            _instance.guardianId = m_guardianId;
 			_instance.profileID = m_childId;
-			_instance.guardianId = m_guardianId;
 			_instance.m_context = c;
 			
 			_instance.oHelp = new Helper(c);
 			
-			long appId = _instance.findAppId();
-			_instance.guardianId = _instance.findGuardianId();
+			int appId = _instance.findAppId();
+			_instance.guardianId = _instance.findGuardianId();//finder også hele guardian objektet
 			
 			_instance.createChildren();
 			
@@ -126,7 +130,7 @@ public class Guardian {
 			
 			//crud.retrieveLastUsed(m_guardianId);
 		}
-			return _instance;
+        return _instance;
 	}
 	
 	public static Guardian getInstance(){
@@ -137,11 +141,11 @@ public class Guardian {
 	 * Find the app specified by the mainActivity, if non is avalible a default one is created
 	 * @return
 	 */
-	private long findAppId() {
+	private int findAppId() {
 		// Find the app which has the same package name as this one
-		for (App a : oHelp.appsHelper.getApps()) {
+		for (Application a : oHelp.applicationHelper.getApplications()) {
 			String cname = m_context.getPackageName();
-			if(a.getaPackage().equalsIgnoreCase(cname)){
+			if(a.getPackage().equalsIgnoreCase(cname)){
 				m_app = a;
 				break;
 			}
@@ -149,8 +153,11 @@ public class Guardian {
 			
 		if(m_app == null){
 			// If no app has been found, generate one and insert it in Oasis
-			m_app = new App("Wombat", "1", "", m_context.getPackageName(), "MainActivity");
-			m_app.setId(oHelp.appsHelper.insertApp(m_app));
+            //(String name, String version, Bitmap icon, String pack, String activity, String description, int author)
+
+            Bitmap emptyImage = Bitmap.createBitmap(100,100, Bitmap.Config.ARGB_8888);
+			m_app = new Application("Wombat", "1", emptyImage, m_context.getPackageName(), "MainActivity", "The Timer", 1);
+			m_app.setId(oHelp.applicationHelper.insertApplication(m_app));
 		}
 		
 		return m_app.getId();
@@ -160,7 +167,7 @@ public class Guardian {
 	 * Search for the guard specified by the mainActivity, if non is existing a default one is created
 	 * @return
 	 */
-	private long findGuardianId() {
+	private int findGuardianId() {
 		
 		if(guardianId != -1){
 			// Does the original guard exist
@@ -172,7 +179,7 @@ public class Guardian {
 		// If not, try the default guard
 		if(m_oGuard == null){
 			for (Profile p : oHelp.profilesHelper.getProfiles()) {
-				if(p.getFirstname().equals("Mette") && p.getSurname().equals("Als")){
+				if(p.getName().equals("Tony Stark")){
 					m_oGuard = p;
 					break;
 				}
@@ -180,10 +187,16 @@ public class Guardian {
 			
 			// If thats not valid either, make the default guard
 			if(m_oGuard == null){
-				m_oGuard = new Profile("Mette", "Als", null, 1, 88888888, null, null);				
+                //Profile(String name, long phone, Bitmap picture, String email, Roles role, String address, Setting<String, String, String> settings, int userId, int departmentId, int author)
+				m_oGuard = new Profile("Mette Als", 88888888, null, "Mette@yoMomma.dk", Profile.Roles.GUARDIAN, "yoMommaLane 62", null, 1, 1, 1);
 				m_oGuard.setId(oHelp.profilesHelper.insertProfile(m_oGuard));
-				oHelp.appsHelper.attachAppToProfile(m_app, m_oGuard);
-				oHelp.profilesHelper.setCertificate("jkkxlagqyrztlrexhzofekyzrnppajeobqxcmunkqhsbrgpxdtqgygnmbhrgnpphaxsjshlpupgakmirhpyfaivvtpynqarxsghhilhkqvpelpreevykxurtppcggkzfaepihlodgznrmbrzgqucstflhmndibuymmvwauvdlyqnnlxkurinuypmqypspmkqavuhfwsh", m_oGuard);
+                ProfileApplication profApp = new ProfileApplication();
+                profApp.setProfileId(m_oGuard.getId());
+                profApp.setApplicationId(m_app.getId());
+                oHelp.profileApplicationHelper.insertProfileApplication(profApp);
+                oHelp.profilesHelper.authenticateProfile("jkkxlagqyrztlrexhzofekyzrnppajeobqxcmunkqhsbrgpxdtqgygnmbhrgnpphaxsjshlpupgakmirhpyfaivvtpynqarxsghhilhkqvpelpreevykxurtppcggkzfaepihlodgznrmbrzgqucstflhmndibuymmvwauvdlyqnnlxkurinuypmqypspmkqavuhfwsh");
+//				oHelp.applicationHelper.attachAppToProfile(m_app, m_oGuard);
+//				oHelp.profilesHelper.setCertificate("jkkxlagqyrztlrexhzofekyzrnppajeobqxcmunkqhsbrgpxdtqgygnmbhrgnpphaxsjshlpupgakmirhpyfaivvtpynqarxsghhilhkqvpelpreevykxurtppcggkzfaepihlodgznrmbrzgqucstflhmndibuymmvwauvdlyqnnlxkurinuypmqypspmkqavuhfwsh", m_oGuard);
 				
 			}
 		} 
@@ -203,10 +216,13 @@ public class Guardian {
 			names.add("Nikolaj");
 			
 			for (String s : names) {
-				Profile newProf = new Profile(s, " ", null, 3, 99999999, null, null);
-				newProf.setId(oHelp.profilesHelper.insertProfile(newProf));
+				Profile newProf = new Profile(s, 88888888, null, "kiddo@yoMomma.dk", Profile.Roles.CHILD, "kiddoLane 61", null, 1, 1, 1);
+                newProf.setId(oHelp.profilesHelper.insertProfile(newProf));
 				oHelp.profilesHelper.attachChildToGuardian(newProf, m_oGuard);
-				oHelp.appsHelper.attachAppToProfile(m_app, newProf);
+                ProfileApplication profApp = new ProfileApplication();
+                profApp.setProfileId(m_oGuard.getId());
+                profApp.setApplicationId(m_app.getId());
+                oHelp.profileApplicationHelper.insertProfileApplication(profApp);
 			}
 		}
 	}
