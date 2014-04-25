@@ -259,7 +259,7 @@ public class CustomizeFragment extends Fragment {
 	private void selectStyle(formFactor formType) {
 		if (formType == formFactor.Hourglass) {
 			currSubP = currSubP.toHourglass();
-            hourglassButton.setToggled(true);
+            hourglassButton.setToggled(true);//help
 			setSave();
 		} else {
             hourglassButton.setToggled(false);
