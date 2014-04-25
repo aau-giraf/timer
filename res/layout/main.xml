@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
@@ -40,7 +41,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <TextView
+        <dk.aau.cs.giraf.gui.GTextView
             android:id="@+id/settingsListHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +52,7 @@
             android:textColor="@android:color/white"
             android:textSize="30dip" />
 
-        <Button
+        <dk.aau.cs.giraf.gui.GButton
             android:id="@+id/new_template_button"
             android:layout_width="match_parent"
             android:layout_height="62dp"
@@ -63,11 +64,12 @@
             android:id="@+id/subprofileFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="dk.aau.cs.giraf.wombat.SubProfileFragment" >
+            class="dk.aau.cs.giraf.wombat.SubProfileFragment"
+            tools:layout="@layout/simple_list_item_1">
         </fragment>
     </LinearLayout>
 
-    <TextView
+    <dk.aau.cs.giraf.gui.GTextView
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:background="@color/White" />
@@ -82,7 +84,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <dk.aau.cs.giraf.gui.GTextView
                 android:id="@+id/customizeHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +100,8 @@
             android:id="@+id/customizeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="dk.aau.cs.giraf.wombat.CustomizeFragment" />
+            class="dk.aau.cs.giraf.wombat.CustomizeFragment"
+            tools:layout="@layout/simple_list_item_1" />
     </LinearLayout>
 
 </LinearLayout>

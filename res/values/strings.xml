@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- GENERAL -->
-    <string name="app_name">Timer</string>
+    <string name="app_name">Tidstager</string>
     <string name="min_sec_devider">:</string>
     <string name="minut">minut</string>
     <string name="minutes">minutter</string>
@@ -18,14 +18,14 @@
     <string name="last_used">Sidst Brugt</string>
     <string name="profile_pic_description">Profil Billede</string>
     <string name="profile_list_time">Tid</string>
-    <string name="formfactor_timer">Timer</string>
+    <string name="formfactor_timer">Tidstager</string>
     <string name="formfactor_singleimg">Enkelt pictogram</string>
     <string name="formfactor_splitimg">Dobbelt pictogram</string>
     
     <!-- TEMPLATE LIST -->
-    <string name="template_list_header">Gemte Tilpasninger</string>
+    <string name="template_list_header">Gemte Tidstagere</string>
     <string name="are_you_sure">Er du sikker</string>
-    <string name="delete_subprofile_message">Vil du slette denne tilpasning?</string>
+    <string name="delete_subprofile_message">Vil du slette denne tidstager?</string>
     <string name="delete_description">Er du sikker på du vil slette</string>
     <string name="delete_yes">Ja</string>
     <string name="delete_no">Nej</string>
@@ -40,7 +40,7 @@
     <string name="customize_timetimer_standard_description">Ur (time skive)</string>
     <string name="customize_progressbar_description">Bar</string>
     <string name="customize_digital_description">Digital Ur</string>
-    <string name="customize_single_img_description">Et billed</string>
+    <string name="customize_single_img_description">Et billede</string>
     <string name="customize_split_img_description">To billeder</string>
     <string name="colors">Farver</string>
     <string name="color_time_left">Tid Tilbage</string>
@@ -50,6 +50,7 @@
     <string name="attachment_dialog_pick_a_picture">Vælg et pictogram</string>
     <string name="attachment_dialog_split_left">Vælg venstre pictogram</string>
     <string name="attachment_dialog_split_right">Vælg højre pictogram</string>
+    <string name="setting_dialog_description">Vælg instillinger herunder</string>
     
     <string name="select_attachment_dialog">Vælg Vedhæft</string>
     <string name="attached">Vedhæftet</string>
@@ -60,25 +61,31 @@
     <string name="donescreen_dialog_single">Vælg et slutbilled</string>
     <string name="choose_profile">Vælg en Profil</string>
     <string name="start_button">Start</string>
+    <string name="stop_button">Stop</string>
+    <string name="restart_button">Genstart</string>
     <string name="switch_layout_button">Skift Layout</string>
     <string name="save_button">Gem</string>
     <string name="save_as_button">Gem Som &#8230;</string>
+    <string name="setting">Indstillinger</string>
+    <string name="profile">Profil</string>
     <string name="gradient">Overgang</string>
     <string name="frame">Ramme</string>
     <string name="background">Baggrund</string>
     <string name="clear">Ryd</string>
     
     <string name="was_saved_toast">blev gemt på</string>
-    <string name="new_template_button_text">Ny tilpasning</string>
-    <string name="delete_subprofile_toast">Tilpasning slettet</string>
-    <string name="cannot_delete_subprofile_toast">Kan ikke slette denne tilpasning</string>
-    <string name="cant_save">Timeren kan ikke gemmes endnu!</string>
-    <string name="cant_start">Timeren kan ikke startes endnu!</string>
+    <string name="new_template_button_text">Ny tidstager</string>
+    <string name="delete_subprofile_toast">Tidstager slettet</string>
+    <string name="cannot_delete_subprofile_toast">Kan ikke slette denne tidstager</string>
+    <string name="cant_save">Tidstagen kan ikke gemmes endnu!</string>
+    <string name="cant_start">Tidstagen kan ikke startes endnu!</string>
+    <string name="cant_stop">Tidstagen er ikke startet endnu!</string>
     <string name="cancel">Afbryd</string>
+    <string name="close">Luk</string>
 
     <!-- Attachment feedback strings. -->
     <string name="attached_pictogram_toast">Pictogram vedhæftet</string>
     <string name="attached_pictograms_toast">Pictogrammer vedhæftet</string>
-    <string name="attached_timer_toast">Timer vedhæftet</string>
+    <string name="attached_timer_toast">Tidstager vedhæftet</string>
 
 </resources>

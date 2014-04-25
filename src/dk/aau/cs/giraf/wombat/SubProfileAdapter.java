@@ -15,6 +15,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.TimerLib.SubProfile;
+import dk.aau.cs.giraf.gui.GToast;
+
 /**
  * This class is an ArrayAdapter which fit the SubProfile object
  * Layer: Layout
@@ -58,14 +60,14 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
                         public void onClick(View v) {
                             if(guard.getChild() != null && guard.getChild().deleteCheck()) {
                                 guard.getChild().SubProfiles().get(position).delete();
-                                Toast t = Toast.makeText(c,
+                                GToast t = GToast.makeText(c,
                                         R.string.delete_subprofile_toast,
                                         Toast.LENGTH_LONG);
                                 t.show();
                                 notifyDataSetChanged();
                             }
                             else {
-                                Toast t = Toast.makeText(c,
+                                GToast t = GToast.makeText(c,
                                         R.string.cannot_delete_subprofile_toast,
                                         Toast.LENGTH_LONG);
                                 t.show();

@@ -17,8 +17,8 @@ import dk.aau.cs.giraf.oasis.lib.Helper;
  */
 public class SubProfileFragment extends android.app.ListFragment {
 	Guardian guard = Guardian.getInstance();
-	ListView thisListView;
-    ImageButton btn;
+//	ListView thisListView;
+//    ImageButton btn;
 
 	@Override
 	// Start the list empty
@@ -35,12 +35,12 @@ public class SubProfileFragment extends android.app.ListFragment {
 				SubProfileAdapter adapter = new SubProfileAdapter(getActivity(),
 						android.R.layout.simple_list_item_1, subprofiles);
 				setListAdapter(adapter);
-			}	
+			}
 			else {
 				setListAdapter(null);
 			}
-			
-			
+
+
 		}else {
 			setListAdapter(null);
 		}
@@ -97,10 +97,10 @@ public class SubProfileFragment extends android.app.ListFragment {
 		super.onResume();
 		loadSubProfiles();
 	}
-	
+
 	/**
 	 * Inserts the templates on profile id in the details list
-	 * 
+	 *
 	 */
 	public void loadSubProfiles() {
 		if(guard.getChild() != null){
@@ -123,11 +123,11 @@ public class SubProfileFragment extends android.app.ListFragment {
 		}
 		view.setSelected(true);
 		guard.subProfileID = guard.getChild().SubProfiles().get(position).getId();
-		
-		
+
+
 		@SuppressWarnings("unused")
 		SubProfile asd = guard.getChild().SubProfiles().get(position);
-		
+
 		CustomizeFragment fragment = (CustomizeFragment) getFragmentManager()
 				.findFragmentById(R.id.customizeFragment);
 		fragment.loadSettings(guard.getChild().SubProfiles().get(position));

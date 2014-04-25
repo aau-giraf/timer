@@ -16,7 +16,7 @@ import dk.aau.cs.giraf.oasis.lib.models.Profile;
  *
  */
 public class ChildFragment extends android.app.ListFragment {
-	List<Profile> profileList;
+//	List<Profile> profileList;
 	Guardian guard = Guardian.getInstance();
 	ChildAdapter adapter;
 
@@ -32,22 +32,23 @@ public class ChildFragment extends android.app.ListFragment {
 		int i = 0;
 		for (Child child : guard.publishList()) {
 			if(child.getProfileId() == guard.profileID){
-				guard.profilePosition = i; 
+				guard.profilePosition = i;
 				guard.publishList().get(i).select();
 				Log.e("", guard.getChild().name);
 				break;
 			}
 			i++;
 		}
-		
-		SubProfileFragment detf = (SubProfileFragment) getFragmentManager()
+
+		SubProfileFragment detf = new SubProfileFragment();
+                detf = (SubProfileFragment) getFragmentManager()
 				.findFragmentById(R.id.subprofileFragment);
 		if (detf != null) {
 			detf.loadSubProfiles();
-			
+
 		}
 	}
-	
+
 	@Override
 	public void onListItemClick(ListView lv, View view, int position, long id) {
 		if (guard.profileFirstClick) {
@@ -60,26 +61,27 @@ public class ChildFragment extends android.app.ListFragment {
 			lv.getChildAt(i).setSelected(false);
 		}
 		view.setSelected(true);
-		
+
 		// Update the fragments
-		SubProfileFragment detf = (SubProfileFragment) getFragmentManager()
+		SubProfileFragment detf = new SubProfileFragment();
+        detf = (SubProfileFragment) getFragmentManager()
 				.findFragmentById(R.id.subprofileFragment);
 		CustomizeFragment custF = (CustomizeFragment)getFragmentManager().findFragmentById(R.id.customizeFragment);
 		custF.setDefaultProfile();
-		
+
 		if (detf != null) {
 			// Marks the selected profile in the guard singleton
-			guard.profilePosition = position; 
+			guard.profilePosition = position;
 			guard.publishList().get(position).select();
 			guard.profileID = guard.publishList().get(position).getProfileId();
 			detf.loadSubProfiles();
-			
+
 		}
 	}
-	
+
 	/**
 	 * Inserts the templates on profile id in the details list
-	 * 
+	 *
 	 */
 	public void loadChildren() {
 		ArrayList<Child> m_childs = guard.publishList();

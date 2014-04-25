@@ -1,18 +1,32 @@
 package dk.aau.cs.giraf.wombat;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import dk.aau.cs.giraf.gui.GButton;
+import dk.aau.cs.giraf.gui.GCheckBox;
+import dk.aau.cs.giraf.gui.GProfileSelector;
+import dk.aau.cs.giraf.gui.GTextView;
+import dk.aau.cs.giraf.gui.GButtonSettings;
+import dk.aau.cs.giraf.gui.GToast;
+import dk.aau.cs.giraf.gui.GToggleButton;
+import dk.aau.cs.giraf.oasis.lib.models.Profile;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.NumericWheelAdapter;
 import yuku.ambilwarna.AmbilWarnaDialog;
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.Fragment;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -25,7 +39,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 import dk.aau.cs.giraf.TimerLib.Art;
@@ -50,27 +64,31 @@ public class CustomizeFragment extends Fragment {
     private ArrayList<Child> children = guard.publishList();
     private Child child;
 
-	private Button hourglassButton;
-	private Button timetimerButton;
-    private Button timetimerStandardButton;
-	private Button progressbarButton;
-	private Button digitalButton;
-	private Button startButton;
-    private Button switchLayoutButton;
-	private Button saveButton;
-	private Button saveAsButton;
-	private Button attachmentButton;
-	private Button donePictureButton;
-	private Button colorGradientButton1;
-	private Button colorGradientButton2;
-	private Button colorFrameButton;
-	private Button colorBackgroundButton;
+	private GToggleButton hourglassButton;
+	private GToggleButton timetimerButton;
+    private GToggleButton timetimerStandardButton;
+	private GToggleButton progressbarButton;
+	private GToggleButton digitalButton;
+	private GButton startButton;
+    private GButton stopButton;
+    private GButton settingButton;
+    private GButton profileButton;
+    private GButton switchLayoutButton;
+	private GButton saveButton;
+	private GButton saveAsButton;
+	private GButton attachmentButton;
+	private GButton donePictureButton;
+	private GButton colorGradientButton1;
+	private GButton colorGradientButton2;
+	private GButton colorFrameButton;
+	private GButton colorBackgroundButton;
 
 	private WheelView mins;
 	private WheelView secs;
 
-    private WCheckbox gradientButton;
-	private TextView timeDescription;
+    private GCheckBox gradientCheckBox;
+    //private WCheckbox gradientButton;
+	private GTextView timeDescription;
     SharedPreferences pref;
 
 	@Override
@@ -83,7 +101,7 @@ public class CustomizeFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+ 			Bundle savedInstanceState) {
 		// Populate the fragment according to the details layout
 
         pref = this.getActivity().getSharedPreferences("LayoutPrefFile", 0);
@@ -101,19 +119,20 @@ public class CustomizeFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		Button b = (Button) getActivity()
+		GButton b = (GButton) getActivity()
 				.findViewById(R.id.new_template_button);
 		b.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				guard.subProfileID = -1;
-				SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
+				SubProfileFragment spf = new SubProfileFragment();
+                spf = (SubProfileFragment) getFragmentManager()
 						.findFragmentById(R.id.subprofileFragment);
 				spf.loadSubProfiles();
 				CustomizeFragment cf = (CustomizeFragment) getFragmentManager()
 						.findFragmentById(R.id.customizeFragment);
 				cf.setDefaultProfile();
-				Toast t = Toast.makeText(getActivity(),
+				GToast t = GToast.makeText(getActivity(),
 						getString(R.string.new_template_button_text),
 						Toast.LENGTH_SHORT);
 				t.show();
@@ -137,9 +156,14 @@ public class CustomizeFragment extends Fragment {
                 }
             }
         }
-
-        TextView tv = (TextView) getActivity().findViewById(R.id.customizeHeader);
-        CharSequence cs = child.name;
+        GTextView tv = (GTextView) getActivity().findViewById(R.id.customizeHeader);
+        CharSequence cs;
+        if (child != null) {
+            cs = child.name;
+        }
+        else {
+            cs = "";
+        }
         tv.setText(cs);
 
 		/********* TIME CHOSER *********/
@@ -157,6 +181,8 @@ public class CustomizeFragment extends Fragment {
 		/******** BOTTOM MENU ***********/
 		initBottomMenu();
         Log.v("guardChildId", "" + guard.profileID);
+
+
 	}
 
 	public void setDefaultProfile() {
@@ -177,7 +203,7 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the style chooser buttons
 	 */
 	private void initStyleChoser() {
-		hourglassButton = (Button) getActivity().findViewById(R.id.houglassButton);
+		hourglassButton = (GToggleButton) getActivity().findViewById(R.id.houglassButton);
 		hourglassButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -185,7 +211,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		timetimerButton = (Button) getActivity().findViewById(
+		timetimerButton = (GToggleButton) getActivity().findViewById(
 				R.id.timetimerButton);
 		timetimerButton.setOnClickListener(new OnClickListener() {
 
@@ -195,7 +221,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-        timetimerStandardButton = (Button) getActivity().findViewById(R.id.timetimerStandardButton);
+        timetimerStandardButton = (GToggleButton) getActivity().findViewById(R.id.timetimerStandardButton);
         timetimerStandardButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
@@ -204,7 +230,7 @@ public class CustomizeFragment extends Fragment {
             }
         });
 
-		progressbarButton = (Button) getActivity().findViewById(
+		progressbarButton = (GToggleButton) getActivity().findViewById(
 				R.id.progressbarButton);
 		progressbarButton.setOnClickListener(new OnClickListener() {
 
@@ -214,7 +240,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		digitalButton = (Button) getActivity().findViewById(R.id.digitalButton);
+		digitalButton = (GToggleButton) getActivity().findViewById(R.id.digitalButton);
 		digitalButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -226,46 +252,46 @@ public class CustomizeFragment extends Fragment {
 
 	/**
 	 * Change style on currSubP according to formFactor type
-	 * 
+	 *
 	 * @param formType
 	 *            formFactor to change to
 	 */
 	private void selectStyle(formFactor formType) {
 		if (formType == formFactor.Hourglass) {
 			currSubP = currSubP.toHourglass();
-			hourglassButton.setSelected(true);
+            hourglassButton.setToggled(true);
 			setSave();
 		} else {
-			hourglassButton.setSelected(false);
+            hourglassButton.setToggled(false);
 		}
 
 		if (formType == formFactor.TimeTimer) {
 			currSubP = currSubP.toTimeTimer();
-			timetimerButton.setSelected(true);
+            timetimerButton.setToggled(true);
 			setSave();
 		} else {
-			timetimerButton.setSelected(false);
+            timetimerButton.setToggled(false);
 		}
         if (formType == formFactor.TimeTimerStandard) {
             currSubP = currSubP.toTimeTimerStandard();
-            timetimerStandardButton.setSelected(true);
+            timetimerStandardButton.setToggled(true);
             setSave();
         } else {
-            timetimerStandardButton.setSelected(false);
+            timetimerStandardButton.setToggled(false);
         }
 		if (formType == formFactor.ProgressBar) {
 			currSubP = currSubP.toProgressBar();
-			progressbarButton.setSelected(true);
+            progressbarButton.setToggled(true);
 			setSave();
 		} else {
-			progressbarButton.setSelected(false);
+            progressbarButton.setToggled(false);
 		}
 		if (formType == formFactor.DigitalClock) {
 			currSubP = currSubP.toDigitalClock();
-			digitalButton.setSelected(true);
+            digitalButton.setToggled(true);
 			setSave();
 		} else {
-			digitalButton.setSelected(false);
+            digitalButton.setToggled(false);
 		}
 		genDescription();
 		initBottomMenu();
@@ -319,7 +345,7 @@ public class CustomizeFragment extends Fragment {
 		secs.setCyclic(true);
 
 		/* Create description of time chosen */
-		timeDescription = (TextView) getActivity().findViewById(R.id.showTime);
+		timeDescription = (GTextView) getActivity().findViewById(R.id.showTime);
 		setTime(currSubP.get_totalTime());
 
 		/* Add on change listeners for both wheels */
@@ -444,22 +470,15 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the color picker buttons, change colors here etc.
 	 */
 	private void initColorButtons() {
-        LinearLayout mLL = (LinearLayout) getActivity().findViewById(
-                R.id.button_gradient_layout);
-        float[] hsv = new float[3];
-        Color.colorToHSV(guard.backgroundColor, hsv);
-        hsv[0] = (hsv[0]+180) % 360;
-        mLL.setBackgroundColor(Color.HSVToColor(hsv));
-        gradientButton = new WCheckbox(getActivity());
-        gradientButton.setOnClickListener(currSubP.gradient, new OnClickListener() {
-
-            public void onClick(View v) {
-                currSubP.gradient = gradientButton.changeCheckedState();
+        gradientCheckBox = (GCheckBox)getActivity().findViewById(R.id.gCheckBox);
+        gradientCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                currSubP.gradient = isChecked;
             }
         });
-        mLL.addView(gradientButton);
 
-		colorGradientButton1 = (Button) getActivity().findViewById(
+		colorGradientButton1 = (GButton) getActivity().findViewById(
 				R.id.gradientButton_1);
 
 		setColor(colorGradientButton1.getBackground(), currSubP.timeLeftColor);
@@ -481,7 +500,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		colorGradientButton2 = (Button) getActivity().findViewById(
+		colorGradientButton2 = (GButton) getActivity().findViewById(
 				R.id.gradientButton_2);
 		setColor(colorGradientButton2.getBackground(), currSubP.timeSpentColor);
 		colorGradientButton2.setOnClickListener(new OnClickListener() {
@@ -501,7 +520,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		colorFrameButton = (Button) getActivity().findViewById(
+		colorFrameButton = (GButton) getActivity().findViewById(
 				R.id.frameColorButton);
 		setColor(colorFrameButton.getBackground(), currSubP.frameColor);
 		colorFrameButton.setOnClickListener(new OnClickListener() {
@@ -521,7 +540,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		colorBackgroundButton = (Button) getActivity().findViewById(
+		colorBackgroundButton = (GButton) getActivity().findViewById(
 				R.id.backgroundColorButton);
 		setColor(colorBackgroundButton.getBackground(), currSubP.bgcolor);
 		colorBackgroundButton.setOnClickListener(new OnClickListener() {
@@ -557,7 +576,7 @@ public class CustomizeFragment extends Fragment {
 	private void initAttachmentButton() {
 
 		// Button for attachment
-		attachmentButton = (Button) getActivity().findViewById(
+		attachmentButton = (GButton) getActivity().findViewById(
 				R.id.customize_attachment);
 		// Set attachment button onclicklistener
 		// 1. window
@@ -582,7 +601,7 @@ public class CustomizeFragment extends Fragment {
                                 attachment1.cancel();
                             }
                         });
-                if(currSubP.getAttachment() != null) {
+                if (currSubP.getAttachment() != null) {
                     attachment1.addButton(R.string.clear, 2, new OnClickListener() {
                         public void onClick(View arg0) {
                             setAttachment(null);
@@ -686,7 +705,7 @@ public class CustomizeFragment extends Fragment {
                                         Attachment attTimer = new Timer(child.SubProfiles().get(position));
                                         setAttachment(attTimer);
 
-                                        Toast tAttachedTimer = Toast.makeText(getActivity(),
+                                        GToast tAttachedTimer = GToast.makeText(getActivity(),
                                                 getString(R.string.attached_timer_toast),
                                                 Toast.LENGTH_SHORT);
                                         tAttachedTimer.show();
@@ -698,7 +717,7 @@ public class CustomizeFragment extends Fragment {
                                         Attachment att = new SingleImg(guard.ArtList.get(position));
                                         setAttachment(att);
 
-                                        Toast tAttachedPictogram = Toast.makeText(getActivity(),
+                                        GToast tAttachedPictogram = GToast.makeText(getActivity(),
                                                 getString(R.string.attached_pictogram_toast),
                                                 Toast.LENGTH_SHORT);
                                         tAttachedPictogram.show();
@@ -728,7 +747,7 @@ public class CustomizeFragment extends Fragment {
                                                 Attachment attSplit = new SplitImg(art1, art2);
                                                 setAttachment(attSplit);
 
-                                                Toast tAttachedPictograms = Toast.makeText(getActivity(),
+                                                GToast tAttachedPictograms = GToast.makeText(getActivity(),
                                                         getString(R.string.attached_pictograms_toast),
                                                         Toast.LENGTH_SHORT);
                                                 tAttachedPictograms.show();
@@ -841,10 +860,33 @@ public class CustomizeFragment extends Fragment {
 
 		ld.setDrawableByLayerId(R.id.second_attachment_layer, getResources().getDrawable(pictureRes));
 
-		attachmentButton.setCompoundDrawablesWithIntrinsicBounds(null, ld, null, null);
+		attachmentButton.setCompoundDrawablesWithIntrinsicBounds(null, getSingleDrawable(ld), null, null);
 
 		attachmentButton.setText(textRes);
 	}
+
+    public Drawable getSingleDrawable(LayerDrawable layerDrawable){
+
+        int resourceBitmapHeight = layerDrawable.getIntrinsicHeight(), resourceBitmapWidth = layerDrawable.getIntrinsicWidth();
+
+        float widthInInches = 0.9f;
+
+        int widthInPixels = (int)(widthInInches * getResources().getDisplayMetrics().densityDpi);
+        int heightInPixels = (int)(widthInPixels * resourceBitmapHeight / resourceBitmapWidth);
+
+        layerDrawable.setLayerInset(1, 0, 0, 0, 0);
+
+        Bitmap bitmap = Bitmap.createBitmap(widthInPixels, heightInPixels, Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmap);
+        layerDrawable.setBounds(0, 0, widthInPixels, heightInPixels);
+        layerDrawable.draw(canvas);
+
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
+        bitmapDrawable.setBounds(0, 0, widthInPixels, heightInPixels);
+
+        return bitmapDrawable;
+    }
 
 	private void setDonePicture(Attachment att){
 		int pictureRes = 0;
@@ -874,14 +916,14 @@ public class CustomizeFragment extends Fragment {
 		ld.setDrawableByLayerId(R.id.first_attachment_layer, d);
 		ld.setDrawableByLayerId(R.id.second_attachment_layer, getResources().getDrawable(pictureRes));
 
-		donePictureButton.setCompoundDrawablesWithIntrinsicBounds(null, ld,	null, null);
+//		donePictureButton.setCompoundDrawablesWithIntrinsicBounds(null, ld,	null, null);
 	}
 
 	private void initDonePictureButton() {
 		final ArrayList<formFactor> modeArray = new ArrayList<formFactor>();
 		modeArray.add(formFactor.SingleImg);
 		modeArray.add(formFactor.SplitImg);
-		donePictureButton = (Button) getActivity().findViewById(
+		donePictureButton = (GButton) getActivity().findViewById(
 				R.id.customize_donescreen);
 		donePictureButton.setOnClickListener(new OnClickListener() {
             public void onClick(final View v) {
@@ -910,7 +952,7 @@ public class CustomizeFragment extends Fragment {
                                         doneDialog.dismiss();
                                         singleDialog.dismiss();
 
-                                        Toast t = Toast.makeText(getActivity(),
+                                        GToast t = GToast.makeText(getActivity(),
                                                 getString(R.string.attached_pictogram_toast),
                                                 Toast.LENGTH_SHORT);
                                         t.show();
@@ -948,7 +990,7 @@ public class CustomizeFragment extends Fragment {
                                                 dualDialog.dismiss();
                                                 dialog1.dismiss();
 
-                                                Toast t = Toast.makeText(getActivity(),
+                                                GToast t = GToast.makeText(getActivity(),
                                                         getString(R.string.attached_pictograms_toast),
                                                         Toast.LENGTH_SHORT);
                                                 t.show();
@@ -1004,13 +1046,16 @@ public class CustomizeFragment extends Fragment {
 		//initSaveAsButton();
         initSwitchButton();
 		initStartButton();
+        initStopButton();
+        initSettingButton();
+        initProfileButton();
 	}
 
 	/**
 	 * Initialize the save button
 	 */
 	 private void initSaveButton() {
-		 saveButton = (Button) getActivity().findViewById(R.id.customize_save);
+		 saveButton = (GButton) getActivity().findViewById(R.id.customize_save);
 		 Drawable d;
 		 if (currSubP.save && !guard.getChild().getLock()
 				 && guard.getChild() != null) {
@@ -1042,7 +1087,8 @@ public class CustomizeFragment extends Fragment {
 								 /*ChildFragment cf = (ChildFragment) getFragmentManager()
 										 .findFragmentById(R.id.childFragment);*/
 
-								 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
+								 SubProfileFragment spf = new SubProfileFragment();
+                                 spf = (SubProfileFragment) getFragmentManager()
 										 .findFragmentById(R.id.subprofileFragment);
 								 guard.profileID = guard.getChild()
 										 .getProfileId();
@@ -1075,7 +1121,8 @@ public class CustomizeFragment extends Fragment {
 						 /*ChildFragment cf = (ChildFragment) getFragmentManager()
 								 .findFragmentById(R.id.childFragment);*/
 
-						 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
+						 SubProfileFragment spf = new SubProfileFragment();
+                         spf = (SubProfileFragment) getFragmentManager()
 								 .findFragmentById(R.id.subprofileFragment);
 						 guard.profileID = guard.getChild().getProfileId();
 						 //cf.loadChildren(); //Fjernet profile delen
@@ -1088,7 +1135,7 @@ public class CustomizeFragment extends Fragment {
 			 saveButton.setOnClickListener(new OnClickListener() {
 
 				 public void onClick(View v) {
-					 Toast t = Toast.makeText(getActivity(),
+					 GToast t = GToast.makeText(getActivity(),
 							 getString(R.string.cant_save),
                              Toast.LENGTH_SHORT);
 					 t.show();
@@ -1096,6 +1143,7 @@ public class CustomizeFragment extends Fragment {
 			 });
 		 }
 
+         saveButton.setText("Gem");//tjaa, godt spørgsmål :) det virker okay..
 		 saveButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
 	 }
 
@@ -1243,7 +1291,8 @@ public class CustomizeFragment extends Fragment {
 									 getName();
 									 c.save(currSubP, false);
 									 guard.saveChild(c, currSubP);
-									 SubProfileFragment df = (SubProfileFragment) getFragmentManager()
+									 SubProfileFragment df  = new SubProfileFragment();
+                                     df = (SubProfileFragment) getFragmentManager()
 											 .findFragmentById(R.id.subprofileFragment);
 									 df.loadSubProfiles();
 
@@ -1255,7 +1304,7 @@ public class CustomizeFragment extends Fragment {
                                                      R.string.was_saved_toast);
 									 toastText += " " + c.name;
 
-									 Toast toast = Toast.makeText(
+									 GToast toast = GToast.makeText(
 											 getActivity(), toastText,
 											 Toast.LENGTH_LONG);
 									 toast.show();
@@ -1263,7 +1312,8 @@ public class CustomizeFragment extends Fragment {
 									 /*ChildFragment cf = (ChildFragment) getFragmentManager()
 											 .findFragmentById(R.id.childFragment);*/
 
-									 SubProfileFragment spf = (SubProfileFragment) getFragmentManager()
+									 SubProfileFragment spf  = new SubProfileFragment();
+                                     spf = (SubProfileFragment) getFragmentManager()
 											 .findFragmentById(R.id.subprofileFragment);
 									 guard.profileID = guard.getChild().getProfileId();
 									 //cf.loadChildren(); //Fjernet profile delen
@@ -1292,7 +1342,7 @@ public class CustomizeFragment extends Fragment {
 			 saveAsButton.setOnClickListener(new OnClickListener() {
 
 				 public void onClick(View v) {
-					 Toast t = Toast.makeText(getActivity(),
+					 GToast t = GToast.makeText(getActivity(),
                              getString(R.string.cant_save), Toast.LENGTH_SHORT);
 					 t.show();
 				 }
@@ -1307,7 +1357,7 @@ public class CustomizeFragment extends Fragment {
      * Initialize the switch button
      */
     private void initSwitchButton() {
-        switchLayoutButton = (Button) getActivity().findViewById(
+        switchLayoutButton = (GButton) getActivity().findViewById(
                 R.id.switch_activity_button);
 
                     switchLayoutButton.setOnClickListener(new OnClickListener() {
@@ -1359,38 +1409,134 @@ public class CustomizeFragment extends Fragment {
 	 /**
 	  * Initialize the start button
 	  */
-	 private void initStartButton() {
-		 startButton = (Button) getActivity().findViewById(
+     private void initStartButton() {
+		 startButton = (GButton) getActivity().findViewById(
 				 R.id.customize_start_button);
-		 Drawable d;
+
 		 if (currSubP.saveAs) {
-			 d = getResources().getDrawable(R.drawable.thumbnail_start);
+             if (MainActivity.svc != null){
+                 startButton.setText(R.string.restart_button);
+                 startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_restart), null, null);
+             }
+             else{
+                 startButton.setText(R.string.start_button);
+                 startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_start), null, null);
+             }
+
 			 startButton.setOnClickListener(new OnClickListener() {
 
-				 public void onClick(View v) {
-					 currSubP.addLastUsed(preSubP);
-					 guard.saveGuardian(currSubP);
-					 currSubP.select();
-					 Intent i = new Intent(
-							 getActivity().getApplicationContext(),
-							 DrawLibActivity.class);
-					 startActivity(i);
-				 }
-			 });
-		 } else {
-			 d = getResources().getDrawable(R.drawable.thumbnail_start_gray);
-			 startButton.setOnClickListener(new OnClickListener() {
+				 public void onClick(View v){
+                     currSubP.addLastUsed(preSubP);
+                     guard.saveGuardian(currSubP);
+                     currSubP.select();
 
-				 public void onClick(View v) {
-					 Toast t = Toast.makeText(getActivity(),
-							 getString(R.string.cant_start), Toast.LENGTH_SHORT);
-					 t.show();
+                     if (MainActivity.svc != null){
+                         getActivity().stopService(MainActivity.svc);
+                         MainActivity.svc = new Intent(getActivity(), Overlay.class);
+                         getActivity().startService(MainActivity.svc);
+                         Log.d("Overlay", "Restarted");
+                     }
+                     else{
+                         MainActivity.svc = new Intent(getActivity(), Overlay.class);
+                         getActivity().startService(MainActivity.svc);
+                         Log.d("Overlay", "Started");
+                     }
+                     initBottomMenu();
 				 }
 			 });
 		 }
+         else {
+             startButton.setText(R.string.start_button);
+             startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_start_gray), null, null);
 
-		 startButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+             startButton.setOnClickListener(new OnClickListener() {
+
+                 public void onClick(View v) {
+                     GToast t = GToast.makeText(getActivity(),
+                             getString(R.string.cant_start), Toast.LENGTH_SHORT);
+                     t.show();
+                 }
+             });
+         }
 	 }
+
+
+    /*
+    *Initialize the stop button
+    */
+    private void initStopButton() {
+        stopButton = (GButton)getActivity().findViewById(
+                R.id.customize_stop_button);
+        stopButton.refreshDrawableState();
+        if (MainActivity.svc != null) {
+            stopButton.setText(R.string.stop_button);
+            stopButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_stop), null, null);
+
+            stopButton.setOnClickListener(new OnClickListener() {
+
+                public void onClick(View v){
+                    if (MainActivity.svc != null){
+                        getActivity().stopService(MainActivity.svc);
+                        MainActivity.svc = null;
+                        Log.d("Overlay", "Stopped");
+                        initBottomMenu();
+                    }
+                }
+            });
+        }
+        else {
+            stopButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_stop_gray), null, null);
+                stopButton.setOnClickListener(new OnClickListener() {
+
+                    public void onClick(View v) {
+                        GToast t = GToast.makeText(getActivity(),
+                                getString(R.string.cant_stop), Toast.LENGTH_SHORT);
+                        t.show();
+                    }
+                });
+        }
+    }
+
+
+
+    /*
+        * Initialize the setting button
+        */
+    private void initSettingButton(){
+        settingButton = (GButton) getActivity().findViewById(
+                R.id.customize_setting_button);
+
+        settingButton.setOnClickListener(new OnClickListener() {
+
+            // First onClick
+            public void onClick(final View v) {
+                final ArrayList<formFactor> mode = guard.getMode();
+
+                final WDialog setting1 = new WDialog(getActivity(),
+                        R.string.setting_dialog_description);
+
+                setting1.addButton(R.string.close, 1,
+                        new OnClickListener() {
+
+                            public void onClick(View arg0) {
+                                setting1.cancel();
+                            }
+                        });
+
+                setting1.show();
+            }
+        });
+    }
+
+
+        /*
+    * Initialize the Profile button
+    */
+    private void initProfileButton(){
+        profileButton = (GButton) getActivity().findViewById(
+                R.id.customize_profile_button);
+
+    }
 
 	 /**
 	  * Sets the predefined settings of the chosen subprofile
@@ -1398,6 +1544,7 @@ public class CustomizeFragment extends Fragment {
 	  * @param subProfile
 	  *            The Subprofile chosen
 	  */
+
 	 public void loadSettings(SubProfile subProfile) {
 		 currSubP = subProfile.copy();
 		 preSubP = subProfile;

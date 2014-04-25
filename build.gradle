@@ -19,11 +19,15 @@ dependencies {
     compile project(':pictogram-lib')
     compile project(':Tortoise')
     compile project(':wheel')
+    compile project(':GIRAF_Components')
 }
 
 android {
     compileSdkVersion 15
     buildToolsVersion "19.0.1"
+    lintOptions {
+        abortOnError false
+    }
 
     sourceSets {
         main {

@@ -4,15 +4,18 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.TYPE_SYSTEM_OVERLAY"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="19"/>
 
     <application
         android:icon="@drawable/wombat_icon"
-        android:label="@string/app_name" >
+        android:label="@string/app_name">
         <activity
-            android:name="dk.aau.cs.giraf.wombat.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" 
             android:screenOrientation="landscape"
             android:theme="@style/WombatStyle">
@@ -32,5 +35,7 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
         </activity>
+
+        <service android:name=".Overlay"/>
     </application>
 </manifest>
