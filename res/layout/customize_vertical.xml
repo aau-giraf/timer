@@ -32,7 +32,8 @@
             android:drawableTop="@drawable/thumbnail_timetimer"
             android:paddingTop="20dp"
             android:text="@string/customize_timetimer_description"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:visibility="gone" />
 
         <dk.aau.cs.giraf.gui.GToggleButton
             android:id="@+id/timetimerStandardButton"
