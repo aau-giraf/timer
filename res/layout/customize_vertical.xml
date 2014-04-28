@@ -230,7 +230,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_margin="10dp"
-                        android:background="@drawable/color_btn_normal"
+
                         android:layout_centerHorizontal="true">
 
                         <dk.aau.cs.giraf.gui.GButton
@@ -261,14 +261,13 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerInParent="true"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/color_btn_normal" >
+                        android:layout_margin="10dp">
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/backgroundColorButton"
                             android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/color_btn" />
+                            android:layout_height="40dp">
+                        </dk.aau.cs.giraf.gui.GButton>
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
