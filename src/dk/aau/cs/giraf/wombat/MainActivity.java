@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 //        ohelp.CreateDummyData();
 
         int guardianId = 315;
-        int childId = 659;
+        int childId = 86;
         int color;
 
 		/* Get the data sent from the launcher (if there is any) */
