@@ -68,21 +68,6 @@
             android:text="@string/customize_digital_description"
             android:textSize="14dp" />
 
-        <dk.aau.cs.giraf.gui.GButton
-            android:id="@+id/customize_setting_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="@string/setting"
-            android:textSize="14dp"
-            android:layout_marginLeft="40dp"/>
-
-        <dk.aau.cs.giraf.gui.GButton
-            android:id="@+id/customize_profile_button"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:text="@string/profile"
-            android:textSize="14dp"
-            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
     <View
@@ -324,9 +309,9 @@
 
                     <dk.aau.cs.giraf.gui.GButton
                         android:id="@+id/customize_attachment"
-                        android:layout_width="110dp"
-                        android:layout_height="125dp"
-                        android:layout_gravity="left|bottom"
+                        android:layout_width="85dp"
+                        android:layout_height="95dp"
+                        android:layout_gravity="left"
                         android:background="@drawable/btn"
                         android:drawableTop="@drawable/thumbnail_attachment"
                         android:paddingTop="20dp"
@@ -336,14 +321,40 @@
 
                     <dk.aau.cs.giraf.gui.GButton
                         android:id="@+id/customize_donescreen"
-                        android:layout_width="110dp"
-                        android:layout_height="125dp"
+                        android:layout_width="85dp"
+                        android:layout_height="95dp"
                         android:layout_gravity="left|bottom"
                         android:background="@drawable/btn"
                         android:drawableTop="@drawable/thumbnail_attachment"
                         android:paddingTop="20dp"
                         android:text="@string/donescreen_button_description"
-                        android:textSize="14dp" />
+                        android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/customize_setting_button"
+                            android:layout_width="85dp"
+                            android:layout_height="95dp"
+                            android:layout_gravity="left|bottom"
+                            android:background="@drawable/btn"
+                            android:text="@string/setting"
+                            android:paddingTop="20dp"
+                            android:textSize="12dp"/>
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/customize_profile_button"
+                            android:layout_width="85dp"
+                            android:layout_height="95dp"
+                            android:layout_gravity="left"
+                            android:text="@string/profile"
+                            android:paddingTop="20dp"
+                            android:textSize="14dp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -354,8 +365,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/customize_save"
-                            android:layout_width="110dp"
-                            android:layout_height="125dp"
+                            android:layout_width="85dp"
+                            android:layout_height="95dp"
                             android:layout_gravity="left|bottom"
                             android:background="@drawable/btn"
                             android:drawableTop="@drawable/thumbnail_save"
@@ -365,8 +376,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/switch_activity_button"
-                            android:layout_width="110dp"
-                            android:layout_height="125dp"
+                            android:layout_width="85dp"
+                            android:layout_height="95dp"
                             android:drawableTop="@drawable/thumbnail_change_orientation"
                             android:paddingTop="20dp"
                             android:text="@string/switch_layout_button"
@@ -394,8 +405,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/customize_start_button"
-                            android:layout_width="110dp"
-                            android:layout_height="125dp"
+                            android:layout_width="85dp"
+                            android:layout_height="95dp"
                             android:paddingTop="20dp"
                             android:text="@string/start_button"
                             android:textSize="14dp" />
@@ -403,8 +414,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/customize_stop_button"
-                            android:layout_width="110dp"
-                            android:layout_height="125dp"
+                            android:layout_width="85dp"
+                            android:layout_height="95dp"
                             android:paddingTop="20dp"
                             android:text="@string/stop_button"
                             android:textSize="14dp" />
