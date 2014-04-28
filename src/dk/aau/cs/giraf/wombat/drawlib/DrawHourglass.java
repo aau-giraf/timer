@@ -87,9 +87,11 @@ public class DrawHourglass extends View {
         int twofouroh = 240/DrawLibActivity.scale;
         int twosixoh = 260/DrawLibActivity.scale;
 		/* Fill the canvas with the background color */
-/*		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background & 0x00, 0x00000000, Shader.TileMode.CLAMP);
-		paint.setShader(lg);*/
-        paint.setColor(background & 0x00);
+		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
+		paint.setShader(lg);
+        if(DrawLibActivity.scale != 1) {
+            paint.setColor(background & 0x00);
+        }
 		c.drawPaint(paint);
 		paint.setShader(null);
 

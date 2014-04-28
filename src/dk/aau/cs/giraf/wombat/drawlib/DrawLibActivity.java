@@ -25,7 +25,7 @@ public class DrawLibActivity extends Activity {
 
 	public static int frameHeight;
 	public static int frameWidth;
-    public static int scale = 8;
+    public static int scale = 1;
 	
 	private Handler mHandler;
 	private Runnable mRunnable;

@@ -54,11 +54,11 @@ public class DrawDigital extends View {
 		frameHeight = DrawLibActivity.frameHeight;
 		this.frameWidth = frameWidth;
 		
-		background = sp.bgcolor & 0xD0FFFFFF;
-		frame = sp.frameColor & 0xD0FFFFFF;
-		timeleft = sp.timeLeftColor & 0xD0FFFFFF;
-		timeleft2 = sp.timeLeftColor & 0xD0FFFFFF;
-		timespent = sp.timeSpentColor & 0xD0FFFFFF;
+		background = sp.bgcolor;
+		frame = sp.timeLeftColor;
+		timeleft = sp.timeLeftColor;
+		timeleft2 = sp.timeLeftColor;
+		timespent = sp.timeSpentColor;
 		totalTime = ((sp.get_totalTime() - 1) + 2) * 1000;
 		endTime = System.currentTimeMillis() + totalTime;
 
@@ -69,7 +69,7 @@ public class DrawDigital extends View {
 		
 		numWidth = frameWidth/8;
 		numHeight = numWidth * 2;
-		numSpace = numWidth/(DrawLibActivity.scale >= 5 ? 2 : 3);
+		numSpace = numWidth/2;
 		lineSpace = 2;
 		lineWidth = numHeight / 16;
 		
@@ -79,38 +79,41 @@ public class DrawDigital extends View {
 		/* Initialize a bitmap with the "standard" drawings */
 		bitmap = Bitmap.createBitmap(frameWidth, frameHeight, Bitmap.Config.ARGB_8888);
 		Canvas c = new Canvas(bitmap);
-		
-		/* Fill the canvas with the background color */
-		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
-		paint.setShader(lg);
-		c.drawPaint(paint);
-		paint.setShader(null);
 
-		paint.setColor(timeleft);
-		
-		int x, y;
-		
-		y = (frameHeight - numHeight) / 2;
-		
-		/* Draw first number */
-		x = numWidth/2 + numWidth;
-		c.drawPath(drawNumberPath(8, x, y), paint);
-		
-		/* Draw second number */
-		x = numWidth/2 + numWidth * 2 + (numSpace);
-		c.drawPath(drawNumberPath(8, x, y), paint);
-		
-		/* Draw third number*/
-		x =  numWidth/2 + numWidth * 3 + (numSpace * 3);
-		c.drawPath(drawNumberPath(8, x, y), paint);
-		
-		 /*Draw second number */
-		x = numWidth/2 + numWidth * 4 + (numSpace * 4);
-		c.drawPath(drawNumberPath(8, x, y), paint);
-		
-		paint.setColor(frame);
-		c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) - numSpace, lineWidth / 2, paint);
-		c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) + numSpace, lineWidth / 2, paint);
+        if(DrawLibActivity.scale == 1){
+		/* Fill the canvas with the background color */
+            LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
+            paint.setShader(lg);
+
+            c.drawPaint(paint);
+            paint.setShader(null);
+
+            paint.setColor(timeleft);
+
+            int x, y;
+
+            y = (frameHeight - numHeight) / 2;
+
+            /* Draw first number */
+            x = numWidth/2 + numWidth;
+            c.drawPath(drawNumberPath(8, x, y), paint);
+
+            /* Draw second number */
+            x = numWidth/2 + numWidth * 2 + (numSpace);
+            c.drawPath(drawNumberPath(8, x, y), paint);
+
+            /* Draw third number*/
+            x =  numWidth/2 + numWidth * 3 + (numSpace * 3);
+            c.drawPath(drawNumberPath(8, x, y), paint);
+
+             /*Draw second number */
+            x = numWidth/2 + numWidth * 4 + (numSpace * 4);
+            c.drawPath(drawNumberPath(8, x, y), paint);
+
+            paint.setColor(frame);
+            c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) - numSpace, lineWidth / 2, paint);
+            c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) + numSpace, lineWidth / 2, paint);
+        }
 	}
 
 	@Override
@@ -125,13 +128,20 @@ public class DrawDigital extends View {
 		int num, x, y;
 		Paint paint2 = new Paint();
 		double percent = (timenow) / (totalTime/1000);
-		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
-		paint.setShader(lg);
 
+
+        if(DrawLibActivity.scale != 1) {
+            paint.setColor(background & 0x00);
+            paint2.setColor(timeleft2);
+        }
+        else {
+            LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
+            paint.setShader(lg);
 		/* Set the second colors aplha */
-		col = new ColorDrawable(timeleft2);
-		col.setAlpha((int) (255 * (1-percent)));
-		paint2.setColor(col.getColor());
+            col = new ColorDrawable(timeleft2);
+            col.setAlpha((int) (255 * (1-percent)));
+            paint2.setColor(col.getColor());
+        }
 		
 		
 		y = (frameHeight - numHeight) / 2;
@@ -140,25 +150,33 @@ public class DrawDigital extends View {
 		num = (int) (timenow / 60 / 10);
 		x = numWidth/2 + numWidth;
 		paint.setColor(background);
-		c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        if(DrawLibActivity.scale == 1) {
+		    c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        }
 		c.drawPath(drawNumberPath(num, x, y), paint2);
 		
 		/* Draw second number */
 		num = (int) (timenow / 60) - num * 10;
 		x = numWidth/2 + numWidth * 2 + (numSpace);
-		c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        if(DrawLibActivity.scale == 1) {
+    		c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        }
 		c.drawPath(drawNumberPath(num, x, y), paint2);
 		
 		/* Draw third number */
 		num = (int) (timenow % 60)/10;
 		x =  numWidth/2 + numWidth * 3 + (numSpace * 3);
-		c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        if(DrawLibActivity.scale == 1) {
+		    c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        }
 		c.drawPath(drawNumberPath(num, x, y), paint2);
 		
 		/* Draw second number */
 		num = (int) (timenow % 10);
 		x = numWidth/2 + numWidth * 4 + (numSpace * 4);
-		c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        if(DrawLibActivity.scale == 1) {
+		    c.drawPath(drawInvertNumberPath(num, x, y), paint);
+        }
 		c.drawPath(drawNumberPath(num, x, y), paint2);
 
 		
