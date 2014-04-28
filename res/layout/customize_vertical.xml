@@ -155,8 +155,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="bottom"
-                android:orientation="vertical" >
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
 
                 <!-- COLOR PICKER -->
 
@@ -164,22 +165,21 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:paddingLeft="20dp"
                     android:text="@string/colors"
                     android:textSize="22dp"
                     android:layout_marginTop="-10dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:gravity="left">
 
                     <dk.aau.cs.giraf.gui.GTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_centerVertical="true"
-                        android:paddingLeft="63dp"
                         android:text="@string/color_time_left"
                         android:textSize="16dp" />
 
@@ -187,8 +187,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="65dp"
                             android:layout_margin="10dp"
-                            android:paddingLeft="52dp"
-                            android:layout_centerInParent="true"
+                            android:paddingLeft="175dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -232,23 +231,22 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:layout_height="wrap_content">
 
                     <dk.aau.cs.giraf.gui.GTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:paddingLeft="20dp"
                         android:text="@string/frame"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp"
+                        android:gravity="left"/>
 
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_centerInParent="true"
                         android:layout_margin="10dp"
-                        android:background="@drawable/color_btn_normal">
+                        android:background="@drawable/color_btn_normal"
+                        android:layout_centerHorizontal="true">
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/frameColorButton"
@@ -257,17 +255,20 @@
                             android:background="@drawable/color_btn" />
                     </LinearLayout>
                 </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="10dp"
+                    android:layout_height="10dp">
+                    
+                    </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:layout_height="wrap_content">
 
                     <dk.aau.cs.giraf.gui.GTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:paddingLeft="20dp"
                         android:text="@string/background"
                         android:textSize="16dp" />
 
