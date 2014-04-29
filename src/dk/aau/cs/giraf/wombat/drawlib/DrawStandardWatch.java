@@ -106,7 +106,7 @@ public class DrawStandardWatch extends View {
 		top = ((frameHeight - height) / 2) + 3;
 		bottom = (((frameHeight - height) / 2) + height) - 3;
 
-        double percent = timenow / (totalTime/1000);
+        double percent = timenow / totalTime;
 
         // 0.1 is what 1 second corresponds to in degrees
         rotation = -((0.1 * (endTime - System.currentTimeMillis()) / 1000) + 0.999);
