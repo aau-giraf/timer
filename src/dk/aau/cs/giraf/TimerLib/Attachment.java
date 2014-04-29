@@ -11,7 +11,7 @@ public class Attachment {
 	public Attachment getAttachment(){
 		return this;
 	}
-	
+
 	public formFactor getForm(){
 		return formFactor.undefined;
 	}

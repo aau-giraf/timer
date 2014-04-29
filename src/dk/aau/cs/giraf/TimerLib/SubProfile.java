@@ -194,6 +194,8 @@ public class SubProfile implements Comparable<SubProfile>{
 			this._AttaBool = false;
 		}
 	}
+
+
 	
 	public formFactor formType(){
 		return formFactor.SubProfile;
