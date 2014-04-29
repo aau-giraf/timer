@@ -165,6 +165,7 @@
     <string name="background">Baggrund</string>
     <string name="clear">Ryd</string>
     <string name="FullScreen">Fuld Skærm</string>
+    <string name="SlutLyd">Slut Lyd</string>
     
     <string name="was_saved_toast">blev gemt på</string>
     <string name="new_template_button_text">Ny tidstager</string>
