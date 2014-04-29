@@ -37,7 +37,7 @@ public class Overlay extends Service {
     public void onCreate() {
         super.onCreate();
 
-        mediaPlayer = MediaPlayer.create(Overlay.this, R.raw.song); //soundplayer with song
+        mediaPlayer = MediaPlayer.create(Overlay.this, CustomizeFragment.soundindex); //soundplayer with song
         Guardian guard = Guardian.getInstance();
         SubProfile sub = guard.getSubProfile();
         sub.getAttachment();

@@ -146,6 +146,7 @@
     
     <string name="select_attachment_dialog">Vælg Vedhæft</string>
     <string name="attached">Vedhæftet</string>
+    <string name="SoundLoaded">Lyden er valgt</string>
     <string name="donescreen_button_description">Slutbillede</string>
     <string name="donescreen_dialog_title">Vælg type af slutbillede</string>
     <string name="donescreen_dialog_left">Vælg venstre slutbilled</string>

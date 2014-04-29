@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import dk.aau.cs.giraf.TimerLib.Sounds;
 import dk.aau.cs.giraf.gui.GButton;
 import dk.aau.cs.giraf.gui.GCheckBox;
 import dk.aau.cs.giraf.gui.GProfileSelector;
@@ -29,6 +30,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -59,6 +61,7 @@ import dk.aau.cs.giraf.wombat.drawlib.DrawLibActivity;
  *
  */
 public class CustomizeFragment extends Fragment {
+    public  static  int soundindex;
 	private SubProfile preSubP;
 	private SubProfile currSubP;
 	private Guardian guard = Guardian.getInstance();
@@ -93,6 +96,7 @@ public class CustomizeFragment extends Fragment {
 	private GTextView timeDescription;
     SharedPreferences pref;
     private ArrayList<formFactor> _soundlist = null; // list of sounds
+    private MediaPlayer mediaPlayer; //soundplayer
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -776,7 +780,9 @@ public class CustomizeFragment extends Fragment {
             }
         });
 	}
-
+    /**
+     * Initializes the sound buttons forms in an array
+     */
     public ArrayList<formFactor> getMode(){
         if(_soundlist == null){
             _soundlist = new ArrayList<formFactor>();
@@ -791,21 +797,27 @@ public class CustomizeFragment extends Fragment {
             return _soundlist;
         }
     }
-
+    /**
+     * Initializes the sound buttons
+     */
     private void initSoundButton(){
+
+
+        String attachText = getString(R.string.SoundLoaded);
         SoundButton = (GButton) getActivity().findViewById(R.id.sound_button);
 
         SoundButton.setOnClickListener(new OnClickListener() {
 
             // First onClick
             public void onClick(final View v) {
-                final ArrayList<formFactor> mode = getMode();
+                int sound = 0;
+                final ArrayList<formFactor> soundlist = getMode();
 
                 final WDialog SoundDialogBox = new WDialog(getActivity(),
                         R.string.sound_dialog_description);
 
-                ModeAdapter adapter = new ModeAdapter(getActivity(),
-                        android.R.layout.simple_list_item_1, mode);
+                final ModeAdapter adapter = new ModeAdapter(getActivity(),
+                        android.R.layout.simple_list_item_1, soundlist);
 
                 SoundDialogBox.setAdapter(adapter);
 
@@ -817,12 +829,45 @@ public class CustomizeFragment extends Fragment {
                             }
                         });
 
-
+                sound = _soundlist.indexOf(adapter.getCount());
                 SoundDialogBox .show();
+                SoundDialogBox.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        int sound2 = -1;
+                        sound2 = _soundlist.indexOf(position);
+
+
+                        switch (position){
+                            case 0:
+                                soundindex = R.raw.song;
+                                break;
+                            case 1:
+                                soundindex = R.raw.cow;
+                                break;
+                            case 2:
+                                soundindex = R.raw.bike;
+                                break;
+                            case 3:
+                                soundindex = R.raw.bike2;
+                                break;
+                            case 4:
+                                soundindex = R.raw.waterdrop;
+                                break;
+                            case 5:
+                                soundindex = R.raw.chicken;
+                                break;
+                            default:
+                                soundindex = R.raw.song;
+                                break;
+                        }
+                    }
+                });
             }
         });
 
     }
+
 
 	/**
 	 * Sets the attachment to subProfile, resets if subProfile == null
