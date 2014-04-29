@@ -153,7 +153,8 @@
                     android:text="@string/colors"
                     android:textSize="22dp"
                     android:layout_marginTop="-10dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -275,7 +276,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-10dp">
+                    android:layout_marginTop="10dp">
 
                     <dk.aau.cs.giraf.gui.GTextView
                         android:layout_width="wrap_content"
@@ -306,12 +307,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-20dp">
 
                 <dk.aau.cs.giraf.gui.GTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Slut lyd:"
+                    android:text="@string/SlutLyd"
                     android:paddingLeft="20dp">
                 </dk.aau.cs.giraf.gui.GTextView>
 
