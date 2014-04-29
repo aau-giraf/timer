@@ -16,6 +16,9 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Process;
 import android.view.View;
+
+import com.google.analytics.tracking.android.EasyTracker;
+
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.oasis.lib.Helper;
@@ -93,6 +96,18 @@ public class MainActivity extends Activity {
 //        }
 	}
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+    }
 	/**
 	 * Clear everything in case the user is going to log out
 	 */
