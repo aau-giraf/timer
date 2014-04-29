@@ -79,9 +79,6 @@ public class DrawStandardWatch extends View {
 		double timenow = (endTime - System.currentTimeMillis());
 		
 		/* Fill the canvas with the background color */
-
-
-
 		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
 		paint.setShader(lg);
         if(DrawLibActivity.scale != 1) {

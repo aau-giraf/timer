@@ -95,25 +95,26 @@ public class DrawDigital extends View {
             y = (frameHeight - numHeight) / 2;
 
             /* Draw first number */
-            x = numWidth/2 + numWidth;
+            x = numWidth;
             c.drawPath(drawNumberPath(8, x, y), paint);
 
             /* Draw second number */
-            x = numWidth/2 + numWidth * 2 + (numSpace);
+            x = numWidth * 2 + (numSpace);
             c.drawPath(drawNumberPath(8, x, y), paint);
 
             /* Draw third number*/
-            x =  numWidth/2 + numWidth * 3 + (numSpace * 3);
+            x = numWidth * 3 + (numSpace * 3);
             c.drawPath(drawNumberPath(8, x, y), paint);
 
              /*Draw second number */
-            x = numWidth/2 + numWidth * 4 + (numSpace * 4);
+            x = numWidth * 4 + (numSpace * 4);
             c.drawPath(drawNumberPath(8, x, y), paint);
 
-            paint.setColor(frame);
-            c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) - numSpace, lineWidth / 2, paint);
-            c.drawCircle((int) (numWidth * 4.50), (frameHeight / 2) + numSpace, lineWidth / 2, paint);
         }
+
+        paint.setColor(frame);
+        c.drawCircle((int) (numWidth * 4.10), (frameHeight / 2) - numSpace, lineWidth / 2, paint);
+        c.drawCircle((int) (numWidth * 4.10), (frameHeight / 2) + numSpace, lineWidth / 2, paint);
 	}
 
 	@Override
@@ -148,7 +149,7 @@ public class DrawDigital extends View {
 		
 		/* Draw first number */
 		num = (int) (timenow / 60 / 10);
-		x = numWidth/2 + numWidth;
+		x = numWidth;
 		paint.setColor(background);
         if(DrawLibActivity.scale == 1) {
 		    c.drawPath(drawInvertNumberPath(num, x, y), paint);
@@ -157,7 +158,7 @@ public class DrawDigital extends View {
 		
 		/* Draw second number */
 		num = (int) (timenow / 60) - num * 10;
-		x = numWidth/2 + numWidth * 2 + (numSpace);
+		x = numWidth * 2 + (numSpace);
         if(DrawLibActivity.scale == 1) {
     		c.drawPath(drawInvertNumberPath(num, x, y), paint);
         }
@@ -165,7 +166,7 @@ public class DrawDigital extends View {
 		
 		/* Draw third number */
 		num = (int) (timenow % 60)/10;
-		x =  numWidth/2 + numWidth * 3 + (numSpace * 3);
+		x = numWidth * 3 + (numSpace * 3);
         if(DrawLibActivity.scale == 1) {
 		    c.drawPath(drawInvertNumberPath(num, x, y), paint);
         }
@@ -173,7 +174,7 @@ public class DrawDigital extends View {
 		
 		/* Draw second number */
 		num = (int) (timenow % 10);
-		x = numWidth/2 + numWidth * 4 + (numSpace * 4);
+		x = numWidth * 4 + (numSpace * 4);
         if(DrawLibActivity.scale == 1) {
 		    c.drawPath(drawInvertNumberPath(num, x, y), paint);
         }

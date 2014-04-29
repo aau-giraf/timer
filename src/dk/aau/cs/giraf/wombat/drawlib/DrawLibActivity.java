@@ -25,7 +25,7 @@ public class DrawLibActivity extends Activity {
 
 	public static int frameHeight;
 	public static int frameWidth;
-    public static int scale = 1;
+    public static int scale = 8;
 	
 	private Handler mHandler;
 	private Runnable mRunnable;
@@ -65,9 +65,8 @@ public class DrawLibActivity extends Activity {
 			LinearLayout frame = new LinearLayout(this);
 			frame.setKeepScreenOn(true);
 			GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[] {sub.bgcolor, 0xFF000000});
-            scale = scale-3;
-            frameHeight = disp.getHeight()/scale;
-            frameWidth = disp.getWidth()/scale;
+            frameHeight = disp.getHeight();
+            frameWidth = disp.getWidth();
 			
 			/* Initialize views */
 			View v = null;
