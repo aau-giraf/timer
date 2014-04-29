@@ -272,7 +272,36 @@
                         android:layout_height="40dp"/>
                 </LinearLayout>
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-10dp">
 
+                <dk.aau.cs.giraf.gui.GTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/FullScreen"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/color_btn_normal">
+                        <dk.aau.cs.giraf.gui.GCheckBox
+                            android:id="@+id/FullScreenCheckBox"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

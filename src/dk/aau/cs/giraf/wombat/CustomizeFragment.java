@@ -1431,16 +1431,31 @@ public class CustomizeFragment extends Fragment {
                      guard.saveGuardian(currSubP);
                      currSubP.select();
 
-                     if (MainActivity.svc != null){
-                         getActivity().stopService(MainActivity.svc);
-                         MainActivity.svc = new Intent(getActivity(), Overlay.class);
-                         getActivity().startService(MainActivity.svc);
-                         Log.d("Overlay", "Restarted");
+                     if (DrawLibActivity.scale == 1){
+                         if (MainActivity.svc != null){
+                             getActivity().stopService(MainActivity.svc);
+                             MainActivity.svc = new Intent(getActivity().getApplicationContext(), DrawLibActivity.class);
+                             startActivity(MainActivity.svc);
+                             Log.d("Overlay", "Restarted");
+                         }
+                         else{
+                             MainActivity.svc = new Intent(getActivity().getApplicationContext(), DrawLibActivity.class);
+                             startActivity(MainActivity.svc);
+                             Log.d("Overlay", "Started");
+                         }
                      }
                      else{
-                         MainActivity.svc = new Intent(getActivity(), Overlay.class);
-                         getActivity().startService(MainActivity.svc);
-                         Log.d("Overlay", "Started");
+                         if (MainActivity.svc != null){
+                             getActivity().stopService(MainActivity.svc);
+                             MainActivity.svc = new Intent(getActivity(), Overlay.class);
+                             getActivity().startService(MainActivity.svc);
+                             Log.d("Overlay", "Restarted");
+                         }
+                         else{
+                             MainActivity.svc = new Intent(getActivity(), Overlay.class);
+                             getActivity().startService(MainActivity.svc);
+                             Log.d("Overlay", "Started");
+                         }
                      }
                      initBottomMenu();
 				 }
