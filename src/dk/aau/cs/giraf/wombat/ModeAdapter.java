@@ -51,8 +51,25 @@ public class ModeAdapter extends ArrayAdapter<formFactor> {
 				} else if (c == formFactor.SplitImg) {
 					tv.setText(R.string.formfactor_splitimg);
 				}
-			}
-
+                  else if (c == formFactor.Sound1){
+                    tv.setText(R.string.formfactor_sound1);
+                }
+                else if (c == formFactor.Sound2){
+                    tv.setText(R.string.formfactor_sound2);
+                }
+                else if (c == formFactor.Sound3){
+                    tv.setText(R.string.formfactor_sound3);
+                }
+                else if (c == formFactor.Sound4){
+                    tv.setText(R.string.formfactor_sound4);
+                }
+                else if (c == formFactor.Sound5){
+                    tv.setText(R.string.formfactor_sound5);
+                }
+                else if (c == formFactor.Sound6){
+                    tv.setText(R.string.formfactor_sound6);
+                }
+            }
 		}
 		
 //			if(c.getProfileId() == Guardian.profileID){

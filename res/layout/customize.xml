@@ -196,8 +196,7 @@
                     <LinearLayout
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/color_btn_normal" >
+                        android:layout_margin="10dp">
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/gradientButton_1"
@@ -263,8 +262,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_centerInParent="true"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/color_btn_normal" >
+                    android:layout_margin="10dp">
 
                     <dk.aau.cs.giraf.gui.GButton
                         android:id="@+id/backgroundColorButton"
@@ -282,7 +280,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/FullScreen"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:paddingLeft="20dp"/>
 
                 <LinearLayout
                     android:layout_width="40dp"
@@ -303,7 +302,38 @@
                 </LinearLayout>
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <dk.aau.cs.giraf.gui.GTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Slut lyd:"
+                    android:paddingLeft="20dp">
+                </dk.aau.cs.giraf.gui.GTextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:paddingRight="40dp">
+
+                    <dk.aau.cs.giraf.gui.GButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sound_button"
+                        android:text="Vælg lyd"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="10dp">
+            </LinearLayout>
         </LinearLayout>
+
 
     </LinearLayout>
 
