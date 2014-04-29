@@ -1100,6 +1100,8 @@ public class CustomizeFragment extends Fragment {
         initSettingButton();
         initProfileButton();
         initSoundButton();
+        initFullScreenCheckBox();
+
 	}
 
 	/**
@@ -1511,7 +1513,6 @@ public class CustomizeFragment extends Fragment {
          }
 	 }
 
-
     /*
     *Initialize the stop button
     */
@@ -1548,7 +1549,18 @@ public class CustomizeFragment extends Fragment {
         }
     }
 
-
+    /*
+    *Initialize the FullScreen checkbox
+    */
+    private void initFullScreenCheckBox(){
+        GCheckBox FullScreenCheckBox = (GCheckBox)getActivity().findViewById(R.id.FullScreenCheckBox);
+        FullScreenCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                DrawLibActivity.scale = isChecked == true ? 1 : 8;
+            }
+        });
+    }
 
     /*
         * Initialize the setting button

@@ -23,7 +23,6 @@ package dk.aau.cs.giraf.wombat;
         import dk.aau.cs.giraf.wombat.drawlib.*;
 
 public class Overlay extends Service {
-    //Button mButton;
     View view;
     private Handler mHandler;
     private Runnable mRunnable;
@@ -63,7 +62,6 @@ public class Overlay extends Service {
 
         params.gravity = Gravity.RIGHT | Gravity.TOP;//får overlayet til at ligge til højre i toppen
         params.setTitle("Load Average");
-        //WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         wm.addView(view, params);
 
         mHandler = new Handler();
