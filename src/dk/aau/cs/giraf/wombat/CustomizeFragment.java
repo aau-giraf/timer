@@ -40,6 +40,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 import dk.aau.cs.giraf.TimerLib.Art;
@@ -73,6 +74,7 @@ public class CustomizeFragment extends Fragment {
     private GButton stopButton;
     private GButton settingButton;
     private GButton profileButton;
+    private GButton SoundButton;
     private GButton switchLayoutButton;
 	private GButton saveButton;
 	private GButton saveAsButton;
@@ -90,6 +92,7 @@ public class CustomizeFragment extends Fragment {
     //private WCheckbox gradientButton;
 	private GTextView timeDescription;
     SharedPreferences pref;
+    private ArrayList<formFactor> _soundlist = null; // list of sounds
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -774,6 +777,53 @@ public class CustomizeFragment extends Fragment {
         });
 	}
 
+    public ArrayList<formFactor> getMode(){
+        if(_soundlist == null){
+            _soundlist = new ArrayList<formFactor>();
+            _soundlist.add(formFactor.Sound1);
+            _soundlist.add(formFactor.Sound2);
+            _soundlist.add(formFactor.Sound3);
+            _soundlist.add(formFactor.Sound4);
+            _soundlist.add(formFactor.Sound5);
+            _soundlist.add(formFactor.Sound6);
+            return _soundlist;
+        }  else {
+            return _soundlist;
+        }
+    }
+
+    private void initSoundButton(){
+        SoundButton = (GButton) getActivity().findViewById(R.id.sound_button);
+
+        SoundButton.setOnClickListener(new OnClickListener() {
+
+            // First onClick
+            public void onClick(final View v) {
+                final ArrayList<formFactor> mode = getMode();
+
+                final WDialog SoundDialogBox = new WDialog(getActivity(),
+                        R.string.sound_dialog_description);
+
+                ModeAdapter adapter = new ModeAdapter(getActivity(),
+                        android.R.layout.simple_list_item_1, mode);
+
+                SoundDialogBox.setAdapter(adapter);
+
+                SoundDialogBox .addButton(R.string.close, 1,
+                        new OnClickListener() {
+
+                            public void onClick(View arg0) {
+                                SoundDialogBox.cancel();
+                            }
+                        });
+
+
+                SoundDialogBox .show();
+            }
+        });
+
+    }
+
 	/**
 	 * Sets the attachment to subProfile, resets if subProfile == null
 	 *
@@ -1049,6 +1099,7 @@ public class CustomizeFragment extends Fragment {
         initStopButton();
         initSettingButton();
         initProfileButton();
+        initSoundButton();
 	}
 
 	/**
@@ -1527,7 +1578,6 @@ public class CustomizeFragment extends Fragment {
             }
         });
     }
-
 
         /*
     * Initialize the Profile button
