@@ -595,7 +595,7 @@ public class CustomizeFragment extends Fragment {
                 final ArrayList<formFactor> mode = guard.getMode();
 
                 final WDialog attachment1 = new WDialog(getActivity(),
-                        R.string.attachment_dialog_description);
+                        R.string.select_attachment_dialog);
 
                 ModeAdapter adapter = new ModeAdapter(getActivity(),
                         android.R.layout.simple_list_item_1, mode);
