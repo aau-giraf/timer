@@ -37,7 +37,7 @@ public class Overlay extends Service {
     public void onCreate() {
         super.onCreate();
 
-        mediaPlayer = MediaPlayer.create(Overlay.this, CustomizeFragment.soundindex); //soundplayer with song
+//        mediaPlayer = MediaPlayer.create(Overlay.this, CustomizeFragment.soundindex); //soundplayer with song
         Guardian guard = Guardian.getInstance();
         SubProfile sub = guard.getSubProfile();
         sub.getAttachment();
@@ -73,7 +73,7 @@ public class Overlay extends Service {
                 getApplicationContext().startActivity(mainIntent);
                 getApplicationContext().stopService(MainActivity.svc);
                 MainActivity.svc = null;
-                mediaPlayer.start(); //playing stop sound
+//                mediaPlayer.start(); //playing stop sound
             }
         };
 

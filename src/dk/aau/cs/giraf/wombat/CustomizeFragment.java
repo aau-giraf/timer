@@ -13,6 +13,7 @@ import dk.aau.cs.giraf.gui.GButtonSettings;
 import dk.aau.cs.giraf.gui.GToast;
 import dk.aau.cs.giraf.gui.GToggleButton;
 import dk.aau.cs.giraf.oasis.lib.models.Profile;
+import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.NumericWheelAdapter;
@@ -32,6 +33,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +63,6 @@ import dk.aau.cs.giraf.wombat.drawlib.DrawLibActivity;
  *
  */
 public class CustomizeFragment extends Fragment {
-    public  static  int soundindex;
 	private SubProfile preSubP;
 	private SubProfile currSubP;
 	private Guardian guard = Guardian.getInstance();
@@ -840,27 +841,28 @@ public class CustomizeFragment extends Fragment {
 
                         switch (position){
                             case 0:
-                                soundindex = R.raw.song;
+                                DoneScreenActivity.soundindex = R.raw.song;
                                 break;
                             case 1:
-                                soundindex = R.raw.cow;
+                                DoneScreenActivity.soundindex = R.raw.cow;
                                 break;
                             case 2:
-                                soundindex = R.raw.bike;
+                                DoneScreenActivity.soundindex = R.raw.bike;
                                 break;
                             case 3:
-                                soundindex = R.raw.bike2;
+                                DoneScreenActivity.soundindex = R.raw.bike2;
                                 break;
                             case 4:
-                                soundindex = R.raw.waterdrop;
+                                DoneScreenActivity.soundindex = R.raw.waterdrop;
                                 break;
                             case 5:
-                                soundindex = R.raw.chicken;
+                                DoneScreenActivity.soundindex = R.raw.chicken;
                                 break;
                             default:
-                                soundindex = R.raw.song;
+                                DoneScreenActivity.soundindex = R.raw.song;
                                 break;
                         }
+                        SoundDialogBox.cancel(); //lukker dialog når lyd er valgt
                     }
                 });
             }
@@ -1529,6 +1531,23 @@ public class CustomizeFragment extends Fragment {
                      currSubP.select();
 
                      if (DrawLibActivity.scale == 1){
+                         //MADS DET ER HER DU SKAL SØGE
+//                         Handler mHandler = new Handler();
+//
+//                         Runnable mRunnable = new Runnable() {
+//                             public void run() {
+//                                 final Intent mainIntent = new Intent(getActivity(), DoneScreenActivity.class);
+//                                 getActivity().startActivity(mainIntent);
+//                                 getActivity().finish();
+//                mediaPlayer = MediaPlayer.create(getActivity(), DoneScreenActivity.soundindex); //soundplayer with song
+//                                 mediaPlayer.start();
+//                             }
+//                         };
+//
+//        /* Set the delay of the intent to the time of the timer + 1 second
+//         * otherwize the user will have a hard time seeing the timer reach 0*/
+//                         mHandler.postDelayed(mRunnable, (currSubP.get_totalTime()+1)*1000);
+
                          if (MainActivity.svc != null){
                              getActivity().stopService(MainActivity.svc);
                              MainActivity.svc = new Intent(getActivity().getApplicationContext(), DrawLibActivity.class);
