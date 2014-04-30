@@ -3,6 +3,7 @@ package dk.aau.cs.giraf.wombat.drawlib;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
@@ -23,6 +24,8 @@ public class DoneScreenActivity extends Activity {
 	private final String imageInSD = "/sdcard/Pictures/faerdig.png";
 	private final String text = "Færdig";
 	Guardian guard = Guardian.getInstance();
+    public  static  int soundindex = R.raw.song;
+    private MediaPlayer mediaPlayer;
 	/* path to the picture on the sdcard on the tablet*/
 
 	@Override
@@ -41,6 +44,8 @@ public class DoneScreenActivity extends Activity {
 		ImageView i = null;
 		ImageView i2 = null;
 		SubProfile sub = guard.getSubProfile();
+        mediaPlayer = MediaPlayer.create(DoneScreenActivity.this, soundindex);
+        mediaPlayer.start();
 
 		//Check if there is any done screen attachment
 		if(sub.getDoneArt() != null){

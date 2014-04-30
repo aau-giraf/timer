@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
@@ -29,7 +30,8 @@ public class DrawLibActivity extends Activity {
 	
 	private Handler mHandler;
 	private Runnable mRunnable;
-	
+    private MediaPlayer mediaPlayer;
+//    public  static  int soundindex = R.raw.song;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -128,6 +130,7 @@ public class DrawLibActivity extends Activity {
                 final Intent mainIntent = new Intent(DrawLibActivity.this, DoneScreenActivity.class);
                 DrawLibActivity.this.startActivity(mainIntent);
                 DrawLibActivity.this.finish();
+//                mediaPlayer = MediaPlayer.create(DrawLibActivity.this, soundindex); //soundplayer with song
             }
         };
 		
