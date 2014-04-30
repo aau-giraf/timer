@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -16,12 +17,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import dk.aau.cs.giraf.TimerLib.Guardian;
+import dk.aau.cs.giraf.gui.GDialog;
+
 /**
  * This class is a custom dialog which is used for all dialogs in WOMBAT
  * Layer: Layout
  *
  */
-public class WDialog extends Dialog{
+public class WDialog extends GDialog {
 	
 	private int layoutId = 1337;
 	private int editTextLayoutId = 1338;
@@ -35,16 +38,18 @@ public class WDialog extends Dialog{
 	 */
 	public WDialog(Context context) {
 		// Set the style to the dialog specified in WombatStyle
-		super(context, R.style.WombatStyle_Dialog);
+		super(context);
 		
 		// Remove the title
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.setContentView(R.layout.profile_list_dialog);
+//		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		this.setContentView(R.layout.profile_list_dialog);
 
+        View layout = LayoutInflater.from(this.getContext()).inflate(R.layout.profile_list_dialog, null);
+        this.SetView(layout);
 		// Sets the background color to the color from the Guardian (which is set in the MainActivity)
-		Drawable d = context.getResources().getDrawable(R.drawable.wdialog_background);
-		d.setColorFilter(guard.backgroundColor, PorterDuff.Mode.OVERLAY);
-		this.getWindow().setBackgroundDrawable(d);
+//		Drawable d = context.getResources().getDrawable(R.drawable.wdialog_background);
+//		d.setColorFilter(guard.backgroundColor, PorterDuff.Mode.OVERLAY);
+//		this.getWindow().setBackgroundDrawable(d);
 	}
 	
 	/**
