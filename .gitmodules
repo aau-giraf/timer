@@ -4,9 +4,6 @@
 [submodule "DrawLib"]
 	path = DrawLib
 	url = http://cs-cust06-int.cs.aau.dk/git-ro/draw-lib.git
-[submodule "wheel"]
-	path = wheel
-	url = http://cs-cust06-int.cs.aau.dk/git-ro/wheel.git
 [submodule "pictogram-lib"]
 	path = pictogram-lib
 	url = http://cs-cust06-int.cs.aau.dk/git-ro/pictogram-lib.git
