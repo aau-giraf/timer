@@ -815,7 +815,7 @@ public class CustomizeFragment extends Fragment {
                 final ArrayList<formFactor> soundlist = getMode();
 
                 final WDialog SoundDialogBox = new WDialog(getActivity(),
-                        R.string.sound_dialog_description);
+                        R.string.setting_dialog_description);
 
                 final ModeAdapter adapter = new ModeAdapter(getActivity(),
                         android.R.layout.simple_list_item_1, soundlist);
@@ -1056,7 +1056,16 @@ public class CustomizeFragment extends Fragment {
 
                                     }
                                 });
-                                singleDialog.addButton(R.string.cancel, 1, new OnClickListener() {
+
+                                singleDialog.addButton(R.string.go_back, 1,
+                                        new OnClickListener() {
+
+                                            public void onClick(View arg0) {
+                                                singleDialog.cancel();
+                                            }
+                                        });
+
+                                singleDialog.addButton(R.string.cancel, 2, new OnClickListener() {
 
                                     public void onClick(View arg0) {
                                         doneDialog.cancel();
@@ -1093,7 +1102,17 @@ public class CustomizeFragment extends Fragment {
                                                 t.show();
                                             }
                                         });
-                                        dialog1.addButton(R.string.cancel, 1, new OnClickListener() {
+
+                                        dialog1.addButton(R.string.go_back, 1,
+                                                new OnClickListener() {
+
+                                                    public void onClick(View arg0) {
+//                                                        dualDialog.cancel();
+                                                        dialog1.cancel();
+                                                    }
+                                                });
+
+                                        dialog1.addButton(R.string.cancel, 2, new OnClickListener() {
 
                                             public void onClick(View arg0) {
                                                 doneDialog.cancel();
@@ -1104,7 +1123,16 @@ public class CustomizeFragment extends Fragment {
                                         dialog1.show();
                                     }
                                 });
-                                dualDialog.addButton(R.string.cancel, 1, new OnClickListener() {
+
+                                dualDialog.addButton(R.string.go_back, 1,
+                                        new OnClickListener() {
+
+                                            public void onClick(View arg0) {
+                                                dualDialog.cancel();
+                                            }
+                                        });
+
+                                dualDialog.addButton(R.string.cancel, 2, new OnClickListener() {
 
                                     public void onClick(View arg0) {
                                         doneDialog.cancel();
