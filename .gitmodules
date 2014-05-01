@@ -10,9 +10,6 @@
 [submodule "DrawLib"]
 	path = DrawLib
 	url = http://cs-cust06-int.cs.aau.dk/git-ro/draw-lib.git
-[submodule "Tortoise"]
-	path = Tortoise
-	url = http://cs-cust06-int.cs.aau.dk/git-ro/tortoise.git
 [submodule "wheel"]
 	path = wheel
 	url = http://cs-cust06-int.cs.aau.dk/git-ro/wheel.git
