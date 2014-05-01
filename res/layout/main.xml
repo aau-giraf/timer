@@ -55,7 +55,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="72dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -65,16 +65,19 @@
                 android:layout_height="62dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="@string/profile"
-                android:textColor="@color/Black"/>
-
+                android:textColor="@color/Black"
+                android:visibility="gone"/>
 
             <dk.aau.cs.giraf.gui.GButton
                 android:id="@+id/new_template_button"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/list"
                 android:text="@string/new_template_button_text"
                 android:textColor="@color/Black"/>
