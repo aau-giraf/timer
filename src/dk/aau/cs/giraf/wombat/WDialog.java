@@ -46,6 +46,8 @@ public class WDialog extends GDialog {
 
         View layout = LayoutInflater.from(this.getContext()).inflate(R.layout.profile_list_dialog, null);
         this.SetView(layout);
+
+
 		// Sets the background color to the color from the Guardian (which is set in the MainActivity)
 //		Drawable d = context.getResources().getDrawable(R.drawable.wdialog_background);
 //		d.setColorFilter(guard.backgroundColor, PorterDuff.Mode.OVERLAY);
@@ -62,6 +64,7 @@ public class WDialog extends GDialog {
 	public WDialog(Context context, String title){
 		this(context);
 		this.setTitle(title);
+
 	}
 	
 	/**
@@ -73,6 +76,8 @@ public class WDialog extends GDialog {
 	 */
 	public WDialog(Context context, int title){
 		this(context, context.getResources().getString(title));
+
+        
 	}
 	
 	/**

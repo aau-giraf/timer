@@ -319,7 +319,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center"
-                    android:paddingRight="40dp">
+                    android:paddingRight="50dp">
 
                     <dk.aau.cs.giraf.gui.GButton
                         android:layout_width="wrap_content"
@@ -401,22 +401,6 @@
                 android:text="@string/switch_layout_button"
                 android:textSize="14dp"
                 android:layout_gravity="right|bottom"/>
-
-            <dk.aau.cs.giraf.gui.GButton
-                android:id="@+id/customize_setting_button"
-                android:layout_width="110dp"
-                android:layout_height="125dp"
-                android:text="@string/setting"
-                android:textSize="14dp"/>
-
-
-            <dk.aau.cs.giraf.gui.GButton
-                android:id="@+id/customize_profile_button"
-                android:layout_width="110dp"
-                android:layout_height="125dp"
-                android:text="@string/profile"
-                android:textSize="14dp"/>
-
 
 
             <!--<Button

@@ -824,7 +824,7 @@ public class CustomizeFragment extends Fragment {
                 final ArrayList<formFactor> soundlist = getMode();
 
                 final WDialog SoundDialogBox = new WDialog(getActivity(),
-                        R.string.sound_dialog_description);
+                        R.string.setting_dialog_description);
 
                 final ModeAdapter adapter = new ModeAdapter(getActivity(),
                         android.R.layout.simple_list_item_1, soundlist);
@@ -840,6 +840,7 @@ public class CustomizeFragment extends Fragment {
                         });
 
                 sound = _soundlist.indexOf(adapter.getCount());
+                
                 SoundDialogBox .show();
                 SoundDialogBox.setOnItemClickListener(new OnItemClickListener() {
                     @Override
@@ -851,21 +852,27 @@ public class CustomizeFragment extends Fragment {
                         switch (position){
                             case 0:
                                 DoneScreenActivity.soundindex = R.raw.song;
+                                SoundButton.setText("Standard Biip");
                                 break;
                             case 1:
                                 DoneScreenActivity.soundindex = R.raw.cow;
+                                SoundButton.setText("Ko");
                                 break;
                             case 2:
                                 DoneScreenActivity.soundindex = R.raw.bike;
+                                SoundButton.setText("Cykel horn");
                                 break;
                             case 3:
                                 DoneScreenActivity.soundindex = R.raw.bike2;
+                                SoundButton.setText("Cykel horn to");
                                 break;
                             case 4:
                                 DoneScreenActivity.soundindex = R.raw.waterdrop;
+                                SoundButton.setText("Dråbe");
                                 break;
                             case 5:
                                 DoneScreenActivity.soundindex = R.raw.chicken;
+                                SoundButton.setText("Høne");
                                 break;
                             default:
                                 DoneScreenActivity.soundindex = R.raw.song;
@@ -1065,7 +1072,16 @@ public class CustomizeFragment extends Fragment {
 
                                     }
                                 });
-                                singleDialog.addButton(R.string.cancel, 1, new OnClickListener() {
+
+                                singleDialog.addButton(R.string.go_back, 1,
+                                        new OnClickListener() {
+
+                                            public void onClick(View arg0) {
+                                                singleDialog.cancel();
+                                            }
+                                        });
+
+                                singleDialog.addButton(R.string.cancel, 2, new OnClickListener() {
 
                                     public void onClick(View arg0) {
                                         doneDialog.cancel();
@@ -1102,7 +1118,17 @@ public class CustomizeFragment extends Fragment {
                                                 t.show();
                                             }
                                         });
-                                        dialog1.addButton(R.string.cancel, 1, new OnClickListener() {
+
+                                        dialog1.addButton(R.string.go_back, 1,
+                                                new OnClickListener() {
+
+                                                    public void onClick(View arg0) {
+//                                                        dualDialog.cancel();
+                                                        dialog1.cancel();
+                                                    }
+                                                });
+
+                                        dialog1.addButton(R.string.cancel, 2, new OnClickListener() {
 
                                             public void onClick(View arg0) {
                                                 doneDialog.cancel();
@@ -1113,7 +1139,16 @@ public class CustomizeFragment extends Fragment {
                                         dialog1.show();
                                     }
                                 });
-                                dualDialog.addButton(R.string.cancel, 1, new OnClickListener() {
+
+                                dualDialog.addButton(R.string.go_back, 1,
+                                        new OnClickListener() {
+
+                                            public void onClick(View arg0) {
+                                                dualDialog.cancel();
+                                            }
+                                        });
+
+                                dualDialog.addButton(R.string.cancel, 2, new OnClickListener() {
 
                                     public void onClick(View arg0) {
                                         doneDialog.cancel();
@@ -1153,7 +1188,7 @@ public class CustomizeFragment extends Fragment {
         initSwitchButton();
 		initStartButton();
         initStopButton();
-        initSettingButton();
+        //initSettingButton();
         initProfileButton();
         initSoundButton();
         initFullScreenCheckBox();
@@ -1540,22 +1575,6 @@ public class CustomizeFragment extends Fragment {
                      currSubP.select();
 
                      if (DrawLibActivity.scale == 1){
-                         //MADS DET ER HER DU SKAL SØGE
-//                         Handler mHandler = new Handler();
-//
-//                         Runnable mRunnable = new Runnable() {
-//                             public void run() {
-//                                 final Intent mainIntent = new Intent(getActivity(), DoneScreenActivity.class);
-//                                 getActivity().startActivity(mainIntent);
-//                                 getActivity().finish();
-//                mediaPlayer = MediaPlayer.create(getActivity(), DoneScreenActivity.soundindex); //soundplayer with song
-//                                 mediaPlayer.start();
-//                             }
-//                         };
-//
-//        /* Set the delay of the intent to the time of the timer + 1 second
-//         * otherwize the user will have a hard time seeing the timer reach 0*/
-//                         mHandler.postDelayed(mRunnable, (currSubP.get_totalTime()+1)*1000);
 
                          if (MainActivity.svc != null){
                              getActivity().stopService(MainActivity.svc);
@@ -1653,7 +1672,7 @@ public class CustomizeFragment extends Fragment {
     /*
         * Initialize the setting button
         */
-    private void initSettingButton(){
+    /*private void initSettingButton(){
         settingButton = (GButton) getActivity().findViewById(
                 R.id.customize_setting_button);
 
@@ -1678,7 +1697,7 @@ public class CustomizeFragment extends Fragment {
             }
         });
     }
-
+*/
         /*
     * Initialize the Profile button
     */

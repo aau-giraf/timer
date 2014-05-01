@@ -321,7 +321,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:gravity="center"
-                    android:paddingRight="20dp"
+                    android:paddingRight="50dp"
                     android:layout_marginTop="-10dp">
 
                     <dk.aau.cs.giraf.gui.GButton
@@ -395,32 +395,6 @@
                         android:paddingTop="20dp"
                         android:text="@string/donescreen_button_description"
                         android:textSize="13dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
-
-                        <dk.aau.cs.giraf.gui.GButton
-                            android:id="@+id/customize_setting_button"
-                            android:layout_width="85dp"
-                            android:layout_height="95dp"
-                            android:layout_gravity="left|bottom"
-                            android:background="@drawable/btn"
-                            android:text="@string/setting"
-                            android:paddingTop="20dp"
-                            android:textSize="12dp"/>
-
-                        <dk.aau.cs.giraf.gui.GButton
-                            android:id="@+id/customize_profile_button"
-                            android:layout_width="85dp"
-                            android:layout_height="95dp"
-                            android:layout_gravity="left"
-                            android:text="@string/profile"
-                            android:paddingTop="20dp"
-                            android:textSize="14dp"/>
                     </LinearLayout>
 
                     <LinearLayout
