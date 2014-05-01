@@ -314,21 +314,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/SlutLyd"
-                    android:paddingLeft="20dp">
+                    android:paddingLeft="20dp"
+                    android:textSize="16dp">
                 </dk.aau.cs.giraf.gui.GTextView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
-                    android:paddingRight="50dp"
+                    android:paddingRight="55dp"
                     android:layout_marginTop="-10dp">
 
                     <dk.aau.cs.giraf.gui.GButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/sound_button"
-                        android:text="Vælg lyd"/>
+                        android:text="Vælg lyd"
+                        android:textSize="14dp"/>
                     </LinearLayout>
 
             </LinearLayout>

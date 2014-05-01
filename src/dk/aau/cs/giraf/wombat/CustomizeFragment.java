@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import dk.aau.cs.giraf.TimerLib.Sounds;
 import dk.aau.cs.giraf.gui.GButton;
 import dk.aau.cs.giraf.gui.GCheckBox;
+import dk.aau.cs.giraf.gui.GColorPicker;
 import dk.aau.cs.giraf.gui.GProfileSelector;
 import dk.aau.cs.giraf.gui.GTextView;
 import dk.aau.cs.giraf.gui.GButtonSettings;
@@ -17,8 +18,8 @@ import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.NumericWheelAdapter;
-import yuku.ambilwarna.AmbilWarnaDialog;
-import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
+//import yuku.ambilwarna.AmbilWarnaDialog;
+//import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -493,18 +494,16 @@ public class CustomizeFragment extends Fragment {
 
 		colorGradientButton1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				AmbilWarnaDialog dialog = new AmbilWarnaDialog(getActivity(),
-						currSubP.timeLeftColor, new OnAmbilWarnaListener() {
-					public void onCancel(AmbilWarnaDialog dialog) {
-					}
-
-					public void onOk(AmbilWarnaDialog dialog, int color) {
-						currSubP.timeLeftColor = color;
-						setColor(colorGradientButton1.getBackground(),
+                GColorPicker diag = new GColorPicker(v.getContext(), new GColorPicker.OnOkListener() {
+                    @Override
+                    public void OnOkClick(GColorPicker diag, int color) {
+                        currSubP.timeLeftColor = color;
+                        setColor(colorGradientButton1.getBackground(),
 								currSubP.timeLeftColor);
-					}
-				});
-				dialog.show();
+                    }
+                });
+                diag.SetCurrColor(0xFF000000);
+                diag.show();
 			}
 		});
 
@@ -513,18 +512,16 @@ public class CustomizeFragment extends Fragment {
 		setColor(colorGradientButton2.getBackground(), currSubP.timeSpentColor);
 		colorGradientButton2.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				AmbilWarnaDialog dialog = new AmbilWarnaDialog(getActivity(),
-						currSubP.timeSpentColor, new OnAmbilWarnaListener() {
-					public void onCancel(AmbilWarnaDialog dialog) {
-					}
-
-					public void onOk(AmbilWarnaDialog dialog, int color) {
-						currSubP.timeSpentColor = color;
-						setColor(colorGradientButton2.getBackground(),
-								currSubP.timeSpentColor);
-					}
-				});
-				dialog.show();
+                GColorPicker diag = new GColorPicker(v.getContext(), new GColorPicker.OnOkListener() {
+                    @Override
+                    public void OnOkClick(GColorPicker diag, int color) {
+                        currSubP.timeSpentColor = color;
+                        setColor(colorGradientButton2.getBackground(),
+                                currSubP.timeSpentColor);
+                    }
+                });
+                diag.SetCurrColor(0xFF000000);
+                diag.show();
 			}
 		});
 
@@ -533,18 +530,16 @@ public class CustomizeFragment extends Fragment {
 		setColor(colorFrameButton.getBackground(), currSubP.frameColor);
 		colorFrameButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				AmbilWarnaDialog dialog = new AmbilWarnaDialog(getActivity(),
-						currSubP.frameColor, new OnAmbilWarnaListener() {
-					public void onCancel(AmbilWarnaDialog dialog) {
-					}
-
-					public void onOk(AmbilWarnaDialog dialog, int color) {
-						currSubP.frameColor = color;
-						setColor(colorFrameButton.getBackground(),
-								currSubP.frameColor);
-					}
-				});
-				dialog.show();
+                GColorPicker diag = new GColorPicker(v.getContext(), new GColorPicker.OnOkListener() {
+                    @Override
+                    public void OnOkClick(GColorPicker diag, int color) {
+                        currSubP.frameColor = color;
+                        setColor(colorFrameButton.getBackground(),
+                                currSubP.frameColor);
+                    }
+                });
+                diag.SetCurrColor(0xFF000000);
+                diag.show();
 			}
 		});
 
@@ -554,18 +549,16 @@ public class CustomizeFragment extends Fragment {
 		colorBackgroundButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				AmbilWarnaDialog dialog = new AmbilWarnaDialog(getActivity(),
-						currSubP.bgcolor, new OnAmbilWarnaListener() {
-					public void onCancel(AmbilWarnaDialog dialog) {
-					}
-
-					public void onOk(AmbilWarnaDialog dialog, int color) {
-						currSubP.bgcolor = color;
-						setColor(colorBackgroundButton.getBackground(),
-								currSubP.bgcolor);
-					}
-				});
-				dialog.show();
+                GColorPicker diag = new GColorPicker(v.getContext(), new GColorPicker.OnOkListener() {
+                    @Override
+                    public void OnOkClick(GColorPicker diag, int color) {
+                        currSubP.bgcolor = color;
+                        setColor(colorBackgroundButton.getBackground(),
+                                currSubP.bgcolor);
+                    }
+                });
+                diag.SetCurrColor(0xFF000000);
+                diag.show();
 			}
 
 		});
@@ -600,7 +593,16 @@ public class CustomizeFragment extends Fragment {
                 ModeAdapter adapter = new ModeAdapter(getActivity(),
                         android.R.layout.simple_list_item_1, mode);
 
+
+                if(child.SubProfiles().isEmpty()) {
+                    adapter.remove(formFactor.Timer);
+                }
+                else if(!child.SubProfiles().isEmpty() && !mode.contains(formFactor.Timer)) {
+                    adapter.add(formFactor.Timer);
+                }
+
                 attachment1.setAdapter(adapter);
+
 
                 attachment1.addButton(R.string.cancel, 1,
                         new OnClickListener() {
