@@ -55,7 +55,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="67dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -64,6 +64,7 @@
                 android:layout_width="85dp"
                 android:layout_height="62dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/profile"
                 android:textColor="@color/Black"/>
 
@@ -72,8 +73,8 @@
                 android:id="@+id/new_template_button"
                 android:layout_width="match_parent"
                 android:layout_height="62dp"
-                android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/list"
                 android:text="@string/new_template_button_text"
                 android:textColor="@color/Black"/>
