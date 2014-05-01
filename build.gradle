@@ -14,7 +14,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':TimerLib')
     compile project(':DrawLib')
-    compile project(':Ambilwarna')
+//    compile project(':Ambilwarna')
     compile project(':OasisLib')
     compile project(':pictogram-lib')
     compile project(':wheel')
