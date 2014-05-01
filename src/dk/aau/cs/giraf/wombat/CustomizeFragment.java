@@ -1172,7 +1172,7 @@ public class CustomizeFragment extends Fragment {
         initSwitchButton();
 		initStartButton();
         initStopButton();
-        initSettingButton();
+        //initSettingButton();
         initProfileButton();
         initSoundButton();
         initFullScreenCheckBox();
@@ -1672,7 +1672,7 @@ public class CustomizeFragment extends Fragment {
     /*
         * Initialize the setting button
         */
-    private void initSettingButton(){
+    /*private void initSettingButton(){
         settingButton = (GButton) getActivity().findViewById(
                 R.id.customize_setting_button);
 
@@ -1697,7 +1697,7 @@ public class CustomizeFragment extends Fragment {
             }
         });
     }
-
+*/
         /*
     * Initialize the Profile button
     */
