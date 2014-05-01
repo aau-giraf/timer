@@ -831,6 +831,7 @@ public class CustomizeFragment extends Fragment {
                         });
 
                 sound = _soundlist.indexOf(adapter.getCount());
+                
                 SoundDialogBox .show();
                 SoundDialogBox.setOnItemClickListener(new OnItemClickListener() {
                     @Override
@@ -842,21 +843,27 @@ public class CustomizeFragment extends Fragment {
                         switch (position){
                             case 0:
                                 DoneScreenActivity.soundindex = R.raw.song;
+                                SoundButton.setText("Standard Biip");
                                 break;
                             case 1:
                                 DoneScreenActivity.soundindex = R.raw.cow;
+                                SoundButton.setText("Ko");
                                 break;
                             case 2:
                                 DoneScreenActivity.soundindex = R.raw.bike;
+                                SoundButton.setText("Cykel horn");
                                 break;
                             case 3:
                                 DoneScreenActivity.soundindex = R.raw.bike2;
+                                SoundButton.setText("Cykel horn to");
                                 break;
                             case 4:
                                 DoneScreenActivity.soundindex = R.raw.waterdrop;
+                                SoundButton.setText("Dråbe");
                                 break;
                             case 5:
                                 DoneScreenActivity.soundindex = R.raw.chicken;
+                                SoundButton.setText("Høne");
                                 break;
                             default:
                                 DoneScreenActivity.soundindex = R.raw.song;
@@ -1531,22 +1538,6 @@ public class CustomizeFragment extends Fragment {
                      currSubP.select();
 
                      if (DrawLibActivity.scale == 1){
-                         //MADS DET ER HER DU SKAL SØGE
-//                         Handler mHandler = new Handler();
-//
-//                         Runnable mRunnable = new Runnable() {
-//                             public void run() {
-//                                 final Intent mainIntent = new Intent(getActivity(), DoneScreenActivity.class);
-//                                 getActivity().startActivity(mainIntent);
-//                                 getActivity().finish();
-//                mediaPlayer = MediaPlayer.create(getActivity(), DoneScreenActivity.soundindex); //soundplayer with song
-//                                 mediaPlayer.start();
-//                             }
-//                         };
-//
-//        /* Set the delay of the intent to the time of the timer + 1 second
-//         * otherwize the user will have a hard time seeing the timer reach 0*/
-//                         mHandler.postDelayed(mRunnable, (currSubP.get_totalTime()+1)*1000);
 
                          if (MainActivity.svc != null){
                              getActivity().stopService(MainActivity.svc);
