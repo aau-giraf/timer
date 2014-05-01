@@ -73,7 +73,6 @@ public class Overlay extends Service {
                 getApplicationContext().startActivity(mainIntent);
                 getApplicationContext().stopService(MainActivity.svc);
                 MainActivity.svc = null;
-//                mediaPlayer.start(); //playing stop sound
             }
         };
 
