@@ -8,25 +8,15 @@ buildscript {
     }
 }
 
-apply plugin: 'android'
+apply plugin: 'android-library'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':TimerLib')
-    compile project(':DrawLib')
-    compile project(':OasisLib')
-    compile project(':pictogram-lib')
-    compile project(':wheel')
-    compile project(':GIRAF_Components')
-    compile files('libraries/libGoogleAnalyticsServices.jar')
 }
 
 android {
     compileSdkVersion 15
     buildToolsVersion "19.0.1"
-    lintOptions {
-        abortOnError false
-    }
 
     sourceSets {
         main {
