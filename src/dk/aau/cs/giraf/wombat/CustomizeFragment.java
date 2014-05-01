@@ -600,7 +600,17 @@ public class CustomizeFragment extends Fragment {
                 ModeAdapter adapter = new ModeAdapter(getActivity(),
                         android.R.layout.simple_list_item_1, mode);
 
+
+                if(child.SubProfiles().isEmpty()) {
+                    adapter.remove(formFactor.Timer);
+                }
+                else {
+                   adapter = new ModeAdapter(getActivity(),
+                            android.R.layout.simple_list_item_1, mode);
+                }
+
                 attachment1.setAdapter(adapter);
+
 
                 attachment1.addButton(R.string.cancel, 1,
                         new OnClickListener() {
