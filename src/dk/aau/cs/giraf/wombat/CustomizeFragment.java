@@ -604,9 +604,8 @@ public class CustomizeFragment extends Fragment {
                 if(child.SubProfiles().isEmpty()) {
                     adapter.remove(formFactor.Timer);
                 }
-                else {
-                   adapter = new ModeAdapter(getActivity(),
-                            android.R.layout.simple_list_item_1, mode);
+                else if(!child.SubProfiles().isEmpty() && !mode.contains(formFactor.Timer)) {
+                    adapter.add(formFactor.Timer);
                 }
 
                 attachment1.setAdapter(adapter);
