@@ -375,8 +375,8 @@
 
                     <dk.aau.cs.giraf.gui.GButton
                         android:id="@+id/customize_attachment"
-                        android:layout_width="85dp"
-                        android:layout_height="95dp"
+                        android:layout_width="110dp"
+                        android:layout_height="125dp"
                         android:layout_gravity="left"
                         android:background="@drawable/btn"
                         android:drawableTop="@drawable/thumbnail_attachment"
@@ -387,8 +387,8 @@
 
                     <dk.aau.cs.giraf.gui.GButton
                         android:id="@+id/customize_donescreen"
-                        android:layout_width="85dp"
-                        android:layout_height="95dp"
+                        android:layout_width="110dp"
+                        android:layout_height="125dp"
                         android:layout_gravity="left|bottom"
                         android:background="@drawable/btn"
                         android:drawableTop="@drawable/thumbnail_attachment"
@@ -405,8 +405,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/customize_save"
-                            android:layout_width="85dp"
-                            android:layout_height="95dp"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
                             android:layout_gravity="left|bottom"
                             android:background="@drawable/btn"
                             android:drawableTop="@drawable/thumbnail_save"
@@ -416,8 +416,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/switch_activity_button"
-                            android:layout_width="85dp"
-                            android:layout_height="95dp"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
                             android:drawableTop="@drawable/thumbnail_change_orientation"
                             android:paddingTop="20dp"
                             android:text="@string/switch_layout_button"
@@ -445,8 +445,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/customize_start_button"
-                            android:layout_width="85dp"
-                            android:layout_height="95dp"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
                             android:paddingTop="20dp"
                             android:text="@string/start_button"
                             android:textSize="14dp" />
@@ -454,8 +454,8 @@
 
                         <dk.aau.cs.giraf.gui.GButton
                             android:id="@+id/customize_stop_button"
-                            android:layout_width="85dp"
-                            android:layout_height="95dp"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
                             android:paddingTop="20dp"
                             android:text="@string/stop_button"
                             android:textSize="14dp" />
