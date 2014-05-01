@@ -142,7 +142,6 @@
     <string name="attachment_dialog_split_left">Vælg venstre pictogram</string>
     <string name="attachment_dialog_split_right">Vælg højre pictogram</string>
     <string name="setting_dialog_description">Vælg instillinger herunder</string>
-    <string name="sound_dialog_description">Vælg instillinger herunder</string>
     
     <string name="select_attachment_dialog">Vælg Vedhæft</string>
     <string name="attached">Vedhæftet</string>
