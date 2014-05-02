@@ -67,12 +67,13 @@ public class Overlay extends Service {
         mHandler = new Handler();
 
         final Intent mainIntent = new Intent(Overlay.this, DoneScreenActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         mRunnable = new Runnable() {
             public void run() {
                 getApplicationContext().startActivity(mainIntent);
                 getApplicationContext().stopService(MainActivity.svc);
                 MainActivity.svc = null;
+
             }
         };
 
