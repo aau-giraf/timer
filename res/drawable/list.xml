@@ -4,7 +4,7 @@
 
     <item android:state_pressed="true">
     <shape>
-            <gradient 
+            <gradient
     		    android:startColor="#FF7CADF8"
     		    android:endColor="#FF91BDF2"
     		    android:angle="-90"/>
@@ -29,10 +29,10 @@
         android:top="4dp"
         android:bottom="4dp">
 		<shape>
-            <gradient 
+            <gradient
     		android:startColor="#FFF3F5F8"
     		android:endColor="#FFE9EDF2"
-    		android:angle="-90"/>
+    		android:angle="-90"/> <!--Det er her vi ændre farven på list item for subprofiles! -->
             <stroke
                 android:width="3px"
                 android:color="#FF9CAEBE" />
