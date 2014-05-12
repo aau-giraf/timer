@@ -39,7 +39,7 @@ public class Guardian {
 	
 	private Application m_app;
 	private Helper oHelp;
-	private Profile m_oGuard;
+	public Profile m_oGuard;
 	
 	private int childId;
 	public int guardianId;

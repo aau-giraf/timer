@@ -55,20 +55,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <dk.aau.cs.giraf.gui.GButton
+            <dk.aau.cs.giraf.gui.GButtonProfileSelect
                 android:id="@+id/customize_profile_button"
                 android:layout_width="85dp"
                 android:layout_height="62dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="@string/profile"
-                android:textColor="@color/Black"
-                android:visibility="gone"/>
+                android:layout_marginBottom="5dp"/>
 
             <dk.aau.cs.giraf.gui.GButton
                 android:id="@+id/new_template_button"

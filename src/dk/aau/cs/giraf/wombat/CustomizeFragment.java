@@ -1,11 +1,13 @@
 package dk.aau.cs.giraf.wombat;
 
+import java.security.Guard;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import dk.aau.cs.giraf.TimerLib.Sounds;
 import dk.aau.cs.giraf.gui.GButton;
+import dk.aau.cs.giraf.gui.GButtonProfileSelect;
 import dk.aau.cs.giraf.gui.GCheckBox;
 import dk.aau.cs.giraf.gui.GColorPicker;
 import dk.aau.cs.giraf.gui.GProfileSelector;
@@ -78,7 +80,7 @@ public class CustomizeFragment extends Fragment {
 	private GButton startButton;
     private GButton stopButton;
     private GButton settingButton;
-    private GButton profileButton;
+    private GButtonProfileSelect profileButton;
     private GButton SoundButton;
     private GButton switchLayoutButton;
 	private GButton saveButton;
@@ -1695,8 +1697,26 @@ public class CustomizeFragment extends Fragment {
     * Initialize the Profile button
     */
     private void initProfileButton(){
-        profileButton = (GButton) getActivity().findViewById(
+
+        profileButton = (GButtonProfileSelect) getActivity().findViewById(
                 R.id.customize_profile_button);
+
+        //Call the method setup with a Profile guardian, no currentProfile (which means that the guardian is the current Profile) and the onCloseListener
+        profileButton.setup(guard.m_oGuard, null, new GButtonProfileSelect.onCloseListener() {
+            @Override
+            public void onClose(Profile guardianProfile, Profile currentProfile) {
+                //If the guardian is the selected profile create GToast displaying the name
+                if(currentProfile == null){
+                    GToast w = new GToast(getActivity().getApplicationContext(), "The Guardian " + guardianProfile.getName().toString() + "is Selected", 2);
+                    w.show();
+                }
+                //If another current Profile is the selected profile create GToast displaying the name
+                else{
+                    GToast w = new GToast(getActivity().getApplicationContext(), "The current profile " + guardianProfile.getName().toString() + "is Selected", 2);
+                    w.show();
+                }
+            }
+        });
 
     }
 
