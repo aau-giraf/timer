@@ -168,7 +168,7 @@
     <string name="SlutLyd">Slut Lyd</string>
     
     <string name="was_saved_toast">blev gemt på</string>
-    <string name="new_template_button_text">Ny tidstager</string>
+    <string name="new_template_button_text">Nulstil tidstager</string>
     <string name="delete_subprofile_toast">Tidstager slettet</string>
     <string name="cannot_delete_subprofile_toast">Kan ikke slette denne tidstager</string>
     <string name="cant_save">Tidstagen kan ikke gemmes endnu!</string>
