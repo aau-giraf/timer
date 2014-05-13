@@ -32,7 +32,6 @@ public class MainActivity extends Activity {
 	public static Guardian guard = null;
     public static Context context;
     public static Intent svc = null;
-    public static boolean isRunning;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -41,10 +40,14 @@ public class MainActivity extends Activity {
 //        Helper ohelp = new Helper(context);
 //        ohelp.CreateDummyData();
 
+<<<<<<< HEAD
         int guardianId = 204;
         int childId = 215;
+=======
+        int guardianId = -1;
+        int childId = -1;
+>>>>>>> cfe85042ec06a2c2ff8b9f347b678ad2fb6a4ec8
         int color;
-        isRunning = true;
 		/* Get the data sent from the launcher (if there is any) */
 
 
@@ -101,14 +104,12 @@ public class MainActivity extends Activity {
         super.onStart();
 
         EasyTracker.getInstance(this).activityStart(this);  // Add this method.
-        isRunning = true;
     }
 
     @Override
     public void onStop() {
         super.onStop();
         EasyTracker.getInstance(this).activityStop(this);  // Add this method.
-        isRunning = false;
     }
 
 	/**

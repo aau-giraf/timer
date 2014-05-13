@@ -173,7 +173,7 @@ public class CustomizeFragment extends Fragment {
             cs = child.name;
         }
         else {
-            cs = "";
+            cs = "Ingen Valgt Profil";
         }
         tv.setText(cs);
 
@@ -1707,18 +1707,46 @@ public class CustomizeFragment extends Fragment {
                 R.id.customize_profile_button);
 
         //Call the method setup with a Profile guardian, no currentProfile (which means that the guardian is the current Profile) and the onCloseListener
+
         profileButton.setup(guard.m_oGuard, null, new GButtonProfileSelect.onCloseListener() {
             @Override
             public void onClose(Profile guardianProfile, Profile currentProfile) {
                 //If the guardian is the selected profile create GToast displaying the name
                 if(currentProfile == null){
-                    GToast w = new GToast(getActivity().getApplicationContext(), "The Guardian " + guardianProfile.getName().toString() + "is Selected", 2);
+                    GToast w = new GToast(getActivity().getApplicationContext(), "The Guardian " + guardianProfile.getName().toString() + " is Selected", 2);
                     w.show();
                 }
                 //If another current Profile is the selected profile create GToast displaying the name
                 else{
-                    GToast w = new GToast(getActivity().getApplicationContext(), "The current profile " + guardianProfile.getName().toString() + "is Selected", 2);
+                    GToast w = new GToast(getActivity().getApplicationContext(), "The profile " + currentProfile.getName().toString() + " is Selected", 2);
                     w.show();
+                }
+
+                if (currentProfile != null && currentProfile.getRole() == Profile.Roles.CHILD) {
+                    guard.profileID = currentProfile.getId();
+                    if(children == null || !children.isEmpty()) {
+                        for (Child _child : children) {
+                            if(_child.getProfileId() == guard.profileID) {
+                                children.get(children.indexOf(_child)).select();
+                                child = _child;
+                                break;
+                            }
+                        }
+                    }
+
+                    GTextView tv = (GTextView) getActivity().findViewById(R.id.customizeHeader);
+                    CharSequence cs;
+                    if (child != null) {
+                        cs = child.name;
+                    }
+                    else {
+                        cs = "Ingen Valgt Profil";
+                    }
+                    tv.setText(cs);
+                    SubProfileFragment spf = new SubProfileFragment();
+                    spf = (SubProfileFragment) getFragmentManager()
+                            .findFragmentById(R.id.subprofileFragment);
+                    spf.loadSubProfiles();
                 }
             }
         });
