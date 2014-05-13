@@ -94,7 +94,7 @@ public class CustomizeFragment extends Fragment {
 
 	private WheelView mins;
 	private WheelView secs;
-
+    private int TempChange = 8;
     private GCheckBox gradientCheckBox;
     //private WCheckbox gradientButton;
 	private GTextView timeDescription;
@@ -1569,6 +1569,10 @@ public class CustomizeFragment extends Fragment {
                      guard.saveGuardian(currSubP);
                      currSubP.select();
 
+                         DrawLibActivity.scale = TempChange;
+
+
+
                      if (DrawLibActivity.scale == 1){
 
                          if (MainActivity.svc != null){
@@ -1659,7 +1663,8 @@ public class CustomizeFragment extends Fragment {
         FullScreenCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                DrawLibActivity.scale = isChecked == true ? 1 : 8;
+
+                TempChange = isChecked == true ? 1 : 8;
             }
         });
     }

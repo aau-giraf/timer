@@ -41,28 +41,28 @@ public class MainActivity extends Activity {
 //        Helper ohelp = new Helper(context);
 //        ohelp.CreateDummyData();
 
-        int guardianId = 315;
-        int childId = 659;
+        int guardianId = 204;
+        int childId = 215;
         int color;
         isRunning = true;
 		/* Get the data sent from the launcher (if there is any) */
 
 
-		Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-        	guardianId = (int)extras.getLong("currentGuardianID");
-        	childId = (int)extras.getLong("currentChildID");
-        } else {
-            new AlertDialog.Builder(this)
-                    .setTitle("Timer")
-                    .setMessage(R.string.launch_from_giraf)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                            Process.killProcess(Process.myPid());
-                        }
-                    }).show();
-        }
+//		Bundle extras = getIntent().getExtras();
+//        if (extras != null) {
+//        	guardianId = (int)extras.getLong("currentGuardianID");
+//        	childId = (int)extras.getLong("currentChildID");
+//        } else {
+//            new AlertDialog.Builder(this)
+//                    .setTitle("Timer")
+//                    .setMessage(R.string.launch_from_giraf)
+//                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            finish();
+//                            Process.killProcess(Process.myPid());
+//                        }
+//                    }).show();
+//        }
 
         color = getResources().getColor(R.color.GIRAFOrange);
         ArrayList<Art> artList = new ArrayList<Art>();
