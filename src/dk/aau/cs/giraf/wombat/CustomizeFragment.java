@@ -22,7 +22,9 @@ import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.NumericWheelAdapter;
 //import yuku.ambilwarna.AmbilWarnaDialog;
 //import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -782,9 +784,27 @@ public class CustomizeFragment extends Fragment {
                     }
                 });
                 attachment1.show();
+
+                Intent i = new Intent();
+                i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
+                        "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
+                i.putExtra("purpose", "multi");
+                i.putExtra("currentChildID", guard.getChild().getProfileId());
+                i.putExtra("currentGuardianID", guard.profileID);
+
+                startActivityForResult(i, 1);
             }
         });
 	}
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+            
+        }
+    }
     /**
      * Initializes the sound buttons forms in an array
      */
