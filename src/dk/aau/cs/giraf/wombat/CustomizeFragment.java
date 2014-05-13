@@ -791,7 +791,14 @@ public class CustomizeFragment extends Fragment {
                 }
             }
         });
+        Intent i = new Intent();
+        i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
+                "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
+        i.putExtra("purpose", "multi");
+        i.putExtra("currentChildID", guard.getChild().getProfileId());
+        i.putExtra("currentGuardianID", guard.profileID);
 
+        startActivityForResult(i, 1);
     }
 
     @Override
