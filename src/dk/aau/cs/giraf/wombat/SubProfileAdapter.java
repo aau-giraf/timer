@@ -114,7 +114,7 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
                                 if(_child.getProfileId() == currentProfile.getId()) {
                                     GToast w = new GToast(MainActivity.context, "Tidstageren " + finalsp.name + " er blevet kopieret til " + currentProfile.getName().toString(), 2);
                                     w.show();
-                                    _child.save(finalsp,false);
+                                    _child.save(finalsp.copy(),false);
                                     break;
                                 }
                             }

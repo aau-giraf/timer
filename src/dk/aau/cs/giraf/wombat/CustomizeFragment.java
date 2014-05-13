@@ -791,14 +791,14 @@ public class CustomizeFragment extends Fragment {
                 }
             }
         });
-        Intent i = new Intent();
-        i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
-                "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
-        i.putExtra("purpose", "multi");
-        i.putExtra("currentChildID", guard.getChild().getProfileId());
-        i.putExtra("currentGuardianID", guard.profileID);
-
-        startActivityForResult(i, 1);
+//        Intent i = new Intent();
+//        i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
+//                "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
+//        i.putExtra("purpose", "multi");
+//        i.putExtra("currentChildID", guard.getChild().getProfileId());
+//        i.putExtra("currentGuardianID", guard.profileID);
+//
+//        startActivityForResult(i, 1);
     }
 
     @Override
@@ -1271,7 +1271,7 @@ public class CustomizeFragment extends Fragment {
 					 } else {
 
 						 SubProfile m_savedSubprofile;
-						 if (preSubP != null) {
+						 if (preSubP != null && guard.getChild().SubProfiles().contains(preSubP)) {
 							 m_savedSubprofile = currSubP.save(preSubP, true);
 							 preSubP = null;
 						 } else {
@@ -1769,6 +1769,7 @@ public class CustomizeFragment extends Fragment {
                         spf = (SubProfileFragment) getFragmentManager()
                                 .findFragmentById(R.id.subprofileFragment);
                         spf.loadSubProfiles();
+                        setDefaultProfile();
                     }
                 }
 
