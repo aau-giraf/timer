@@ -64,4 +64,12 @@
         android:background="@drawable/delete_button"
         android:contentDescription="Delete button"/>
 
+    <dk.aau.cs.giraf.gui.GButtonProfileSelect
+        android:id="@+id/customize_copy_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
 </LinearLayout>

@@ -13,9 +13,15 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+
+import dk.aau.cs.giraf.TimerLib.Child;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.TimerLib.SubProfile;
+import dk.aau.cs.giraf.gui.GButtonProfileSelect;
+import dk.aau.cs.giraf.gui.GProfileSelector;
+import dk.aau.cs.giraf.gui.GTextView;
 import dk.aau.cs.giraf.gui.GToast;
+import dk.aau.cs.giraf.oasis.lib.models.Profile;
 
 /**
  * This class is an ArrayAdapter which fit the SubProfile object
@@ -41,12 +47,13 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
 			v = vi.inflate(R.layout.subprofile_list, null);
 		}
 		SubProfile sp = items.get(position);
+        final SubProfile finalsp = sp;
 		if( sp != null ){
 			/* Find all the views */
 			ImageView iv = (ImageView)v.findViewById(R.id.subProfilePic);
 			ImageView ivBG = (ImageView)v.findViewById(R.id.subProfilePicBackground);
-			TextView tvName = (TextView)v.findViewById(R.id.subProfileName);
-			TextView tvDesc = (TextView)v.findViewById(R.id.subProfileDesc);
+			GTextView tvName = (GTextView)v.findViewById(R.id.subProfileName);
+			GTextView tvDesc = (GTextView)v.findViewById(R.id.subProfileDesc);
             ImageButton deleteButton = (ImageButton)v.findViewById(R.id.subProfileDelete);
             deleteButton.setTag(position);
 
@@ -89,50 +96,86 @@ public class SubProfileAdapter extends ArrayAdapter<SubProfile> {
                     deleteDialog.show();
                 }
             });
+            final GButtonProfileSelect copyButton = (GButtonProfileSelect) v.findViewById(
+                    R.id.customize_copy_button);
+            copyButton.setup(guard.m_oGuard, null, new GButtonProfileSelect.onCloseListener() {
+                @Override
+                public void onClose(Profile guardianProfile, Profile currentProfile) {
+                    //If the guardian is the selected profile create GToast displaying the name
+                    if(currentProfile == null){
+                        GToast w = new GToast(MainActivity.context, "Du kan ikke kopiere til en personale profil", 2);
+                        w.show();
+                    }
+                    //If another current Profile is the selected profile create GToast displaying the name
+                    else{
+                        ArrayList<Child> children = guard.Children();
+                        if(children == null || !children.isEmpty()) {
+                            for (Child _child : children) {
+                                if(_child.getProfileId() == currentProfile.getId()) {
+                                    GToast w = new GToast(MainActivity.context, "Tidstageren " + finalsp.name + " er blevet kopieret til " + currentProfile.getName().toString(), 2);
+                                    w.show();
+                                    _child.save(finalsp,false);
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            });
 
 
+            if(iv!=null)
 
-			if(iv != null){
-				switch(sp.formType()){
-				case Hourglass:
-					iv.setImageResource(R.drawable.thumbnail_hourglass);
-					break;
-				case DigitalClock:
-					iv.setImageResource(R.drawable.thumbnail_digital);
-					break;
-				case ProgressBar:
-					iv.setImageResource(R.drawable.thumbnail_progressbar);
-					break;
-				case TimeTimer:
-					iv.setImageResource(R.drawable.thumbnail_timetimer);
-					break;
-                case TimeTimerStandard:
-                    iv.setImageResource(R.drawable.thumbnail_timetimer);
-                    break;
-				default:
-					iv.setImageResource(R.drawable.thumbnail_hourglass);
-					break;
-				}
-			}
-			if(ivBG != null){
-				
-				ivBG.setBackgroundColor(sp.timeLeftColor);
-				
-			}
+            {
+                switch (sp.formType()) {
+                    case Hourglass:
+                        iv.setImageResource(R.drawable.thumbnail_hourglass);
+                        break;
+                    case DigitalClock:
+                        iv.setImageResource(R.drawable.thumbnail_digital);
+                        break;
+                    case ProgressBar:
+                        iv.setImageResource(R.drawable.thumbnail_progressbar);
+                        break;
+                    case TimeTimer:
+                        iv.setImageResource(R.drawable.thumbnail_timetimer);
+                        break;
+                    case TimeTimerStandard:
+                        iv.setImageResource(R.drawable.thumbnail_timetimer);
+                        break;
+                    default:
+                        iv.setImageResource(R.drawable.thumbnail_hourglass);
+                        break;
+                }
+            }
+
+            if(ivBG!=null)
+
+            {
+
+                ivBG.setBackgroundColor(sp.timeLeftColor);
+
+            }
 			
 			/* Set the name and description */
-			if(tvName != null){
-				tvName.setText(sp.name);
+            if(tvName!=null)
+
+            {
+                tvName.setText(sp.name);
 //				tvName.setText("id: " + sp.getId() + " db id: " + sp.getDB_id());
-			}
-			if(tvDesc != null){
-				tvDesc.setText(sp.desc);
-			}
-			
-		}
+            }
+
+            if(tvDesc!=null)
+
+            {
+                tvDesc.setText(sp.desc);
+            }
+
+        }
 		
 		/* Highlight this profile if it is the chosen one*/
-		if(sp.getId() == guard.subProfileID){
+                    if(sp.getId() == guard.subProfileID){
 			v.setBackgroundResource(R.drawable.list_selected);
 			guard.subProfileFirstClick = true;
 			guard.subProfileID = -1;
