@@ -1,1 +1,1 @@
-include ':Wombat',':DrawLib',':GIRAF_Components',':OasisLib',':TimerLib',':',':pictogram-lib',':wheel'
+include ':Wombat',':DrawLib',':metadata',':GIRAF_Components',':OasisLib',':TimerLib',':',':pictogram-lib',':wheel'
