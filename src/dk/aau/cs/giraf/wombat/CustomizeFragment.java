@@ -598,6 +598,7 @@ public class CustomizeFragment extends Fragment {
                     final WDialog attachment1 = new WDialog(getActivity(),
                             R.string.select_attachment_dialog);
 
+
                     ModeAdapter adapter = new ModeAdapter(getActivity(),
                             android.R.layout.simple_list_item_1, mode);
 
@@ -640,6 +641,7 @@ public class CustomizeFragment extends Fragment {
                             // Cast values to CharSequence and put it in the builder
                             final WDialog attachment2 = new WDialog(getActivity());
 
+                            attachment2.SetShade(false);
                             // New listview
 
                             ArrayAdapter adapter = null;
@@ -696,6 +698,7 @@ public class CustomizeFragment extends Fragment {
                                     // it in the builder
                                     final WDialog attachment3 = new WDialog(
                                             getActivity());
+                                    attachment3.SetShade(false);
                                     // New listview
                                     attachment3.addButton(R.string.go_back, 1,
                                             new OnClickListener() {
