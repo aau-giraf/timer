@@ -8,14 +8,18 @@ public class MultiTableExport implements ExportDefinition {
     MultiTableExport(String exportedName, ForeignKeyDefinition... keys){
         ExportedName = exportedName;
 
+        if (keys.length < 1) {
+            Table = "WARNING";
+            return;
+        }
+        
         StringBuilder sb = new StringBuilder();
 
-        String prefix = keys[0].getLocalTable();
+        sb.append(keys[0].getLocalTable());
 
-        for(int i = 1; i < keys.length; i++)
+        for(int i = 0; i < keys.length; i++)
         {
             ForeignKeyDefinition fk = keys[i];
-            sb.append(prefix);
             sb.append(" INNER JOIN ");
             sb.append(fk.ForeignTable);
             sb.append(" ON (");
@@ -27,7 +31,6 @@ public class MultiTableExport implements ExportDefinition {
             sb.append(".");
             sb.append(fk.ForeignKey);
             sb.append(")");
-            prefix = ",";
         }
 
         Table = sb.toString();

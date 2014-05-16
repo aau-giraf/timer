@@ -69,6 +69,7 @@ public class DatabaseTables {
         list.add(PictogramCategoryTable.PICTOGRAM_CATEGORY);
         list.add(PictogramTagTable.PICTOGRAM_TAG);
         list.add(FramePictogramTable.FRAME_PICTOGRAM);
+        list.add(ProfileTable.PROFILE_DEPARTMENT);
         
         return list;
     }

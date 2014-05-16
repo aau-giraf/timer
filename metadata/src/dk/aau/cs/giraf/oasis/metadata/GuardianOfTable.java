@@ -40,12 +40,6 @@ public class GuardianOfTable {
     public static final MultiTableExport GUARDIAN_CHILD =
             new MultiTableExport(
                     "guardian_with_child",
-                    ID_GUARDIAN_FOREIGN_KEY,
-                    ID_CHILD_FOREIGN_KEY
-            );
-    public static final MultiTableExport PROFILE_GUARDIAN =
-            new MultiTableExport(
-                    "profile_guardian",
                     ID_CHILD_FOREIGN_KEY
             );
 }
