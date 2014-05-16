@@ -1,5 +1,7 @@
 package dk.aau.cs.giraf.TimerLib;
 
+import android.graphics.Bitmap;
+
 import java.util.HashMap;
 
 import dk.aau.cs.giraf.oasis.lib.Helper;
@@ -9,9 +11,9 @@ public class SingleImg extends Attachment {
 	Guardian guard = Guardian.getInstance();
 	Helper help = new Helper(guard.m_context);
 	
-	private Art _art = null;
+	private Bitmap _art = null;
 	
-	public SingleImg(Art art){
+	public SingleImg(Bitmap art){
 		this._art = art;
 	}
 	
@@ -23,7 +25,7 @@ public class SingleImg extends Attachment {
 		return formFactor.SingleImg;
 	}
 	
-	public Art getImg(){
+	public Bitmap getImg(){
 		return this._art;
 	}
 	
@@ -40,11 +42,11 @@ public class SingleImg extends Attachment {
 		map.put("_gradient", String.valueOf(-1));
 		
 		//SingleImg
-		map.put("singleImgId", String.valueOf(this._art.getId()));
+		//map.put("singleImgId", String.valueOf(this._art.getId()));
 		
 		//SplitImg
-		map.put("leftImgId", String.valueOf(-1));
-		map.put("rightImgId", String.valueOf(-1));
+//		map.put("leftImgId", String.valueOf(-1));
+//		map.put("rightImgId", String.valueOf(-1));
 		
 		return map;
 	}

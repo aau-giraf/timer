@@ -90,7 +90,7 @@ public class DrawLibActivity extends Activity {
 				frame.addView(v, frameWidth, frameHeight);
 				
 				i = new ImageView(this);
-				i.setImageResource(sub.getAttachment().getImg().getPath());
+				i.setImageBitmap(sub.getAttachment().getImg());
 				i.setBackgroundDrawable(gd);
 				frame.addView(i, frameWidth, frameHeight);
 				break;
@@ -103,12 +103,12 @@ public class DrawLibActivity extends Activity {
 				frameWidth = frameWidth/2;
 				frameWidth = frameWidth - 15;
 				i = new ImageView(this);
-				i.setImageResource(sub.getAttachment().getLeftImg().getPath());
+				i.setImageBitmap(sub.getAttachment().getLeftImg());
 				i.setBackgroundDrawable(gd);
 				frame.addView(i, frameWidth, frameHeight);
 				
 				i2 = new ImageView(this);
-				i2.setImageResource(sub.getAttachment().getRightImg().getPath());
+				i2.setImageBitmap(sub.getAttachment().getRightImg());
 				i2.setBackgroundDrawable(gd);
 				frame.addView(i2, frameWidth, frameHeight);
 				

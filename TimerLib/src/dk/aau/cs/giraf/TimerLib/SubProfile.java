@@ -99,26 +99,26 @@ public class SubProfile implements Comparable<SubProfile>{
 		map.put("refPro", String.valueOf(this.refPro));
 		map.put("timeKey", String.valueOf(this.timeKey));
 		
-		if(this._doneArt != null){
-			map.put("doneArtType", String.valueOf(this._doneArt.getForm()));
-			switch(this._doneArt.getForm()){
-			case SingleImg:
-				map.put("doneArtPic", String.valueOf(this._doneArt.getImg().getId()));
-				map.put("doneArtLeftPic", String.valueOf(-1));
-				map.put("doneArtRightPic", String.valueOf(-1));
-				break;
-			case SplitImg:
-				map.put("doneArtPic", String.valueOf(-1));
-				map.put("doneArtLeftPic", String.valueOf(this._doneArt.getLeftImg().getId()));
-				map.put("doneArtRightPic", String.valueOf(this._doneArt.getRightImg().getId()));
-				break;
-			}
-		} else {
-			map.put("doneArtType", String.valueOf(formFactor.undefined));
-			map.put("doneArtPic", String.valueOf(-1));
-			map.put("doneArtLeftPic", String.valueOf(-1));
-			map.put("doneArtRightPic", String.valueOf(-1));
-		}
+//		if(this._doneArt != null){
+//			map.put("doneArtType", String.valueOf(this._doneArt.getForm()));
+//			switch(this._doneArt.getForm()){
+//			case SingleImg:
+//				map.put("doneArtPic", String.valueOf(this._doneArt.getImg().getId()));
+//				map.put("doneArtLeftPic", String.valueOf(-1));
+//				map.put("doneArtRightPic", String.valueOf(-1));
+//				break;
+//			case SplitImg:
+//				map.put("doneArtPic", String.valueOf(-1));
+//				map.put("doneArtLeftPic", String.valueOf(this._doneArt.getLeftImg().getId()));
+//				map.put("doneArtRightPic", String.valueOf(this._doneArt.getRightImg().getId()));
+//				break;
+//			}
+//		} else {
+//			map.put("doneArtType", String.valueOf(formFactor.undefined));
+//			map.put("doneArtPic", String.valueOf(-1));
+//			map.put("doneArtLeftPic", String.valueOf(-1));
+//			map.put("doneArtRightPic", String.valueOf(-1));
+//		}
 		
 		// TODO: Attachment this needs some testing and remember to add it to the crud!!!!
 		if(this._AttaBool){

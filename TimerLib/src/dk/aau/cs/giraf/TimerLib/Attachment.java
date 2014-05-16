@@ -1,5 +1,7 @@
 package dk.aau.cs.giraf.TimerLib;
 
+import android.graphics.Bitmap;
+
 import java.util.HashMap;
 
 public class Attachment {
@@ -21,15 +23,15 @@ public class Attachment {
 		
 	}
 	
-	public Art getImg(){
+	public Bitmap getImg(){
 		return null;
 	}
 	
-	public Art getLeftImg(){
+	public Bitmap getLeftImg(){
 		return null;
 	}
 	
-	public Art getRightImg(){
+	public Bitmap getRightImg(){
 		return null;
 	}
 	
@@ -61,11 +63,11 @@ public class Attachment {
 		map.put("_gradient", String.valueOf(false));
 		
 		//SingleImg
-		map.put("singleImgId", String.valueOf(-1));
-		
-		//SplitImg
-		map.put("leftImgId", String.valueOf(-1));
-		map.put("rightImgId", String.valueOf(-1));
+//		map.put("singleImgId", String.valueOf(-1));
+//
+//		//SplitImg
+//		map.put("leftImgId", String.valueOf(-1));
+//		map.put("rightImgId", String.valueOf(-1));
 		
 		return map;
 	}

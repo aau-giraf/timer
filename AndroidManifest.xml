@@ -20,8 +20,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name" 
             android:screenOrientation="landscape"
-            android:theme="@style/WombatStyle"
-            android:noHistory="true">
+            android:theme="@style/WombatStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

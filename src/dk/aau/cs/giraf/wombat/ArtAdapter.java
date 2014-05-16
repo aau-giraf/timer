@@ -3,6 +3,7 @@ package dk.aau.cs.giraf.wombat;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +16,12 @@ import dk.aau.cs.giraf.TimerLib.Art;
  * Layer: Layout
  *
  */
-public class ArtAdapter extends ArrayAdapter<Art> {
+public class ArtAdapter extends ArrayAdapter<Bitmap> {
 
-	private ArrayList<Art> items;
+	private ArrayList<Bitmap> items;
 
 	public ArtAdapter(Context context, int textViewResourceId,
-			ArrayList<Art> items) {
+			ArrayList<Bitmap> items) {
 		super(context, textViewResourceId, items);
 		this.items = items;
 	}
@@ -34,17 +35,17 @@ public class ArtAdapter extends ArrayAdapter<Art> {
 			v = li.inflate(R.layout.profile_list, null);
 		}
 		// TODO: Pictures
-		Art c = items.get(position);
+        Bitmap c = items.get(position);
 		if (c != null) {
 			//Create the views
 			ImageView iv = (ImageView) v.findViewById(R.id.profilePic);
 			TextView tv = (TextView) v.findViewById(R.id.profileName);
 			//Set pictogram
 			if (iv != null) {
-				iv.setImageResource(c.getPath());
+				iv.setImageBitmap(c);
 			}//Set the caption
 			if (tv != null) {
-				tv.setText(c.getName());
+				//tv.setText(c);
 			}
 
 		}

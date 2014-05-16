@@ -646,6 +646,8 @@ public class CustomizeFragment extends Fragment {
                             // Cast values to CharSequence and put it in the builder
                             final WDialog attachment2 = new WDialog(getActivity());
 
+                            Intent i = new Intent();
+
                             attachment2.SetShade(false);
                             // New listview
 
@@ -661,11 +663,6 @@ public class CustomizeFragment extends Fragment {
                                             sp);
                                     break;
                                 case SingleImg:
-//                                    attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_picture));
-//                                    ArrayList<Art> art = guard.ArtList;
-//                                    adapter = new ArtAdapter(getActivity(),
-//                                            android.R.layout.simple_list_item_1, art);
-                                    Intent i = new Intent();
                                     i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
                                             "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
                                     i.putExtra("purpose", "single");
@@ -674,14 +671,20 @@ public class CustomizeFragment extends Fragment {
 
                                     startActivityForResult(i, 1);
 
+                                    attachment1.cancel();
 
                                     break;
                                 case SplitImg:
-                                    attachment2.setTitle(getString(R.string.attachment_dialog_split_left));
-                                    ArrayList<Art> splitArt = guard.ArtList;
-                                    adapter = new ArtAdapter(getActivity(),
-                                            android.R.layout.simple_list_item_1,
-                                            splitArt);
+                                    i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
+                                            "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
+                                    i.putExtra("purpose", "multi");
+                                    i.putExtra("currentChildID", guard.profileID);
+                                    i.putExtra("currentGuardianID", guard.guardianId);
+
+                                    startActivityForResult(i, 2);
+
+                                    attachment1.cancel();
+
                                     break;
                             }
 
@@ -704,104 +707,104 @@ public class CustomizeFragment extends Fragment {
                             attachment2.setAdapter(adapter);
                             // 3. window
 
-                            attachment2.setOnItemClickListener(new OnItemClickListener() {
-                                public void onItemClick(
-                                        AdapterView<?> parent, View view,
-                                        int position, long id) {
-
-                                    // Cast values to CharSequence and put
-                                    // it in the builder
-                                    final WDialog attachment3 = new WDialog(
-                                            getActivity());
-                                    attachment3.SetShade(false);
-                                    // New listview
-                                    attachment3.addButton(R.string.go_back, 1,
-                                            new OnClickListener() {
-
-                                                public void onClick(
-                                                        View arg0) {
-                                                    attachment3.cancel();
-
-                                                }
-                                            });
-
-                                    attachment3.addButton(R.string.cancel,
-                                            2, new OnClickListener() {
-
-                                        public void onClick(
-                                                View arg0) {
-                                            attachment1.cancel();
-                                            attachment2.cancel();
-                                            attachment3.cancel();
-                                        }
-                                    });
-                                    ArrayAdapter adapter = null;
-                                    switch (form) {
-                                        case Timer:
-                                            Attachment attTimer = new Timer(child.SubProfiles().get(position));
-                                            setAttachment(attTimer);
-
-                                            GToast tAttachedTimer = GToast.makeText(getActivity(),
-                                                    getString(R.string.attached_timer_toast),
-                                                    Toast.LENGTH_SHORT);
-                                            tAttachedTimer.show();
-
-                                            attachment1.dismiss();
-                                            attachment2.dismiss();
-                                            break;
-                                        case SingleImg:
-                                            Attachment att = new SingleImg(guard.ArtList.get(position));
-                                            setAttachment(att);
-
-                                            GToast tAttachedPictogram = GToast.makeText(getActivity(),
-                                                    getString(R.string.attached_pictogram_toast),
-                                                    Toast.LENGTH_SHORT);
-                                            tAttachedPictogram.show();
-
-                                            attachment1.dismiss();
-                                            attachment2.dismiss();
-                                            break;
-                                        case SplitImg:
-                                            attachment3.setTitle(getString(R.string.attachment_dialog_split_right));
-                                            ArrayList<Art> splitArt = guard.ArtList;
-                                            final Art art1 = guard.ArtList
-                                                    .get(position);
-                                            adapter = new ArtAdapter(
-                                                    getActivity(),
-                                                    android.R.layout.simple_list_item_1,
-                                                    splitArt);
-
-                                            attachment3.setAdapter(adapter);
-
-                                            attachment3.setOnItemClickListener(new OnItemClickListener() {
-                                                public void onItemClick(
-                                                        AdapterView<?> parent,
-                                                        View view,
-                                                        int position,
-                                                        long id) {
-                                                    final Art art2 = guard.ArtList.get(position);
-                                                    Attachment attSplit = new SplitImg(art1, art2);
-                                                    setAttachment(attSplit);
-
-                                                    GToast tAttachedPictograms = GToast.makeText(getActivity(),
-                                                            getString(R.string.attached_pictograms_toast),
-                                                            Toast.LENGTH_SHORT);
-                                                    tAttachedPictograms.show();
-
-                                                    attachment1.dismiss();
-                                                    attachment2.dismiss();
-                                                    attachment3.dismiss();
-
-                                                }
-                                            });
-                                            attachment3.show();
-
-                                            break;
-                                    }
-                                }
-                            });
-
-                            attachment2.show();
+//                            attachment2.setOnItemClickListener(new OnItemClickListener() {
+//                                public void onItemClick(
+//                                        AdapterView<?> parent, View view,
+//                                        int position, long id) {
+//
+//                                    // Cast values to CharSequence and put
+//                                    // it in the builder
+//                                    final WDialog attachment3 = new WDialog(
+//                                            getActivity());
+//                                    attachment3.SetShade(false);
+//                                    // New listview
+//                                    attachment3.addButton(R.string.go_back, 1,
+//                                            new OnClickListener() {
+//
+//                                                public void onClick(
+//                                                        View arg0) {
+//                                                    attachment3.cancel();
+//
+//                                                }
+//                                            });
+//
+//                                    attachment3.addButton(R.string.cancel,
+//                                            2, new OnClickListener() {
+//
+//                                        public void onClick(
+//                                                View arg0) {
+//                                            attachment1.cancel();
+//                                            attachment2.cancel();
+//                                            attachment3.cancel();
+//                                        }
+//                                    });
+//                                    ArrayAdapter adapter = null;
+//                                    switch (form) {
+//                                        case Timer:
+//                                            Attachment attTimer = new Timer(child.SubProfiles().get(position));
+//                                            setAttachment(attTimer);
+//
+//                                            GToast tAttachedTimer = GToast.makeText(getActivity(),
+//                                                    getString(R.string.attached_timer_toast),
+//                                                    Toast.LENGTH_SHORT);
+//                                            tAttachedTimer.show();
+//
+//                                            attachment1.dismiss();
+//                                            attachment2.dismiss();
+//                                            break;
+//                                        case SingleImg:
+//                                            Attachment att = new SingleImg(guard.ArtList.get(position));
+//                                            setAttachment(att);
+//
+//                                            GToast tAttachedPictogram = GToast.makeText(getActivity(),
+//                                                    getString(R.string.attached_pictogram_toast),
+//                                                    Toast.LENGTH_SHORT);
+//                                            tAttachedPictogram.show();
+//
+//                                            attachment1.dismiss();
+//                                            attachment2.dismiss();
+//                                            break;
+//                                        case SplitImg:
+//                                            attachment3.setTitle(getString(R.string.attachment_dialog_split_right));
+//                                            ArrayList<Art> splitArt = guard.ArtList;
+//                                            final Art art1 = guard.ArtList
+//                                                    .get(position);
+//                                            adapter = new ArtAdapter(
+//                                                    getActivity(),
+//                                                    android.R.layout.simple_list_item_1,
+//                                                    splitArt);
+//
+//                                            attachment3.setAdapter(adapter);
+//
+//                                            attachment3.setOnItemClickListener(new OnItemClickListener() {
+//                                                public void onItemClick(
+//                                                        AdapterView<?> parent,
+//                                                        View view,
+//                                                        int position,
+//                                                        long id) {
+//                                                    final Art art2 = guard.ArtList.get(position);
+//                                                    Attachment attSplit = new SplitImg(art1, art2);
+//                                                    setAttachment(attSplit);
+//
+//                                                    GToast tAttachedPictograms = GToast.makeText(getActivity(),
+//                                                            getString(R.string.attached_pictograms_toast),
+//                                                            Toast.LENGTH_SHORT);
+//                                                    tAttachedPictograms.show();
+//
+//                                                    attachment1.dismiss();
+//                                                    attachment2.dismiss();
+//                                                    attachment3.dismiss();
+//
+//                                                }
+//                                            });
+//                                            attachment3.show();
+//
+//                                            break;
+//                                    }
+//                                }
+//                            });
+//
+//                            attachment2.show();
 
                         }
                     });
@@ -826,6 +829,60 @@ public class CustomizeFragment extends Fragment {
                 PictogramController pichelp = new PictogramController(getActivity());
                 Pictogram pictogram = pichelp.getPictogramById(checkoutIds[0]);
                 pictogram.getImage();
+
+                Attachment att = new SingleImg(pictogram.getImage());
+                setAttachment(att);
+            }
+        }
+        else if (resultCode == Activity.RESULT_OK && requestCode == 2) {
+            int[] checkoutIds = data.getExtras().getIntArray("checkoutIds");
+            if (checkoutIds.length < 2) {
+                GToast t = GToast.makeText(MainActivity.context, "Ingen pictogrammer valgt.", Toast.LENGTH_LONG);
+                t.show();
+            }
+            else {
+                PictogramController pichelp = new PictogramController(getActivity());
+                Pictogram pictogram1 = pichelp.getPictogramById(checkoutIds[0]);
+                pictogram1.getImage();
+                Pictogram pictogram2 = pichelp.getPictogramById(checkoutIds[1]);
+                pictogram2.getImage();
+
+                Attachment att = new SplitImg(pictogram1.getImage(), pictogram2.getImage());
+                setAttachment(att);
+            }
+        }
+        else if (resultCode == Activity.RESULT_OK && requestCode == 3) {
+            int[] checkoutIds = data.getExtras().getIntArray("checkoutIds");
+            if (checkoutIds.length == 0) {
+                GToast t = GToast.makeText(MainActivity.context, "Ingen pictogrammer valgt.", Toast.LENGTH_LONG);
+                t.show();
+            }
+            else {
+                PictogramController pichelp = new PictogramController(getActivity());
+                Pictogram pictogram = pichelp.getPictogramById(checkoutIds[0]);
+                pictogram.getImage();
+
+                Attachment att = new SingleImg(pictogram.getImage());
+                setDonePicture(att);
+                currSubP.setDoneArt(att);
+            }
+        }
+        else if (resultCode == Activity.RESULT_OK && requestCode == 4) {
+            int[] checkoutIds = data.getExtras().getIntArray("checkoutIds");
+            if (checkoutIds.length < 2) {
+                GToast t = GToast.makeText(MainActivity.context, "Ingen pictogrammer valgt.", Toast.LENGTH_LONG);
+                t.show();
+            }
+            else {
+                PictogramController pichelp = new PictogramController(getActivity());
+                Pictogram pictogram1 = pichelp.getPictogramById(checkoutIds[0]);
+                pictogram1.getImage();
+                Pictogram pictogram2 = pichelp.getPictogramById(checkoutIds[1]);
+                pictogram2.getImage();
+
+                Attachment att = new SplitImg(pictogram1.getImage(), pictogram2.getImage());
+                setDonePicture(att);
+                currSubP.setDoneArt(att);
             }
         }
     }
@@ -1087,113 +1144,33 @@ public class CustomizeFragment extends Fragment {
                                             int position, long id) {
                         final formFactor mode = modeArray.get(position);
 
-                        final ArrayAdapter artList = new ArtAdapter(getActivity(),
-                                android.R.layout.simple_list_item_1, guard.ArtList);
+                        Intent i = new Intent();
+
                         switch (mode) {
                             case SingleImg:
-                                final WDialog singleDialog = new WDialog(getActivity(), R.string.donescreen_dialog_single);
-                                singleDialog.setAdapter(artList);
-                                singleDialog.setOnItemClickListener(new OnItemClickListener() {
 
-                                    public void onItemClick(AdapterView<?> parent, View view,
-                                                            int position, long id) {
-                                        Attachment atta1 = new SingleImg(guard.ArtList.get(position));
-                                        setDonePicture(atta1);
-                                        currSubP.setDoneArt(atta1);
-                                        doneDialog.dismiss();
-                                        singleDialog.dismiss();
+                                i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
+                                        "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
+                                i.putExtra("purpose", "single");
+                                i.putExtra("currentChildID", guard.profileID);
+                                i.putExtra("currentGuardianID", guard.guardianId);
 
-                                        GToast t = GToast.makeText(getActivity(),
-                                                getString(R.string.attached_pictogram_toast),
-                                                Toast.LENGTH_SHORT);
-                                        t.show();
+                                startActivityForResult(i, 3);
 
-                                    }
-                                });
+                                doneDialog.cancel();
 
-                                singleDialog.addButton(R.string.go_back, 1,
-                                        new OnClickListener() {
-
-                                            public void onClick(View arg0) {
-                                                singleDialog.cancel();
-                                            }
-                                        });
-
-                                singleDialog.addButton(R.string.cancel, 2, new OnClickListener() {
-
-                                    public void onClick(View arg0) {
-                                        doneDialog.cancel();
-                                        singleDialog.cancel();
-                                    }
-                                });
-                                singleDialog.show();
                                 break;
                             case SplitImg:
-                                final WDialog dualDialog = new WDialog(getActivity(), R.string.donescreen_dialog_left);
-                                dualDialog.setAdapter(artList);
-                                dualDialog.setOnItemClickListener(new OnItemClickListener() {
+                                i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
+                                        "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
+                                i.putExtra("purpose", "multi");
+                                i.putExtra("currentChildID", guard.profileID);
+                                i.putExtra("currentGuardianID", guard.guardianId);
 
-                                    public void onItemClick(AdapterView<?> parent, View view,
-                                                            int position, long id) {
-                                        final Art art1 = guard.ArtList.get(position);
-                                        final WDialog dialog1 = new WDialog(getActivity(), R.string.donescreen_dialog_right);
-                                        dialog1.setAdapter(artList);
-                                        dialog1.setOnItemClickListener(new OnItemClickListener() {
+                                startActivityForResult(i, 4);
 
-                                            public void onItemClick(AdapterView<?> parent, View view,
-                                                                    int position, long id) {
-                                                final Art art2 = guard.ArtList.get(position);
-                                                Attachment atta = new SplitImg(art1, art2);
-                                                currSubP.setDoneArt(atta);
-                                                setDonePicture(atta);
-                                                doneDialog.dismiss();
-                                                dualDialog.dismiss();
-                                                dialog1.dismiss();
+                                doneDialog.cancel();
 
-                                                GToast t = GToast.makeText(getActivity(),
-                                                        getString(R.string.attached_pictograms_toast),
-                                                        Toast.LENGTH_SHORT);
-                                                t.show();
-                                            }
-                                        });
-
-                                        dialog1.addButton(R.string.go_back, 1,
-                                                new OnClickListener() {
-
-                                                    public void onClick(View arg0) {
-//                                                        dualDialog.cancel();
-                                                        dialog1.cancel();
-                                                    }
-                                                });
-
-                                        dialog1.addButton(R.string.cancel, 2, new OnClickListener() {
-
-                                            public void onClick(View arg0) {
-                                                doneDialog.cancel();
-                                                dualDialog.cancel();
-                                                dialog1.cancel();
-                                            }
-                                        });
-                                        dialog1.show();
-                                    }
-                                });
-
-                                dualDialog.addButton(R.string.go_back, 1,
-                                        new OnClickListener() {
-
-                                            public void onClick(View arg0) {
-                                                dualDialog.cancel();
-                                            }
-                                        });
-
-                                dualDialog.addButton(R.string.cancel, 2, new OnClickListener() {
-
-                                    public void onClick(View arg0) {
-                                        doneDialog.cancel();
-                                        dualDialog.cancel();
-                                    }
-                                });
-                                dualDialog.show();
                                 break;
                         }
                     }

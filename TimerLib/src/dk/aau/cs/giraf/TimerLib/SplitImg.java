@@ -1,5 +1,7 @@
 package dk.aau.cs.giraf.TimerLib;
 
+import android.graphics.Bitmap;
+
 import java.util.HashMap;
 
 import dk.aau.cs.giraf.oasis.lib.Helper;
@@ -9,10 +11,10 @@ public class SplitImg extends Attachment {
 	Guardian guard = Guardian.getInstance();
 	Helper help = new Helper(guard.m_context);
 	
-	private Art _leftImg;
-	private Art _rightImg;
+	private Bitmap _leftImg;
+	private Bitmap _rightImg;
 	
-	public SplitImg(Art left, Art right){
+	public SplitImg(Bitmap left, Bitmap right){
 		this._leftImg = left;
 		this._rightImg = right;
 	}
@@ -25,11 +27,11 @@ public class SplitImg extends Attachment {
 		return formFactor.SplitImg;
 	}
 	
-	public Art getLeftImg(){
+	public Bitmap getLeftImg(){
 		return this._leftImg;
 	}
 	
-	public Art getRightImg(){
+	public Bitmap getRightImg(){
 		return this._rightImg;
 	}
 	
@@ -46,11 +48,11 @@ public class SplitImg extends Attachment {
 		map.put("_gradient", String.valueOf(-1));
 		
 		//SingleImg
-		map.put("singleImgId", String.valueOf(-1));
-		
-		//SplitImg
-		map.put("leftImgId", String.valueOf(this._leftImg.getId()));
-		map.put("rightImgId", String.valueOf(this._rightImg.getId()));
+//		map.put("singleImgId", String.valueOf(-1));
+//
+//		//SplitImg
+//		map.put("leftImgId", String.valueOf(this._leftImg.getId()));
+//		map.put("rightImgId", String.valueOf(this._rightImg.getId()));
 		
 		return map;
 	}

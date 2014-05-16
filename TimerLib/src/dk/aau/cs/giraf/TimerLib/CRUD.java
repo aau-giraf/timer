@@ -294,7 +294,7 @@ public class CRUD {
 			//Attachment attachP = new Attachment();
 			formFactor aFactor = formFactor.convert(hm.get("AttachmentForm"));
 			formFactor tFactor = formFactor.convert(hm.get("timerForm"));
-			Attachment art = null;
+			Attachment atc = null;
 			switch(aFactor){
 			case Timer:
 				int t_bgColor = Integer.valueOf(hm.get("_bgColor"));
@@ -304,17 +304,17 @@ public class CRUD {
 				boolean t_gradient = Boolean.valueOf(hm.get("_gradient"));
 				int t_time = Integer.valueOf((String)hm.get("totalTime"));
 
-				art = new Timer(tFactor,t_bgColor,t_timeLeftColor, t_timeSpentColor, t_frameColor,t_time, t_gradient);
+                atc = new Timer(tFactor,t_bgColor,t_timeLeftColor, t_timeSpentColor, t_frameColor,t_time, t_gradient);
 				break;
 			case SingleImg:
-				int asd = Integer.valueOf(hm.get("singleImgId"));
-				art = new SingleImg(guard.ArtList.get(Integer.valueOf(hm.get("singleImgId"))));
+//				int asd = Integer.valueOf(hm.get("singleImgId"));
+                atc = new SingleImg(guard.ArtList.get(0));
 				break;
 			case SplitImg:
-				art = new SplitImg(guard.ArtList.get(Integer.valueOf(hm.get("leftImgId"))),guard.ArtList.get(Integer.valueOf(hm.get("rightImgId"))));
+                atc = new SplitImg(guard.ArtList.get(0),guard.ArtList.get(1));
 				break;
 			}
-			p.setAttachment(art);
+			p.setAttachment(atc);
 
 			//Slutbilled
 
@@ -322,10 +322,10 @@ public class CRUD {
 			Attachment slutbilled = null;
 			switch(sFactor){
 			case SingleImg:
-				slutbilled = new SingleImg(guard.ArtList.get(Integer.valueOf(hm.get("doneArtPic"))));
+				slutbilled = new SingleImg(guard.ArtList.get(0));
 				break;
 			case SplitImg:
-				slutbilled = new SplitImg(guard.ArtList.get(Integer.valueOf(hm.get("doneArtLeftPic"))),guard.ArtList.get(Integer.valueOf(hm.get("doneArtRightPic"))));
+				slutbilled = new SplitImg(guard.ArtList.get(0),guard.ArtList.get(1));
 				break;
 			}
 			p.setDoneArt(slutbilled);

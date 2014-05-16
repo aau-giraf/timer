@@ -53,19 +53,19 @@ public class DoneScreenActivity extends Activity {
 			switch(sub.getDoneArt().getForm()){
 			case SingleImg:
 				i = new ImageView(this);
-				i.setImageResource(sub.getDoneArt().getImg().getPath());
+				i.setImageBitmap(sub.getDoneArt().getImg());
 				i.setBackgroundColor(000);
 				frame.addView(i, frameWidth, frameHeight);
 				break;
 			case SplitImg:
 				frameWidth = frameWidth/2;
 				i = new ImageView(this);
-				i.setImageResource(sub.getDoneArt().getLeftImg().getPath());
+				i.setImageBitmap(sub.getDoneArt().getLeftImg());
 				i.setBackgroundColor(000);
 				frame.addView(i, frameWidth, frameHeight);
 
 				i2 = new ImageView(this);
-				i2.setImageResource(sub.getDoneArt().getRightImg().getPath());
+				i2.setImageBitmap(sub.getDoneArt().getRightImg());
 				i2.setBackgroundColor(000);
 				frame.addView(i2, frameWidth, frameHeight);
 				break;
@@ -73,7 +73,7 @@ public class DoneScreenActivity extends Activity {
 		} else {
 			//If there are no done screen attachment, it will use default
         	i = new ImageView(this);
-			i.setImageResource(guard.ArtList.get(0).getPath());
+			i.setImageBitmap(guard.ArtList.get(0));
 			i.setBackgroundColor(000);
 			frame.addView(i, frameWidth, frameHeight);
 		}
@@ -85,7 +85,7 @@ public class DoneScreenActivity extends Activity {
 				/* We do not want to login every time a timer ends */
 				Intent i = new Intent("dk.aau.cs.giraf.launcher.AUTHENTICATE");
 //                i.addCategory("dk.aau.cs.giraf.launcher.GIRAF");
-//                startActivity(i);
+                startActivity(i);
 //                guard.reset();
 				finish();
 			}

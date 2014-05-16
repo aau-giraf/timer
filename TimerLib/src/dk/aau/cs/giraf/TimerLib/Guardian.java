@@ -28,7 +28,7 @@ public class Guardian {
 	
 	private SubProfile _selectedSubProfile = null;
 	
-	public ArrayList<Art> ArtList = new ArrayList<Art>();
+	public ArrayList<Bitmap> ArtList = new ArrayList<Bitmap>();
 	
 	public String _name = null;
 	public CRUD crud;
@@ -99,12 +99,12 @@ public class Guardian {
 	 * Guardian guard = Guadian.getInstance();
 	 * @return Guardian instance
 	 */
-	public static Guardian getInstance(int m_childId, int m_guardianId, Context c){
+	public static Guardian getInstance(int m_childId, int m_guardianId, Context c, ArrayList<Bitmap> artList){
 		if(_instance == null){
 
 			_instance = new Guardian();
 			
-//			_instance.ArtList = artList;
+			_instance.ArtList = artList;
 		
 			
 			TimerHelper help = new TimerHelper();
