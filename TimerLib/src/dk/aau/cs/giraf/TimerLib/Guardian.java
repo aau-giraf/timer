@@ -99,12 +99,12 @@ public class Guardian {
 	 * Guardian guard = Guadian.getInstance();
 	 * @return Guardian instance
 	 */
-	public static Guardian getInstance(int m_childId, int m_guardianId, Context c, ArrayList<Art> artList){
+	public static Guardian getInstance(int m_childId, int m_guardianId, Context c){
 		if(_instance == null){
 
 			_instance = new Guardian();
 			
-			_instance.ArtList = artList;
+//			_instance.ArtList = artList;
 		
 			
 			TimerHelper help = new TimerHelper();

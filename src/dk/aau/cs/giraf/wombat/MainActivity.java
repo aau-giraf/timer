@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
 		artList.add(p_ryd_op);
 
 		/* Initialize the guardian object */
-    	guard = Guardian.getInstance(childId, guardianId, getApplicationContext(), artList);    	
+    	guard = Guardian.getInstance(childId, guardianId, getApplicationContext());
     	guard.backgroundColor = color;
     	
 		// Set content view according to main, which implements two fragments

@@ -15,7 +15,12 @@ import dk.aau.cs.giraf.gui.GTextView;
 import dk.aau.cs.giraf.gui.GButtonSettings;
 import dk.aau.cs.giraf.gui.GToast;
 import dk.aau.cs.giraf.gui.GToggleButton;
+import dk.aau.cs.giraf.oasis.lib.controllers.PictogramCategoryController;
+import dk.aau.cs.giraf.oasis.lib.controllers.PictogramController;
+import dk.aau.cs.giraf.oasis.lib.models.Pictogram;
+import dk.aau.cs.giraf.oasis.lib.models.PictogramCategory;
 import dk.aau.cs.giraf.oasis.lib.models.Profile;
+import dk.aau.cs.giraf.pictogram.PictoFactory;
 import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
@@ -656,10 +661,20 @@ public class CustomizeFragment extends Fragment {
                                             sp);
                                     break;
                                 case SingleImg:
-                                    attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_picture));
-                                    ArrayList<Art> art = guard.ArtList;
-                                    adapter = new ArtAdapter(getActivity(),
-                                            android.R.layout.simple_list_item_1, art);
+//                                    attachment2.setTitle(getString(R.string.attachment_dialog_pick_a_picture));
+//                                    ArrayList<Art> art = guard.ArtList;
+//                                    adapter = new ArtAdapter(getActivity(),
+//                                            android.R.layout.simple_list_item_1, art);
+                                    Intent i = new Intent();
+                                    i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
+                                            "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
+                                    i.putExtra("purpose", "single");
+                                    i.putExtra("currentChildID", guard.profileID);
+                                    i.putExtra("currentGuardianID", guard.guardianId);
+
+                                    startActivityForResult(i, 1);
+
+
                                     break;
                                 case SplitImg:
                                     attachment2.setTitle(getString(R.string.attachment_dialog_split_left));
@@ -794,14 +809,7 @@ public class CustomizeFragment extends Fragment {
                 }
             }
         });
-//        Intent i = new Intent();
-//        i.setComponent(new ComponentName("dk.aau.cs.giraf.pictosearch",
-//                "dk.aau.cs.giraf.pictosearch.PictoAdminMain"));
-//        i.putExtra("purpose", "multi");
-//        i.putExtra("currentChildID", guard.getChild().getProfileId());
-//        i.putExtra("currentGuardianID", guard.profileID);
-//
-//        startActivityForResult(i, 1);
+
     }
 
     @Override
@@ -809,7 +817,16 @@ public class CustomizeFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-
+            int[] checkoutIds = data.getExtras().getIntArray("checkoutIds");
+            if (checkoutIds.length == 0) {
+                GToast t = GToast.makeText(MainActivity.context, "Ingen pictogrammer valgt.", Toast.LENGTH_LONG);
+                t.show();
+            }
+            else {
+                PictogramController pichelp = new PictogramController(getActivity());
+                Pictogram pictogram = pichelp.getPictogramById(checkoutIds[0]);
+                pictogram.getImage();
+            }
         }
     }
     /**

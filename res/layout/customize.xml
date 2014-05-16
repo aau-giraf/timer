@@ -440,7 +440,7 @@
             android:orientation="horizontal"
             android:paddingRight="20dp" >
 
-            <dk.aau.cs.giraf.gui.GButtonPlay
+            <dk.aau.cs.giraf.gui.GButton
                 android:id="@+id/customize_start_button"
                 android:layout_width="110dp"
                 android:layout_height="125dp"
