@@ -71,31 +71,14 @@ public class MainActivity extends Activity {
         artList.add(BitmapFactory.decodeResource(getResources(), R.drawable.p_done));
         artList.add(BitmapFactory.decodeResource(getResources(), R.drawable.p_gaa_til_skema));
 
-        /* Insert hard coded pictograms */
-//        Art p_done = new Art(R.drawable.p_done,"Færdig", 0);
-//		Art p_skema = new Art(R.drawable.p_gaa_til_skema,"Gå til skema", 1);
-//		Art p_taxa = new Art(R.drawable.p_gaa_til_taxa,"Gå til taxa", 2);
-//		Art p_ryd_op = new Art(R.drawable.p_ryd_op, "Ryd op", 3);
-//
-//		artList.add(p_done);
-//		artList.add(p_skema);
-//		artList.add(p_taxa);
-//		artList.add(p_ryd_op);
-
 		/* Initialize the guardian object */
     	guard = Guardian.getInstance(childId, guardianId, getApplicationContext(), artList);
     	guard.backgroundColor = color;
-    	
-		// Set content view according to main, which implements two fragments
-//        if(extras != null) {
-            setContentView(R.layout.main);
-            Drawable d = getResources().getDrawable(R.drawable.background);
-            d.setColorFilter(color, PorterDuff.Mode.OVERLAY);
-            findViewById(R.id.mainLayout).setBackgroundDrawable(d);
-//        }
-//        else {
-//            setContentView(R.layout.blank);
-//        }
+
+        setContentView(R.layout.main);
+        Drawable d = getResources().getDrawable(R.drawable.background);
+        d.setColorFilter(color, PorterDuff.Mode.OVERLAY);
+        findViewById(R.id.mainLayout).setBackgroundDrawable(d);
 	}
 
 

@@ -12,5 +12,5 @@
     <!--Enable automatic exception tracking-->
     <bool name="ga_reportUncaughtExceptions">true</bool>
 
-    <bool name="ga_dryRun">true</bool>
+    <bool name="ga_dryRun">false</bool>
 </resources>
