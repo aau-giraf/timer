@@ -511,7 +511,7 @@ public class CustomizeFragment extends Fragment {
 								currSubP.timeLeftColor);
                     }
                 });
-                diag.SetCurrColor(0xFF000000);
+                diag.SetCurrColor(currSubP.timeLeftColor);
                 diag.show();
 			}
 		});
@@ -529,7 +529,7 @@ public class CustomizeFragment extends Fragment {
                                 currSubP.timeSpentColor);
                     }
                 });
-                diag.SetCurrColor(0xFF000000);
+                diag.SetCurrColor(currSubP.timeSpentColor);
                 diag.show();
 			}
 		});
@@ -547,7 +547,7 @@ public class CustomizeFragment extends Fragment {
                                 currSubP.frameColor);
                     }
                 });
-                diag.SetCurrColor(0xFF000000);
+                diag.SetCurrColor(currSubP.frameColor);
                 diag.show();
 			}
 		});
@@ -566,7 +566,7 @@ public class CustomizeFragment extends Fragment {
                                 currSubP.bgcolor);
                     }
                 });
-                diag.SetCurrColor(0xFF000000);
+                diag.SetCurrColor(currSubP.bgcolor);
                 diag.show();
 			}
 
