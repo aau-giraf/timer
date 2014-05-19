@@ -214,6 +214,10 @@ public class CustomizeFragment extends Fragment {
 
 		preSubP = null;
 
+//        SoundButton = (GButton) getActivity().findViewById(R.id.sound_button);
+        DoneScreenActivity.soundindex = R.raw.song;
+        SoundButton.setText("Vælg lyd");
+
 		reloadCustomize();
 	}
 
@@ -907,8 +911,6 @@ public class CustomizeFragment extends Fragment {
      * Initializes the sound buttons
      */
     private void initSoundButton(){
-
-
         String attachText = getString(R.string.SoundLoaded);
         SoundButton = (GButton) getActivity().findViewById(R.id.sound_button);
 
@@ -972,6 +974,7 @@ public class CustomizeFragment extends Fragment {
                                 break;
                             default:
                                 DoneScreenActivity.soundindex = R.raw.song;
+                                SoundButton.setText("Vælg lyd");
                                 break;
                         }
                         SoundDialogBox.cancel(); //lukker dialog når lyd er valgt
