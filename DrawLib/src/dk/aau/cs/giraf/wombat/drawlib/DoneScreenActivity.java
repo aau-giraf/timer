@@ -86,7 +86,7 @@ public class DoneScreenActivity extends Activity {
 				Intent i = new Intent("dk.aau.cs.giraf.launcher.AUTHENTICATE");
 //                i.addCategory("dk.aau.cs.giraf.launcher.GIRAF");
                 startActivity(i);
-//                guard.reset();
+                guard.reset();
 				finish();
 			}
 		});
