@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
         	childId = extras.getInt("currentChildID");
         } else {
             new AlertDialog.Builder(this)
-                    .setTitle("Timer")
+                    .setTitle("Tidstager")
                     .setMessage(R.string.launch_from_giraf)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {

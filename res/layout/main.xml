@@ -65,7 +65,8 @@
                 android:layout_height="62dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:focusable="true"/>
 
             <dk.aau.cs.giraf.gui.GButton
                 android:id="@+id/new_template_button"

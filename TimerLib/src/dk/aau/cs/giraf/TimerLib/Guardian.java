@@ -117,7 +117,7 @@ public class Guardian {
 			int appId = _instance.findAppId();
 			_instance.guardianId = _instance.findGuardianId();//finder også hele guardian objektet
 			
-			_instance.createChildren();
+//			_instance.createChildren();
 			
 			_instance.crud = new CRUD(appId, c);
 			_instance.crud.loadGuardian(_instance.guardianId);
@@ -179,7 +179,7 @@ public class Guardian {
 		// If not, try the default guard
 		if(m_oGuard == null){
 			for (Profile p : oHelp.profilesHelper.getProfiles()) {
-				if(p.getName().equals("Tony Stark")){
+				if(p.getName().equals("Jens")){
 					m_oGuard = p;
 					break;
 				}

@@ -43,6 +43,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -1207,9 +1208,9 @@ public class CustomizeFragment extends Fragment {
 		initStartButton();
         initStopButton();
         //initSettingButton();
-        initProfileButton();
         initSoundButton();
         initFullScreenCheckBox();
+        initProfileButton();
 
 	}
 
@@ -1731,24 +1732,25 @@ public class CustomizeFragment extends Fragment {
 
         //Call the method setup with a Profile guardian, no currentProfile (which means that the guardian is the current Profile) and the onCloseListener
 
+
         profileButton.setup(guard.m_oGuard, null, new GButtonProfileSelect.onCloseListener() {
             @Override
             public void onClose(Profile guardianProfile, Profile currentProfile) {
                 //If the guardian is the selected profile create GToast displaying the name
-                if(currentProfile == null){
+                if (currentProfile == null) {
                     GToast w = new GToast(getActivity().getApplicationContext(), "Personale profilen " + guardianProfile.getName().toString() + " er blevet valgt", 2);
                     w.show();
                 }
                 //If another current Profile is the selected profile create GToast displaying the name
-                else{
+                else {
                     GToast w = new GToast(getActivity().getApplicationContext(), "Profilen " + currentProfile.getName().toString() + " er blevet valgt", 2);
                     w.show();
 
                     if (currentProfile.getRole() == Profile.Roles.CHILD) {
                         guard.profileID = currentProfile.getId();
-                        if(children == null || !children.isEmpty()) {
+                        if (children == null || !children.isEmpty()) {
                             for (Child _child : children) {
-                                if(_child.getProfileId() == guard.profileID) {
+                                if (_child.getProfileId() == guard.profileID) {
                                     children.get(children.indexOf(_child)).select();
                                     child = _child;
                                     break;
@@ -1760,8 +1762,7 @@ public class CustomizeFragment extends Fragment {
                         CharSequence cs;
                         if (child != null) {
                             cs = child.name;
-                        }
-                        else {
+                        } else {
                             cs = "Ingen Valgt Profil";
                         }
                         tv.setText(cs);
@@ -1776,7 +1777,6 @@ public class CustomizeFragment extends Fragment {
 
             }
         });
-
     }
 
 	 /**
