@@ -144,17 +144,20 @@ public class CRUD {
             Application app = oHelp.applicationHelper.getApplicationById(appId);
             
             ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, c);
-			if(profApp.getSettings() != null){
-				Setting<String, String, String> settings = profApp.getSettings();
-				Set<String> keys = settings.keySet();
+            if(profApp != null){
 
-				for (String key : keys) {
-					if(id < Long.valueOf(key)){
-						id = Integer.valueOf(key);
-					}					
-				}	
-			}			
-			mC.setSubProfileId(id);
+                if(profApp.getSettings() != null){
+                    Setting<String, String, String> settings = profApp.getSettings();
+                    Set<String> keys = settings.keySet();
+
+                    for (String key : keys) {
+                        if(id < Long.valueOf(key)){
+                            id = Integer.valueOf(key);
+                        }
+                    }
+                }
+                mC.setSubProfileId(id);
+            }
 
 			guard.Children().add(mC);
 		}
@@ -240,20 +243,21 @@ public class CRUD {
         Application app = oHelp.applicationHelper.getApplicationById(appId);
         Profile prof = oHelp.profilesHelper.getProfileById(id);
         ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, prof);
+        if(profApp != null){
+            if(profApp.getSettings() != null){
+                Setting<String, String, String> settings = profApp.getSettings();
+                Set<String> keys = settings.keySet();
 
-		if(profApp.getSettings() != null){
-			Setting<String, String, String> settings = profApp.getSettings();
-			Set<String> keys = settings.keySet();
-
-			for (String key : keys) {
-				if(key.equalsIgnoreCase(_lastUsed) == false){
-					if(key.equalsIgnoreCase("count") == false){
-						SubProfile sub = getSubProfile(settings.get(key));
-						mSubs.add(sub);
-					}
-				}
-			}	
-		}
+                for (String key : keys) {
+                    if(key.equalsIgnoreCase(_lastUsed) == false){
+                        if(key.equalsIgnoreCase("count") == false){
+                            SubProfile sub = getSubProfile(settings.get(key));
+                            mSubs.add(sub);
+                        }
+                    }
+                }
+            }
+        }
 		return mSubs;
 	}
 

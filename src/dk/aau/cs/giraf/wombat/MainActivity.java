@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 //        Helper ohelp = new Helper(context);
 //        ohelp.CreateDummyData();
 
-        int guardianId = -1;
+        int guardianId = 2;
         int childId = -1;
         int color;
 		/* Get the data sent from the launcher (if there is any) */

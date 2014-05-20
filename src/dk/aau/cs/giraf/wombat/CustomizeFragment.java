@@ -1738,13 +1738,8 @@ public class CustomizeFragment extends Fragment {
             public void onClose(Profile guardianProfile, Profile currentProfile) {
                 //If the guardian is the selected profile create GToast displaying the name
                 if (currentProfile == null) {
-                    GToast w = new GToast(getActivity().getApplicationContext(), "Personale profilen " + guardianProfile.getName().toString() + " er blevet valgt", 2);
-                    w.show();
-                }
-                //If another current Profile is the selected profile create GToast displaying the name
+               //If another current Profile is the selected profile create GToast displaying the name
                 else {
-                    GToast w = new GToast(getActivity().getApplicationContext(), "Profilen " + currentProfile.getName().toString() + " er blevet valgt", 2);
-                    w.show();
 
                     if (currentProfile.getRole() == Profile.Roles.CHILD) {
                         guard.profileID = currentProfile.getId();
