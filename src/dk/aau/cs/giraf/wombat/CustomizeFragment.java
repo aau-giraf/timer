@@ -1739,6 +1739,7 @@ public class CustomizeFragment extends Fragment {
                 //If the guardian is the selected profile create GToast displaying the name
                 if (currentProfile == null) {
                //If another current Profile is the selected profile create GToast displaying the name
+                }
                 else {
 
                     if (currentProfile.getRole() == Profile.Roles.CHILD) {
