@@ -3,20 +3,15 @@ package dk.aau.cs.giraf.wombat;
         import android.app.Service;
         import android.content.Intent;
         import android.graphics.PixelFormat;
-        import android.media.MediaPlayer;
         import android.os.Handler;
         import android.os.IBinder;
         import android.view.Display;
         import android.view.Gravity;
-        import android.view.LayoutInflater;
-        import android.view.MotionEvent;
         import android.view.View;
         import android.view.WindowManager;
-        import android.view.View.OnTouchListener;
-        import android.widget.Button;
-        import android.widget.FrameLayout;
-        import android.widget.Toast;
         import android.content.Context;
+
+        import java.util.ArrayList;
 
         import dk.aau.cs.giraf.TimerLib.Guardian;
         import dk.aau.cs.giraf.TimerLib.SubProfile;
@@ -26,7 +21,7 @@ public class Overlay extends Service {
     View view;
     private Handler mHandler;
     private Runnable mRunnable;
-    private MediaPlayer mediaPlayer;
+
     @Override
     public IBinder
     onBind(Intent intent) {
@@ -37,37 +32,38 @@ public class Overlay extends Service {
     public void onCreate() {
         super.onCreate();
 
-//        mediaPlayer = MediaPlayer.create(Overlay.this, CustomizeFragment.soundindex); //soundplayer with song
+        //Get the needed profiles
         Guardian guard = Guardian.getInstance();
         SubProfile sub = guard.getSubProfile();
         sub.getAttachment();
 
+        //Find the size of the screen
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-        Display disp = wm.getDefaultDisplay();
+        Display display = wm.getDefaultDisplay();
 
-        DrawLibActivity.frameHeight = disp.getHeight()/DrawLibActivity.scale;
-        DrawLibActivity.frameWidth = disp.getWidth()/DrawLibActivity.scale;
-        view = GetWatchViews(sub, DrawLibActivity.frameWidth);
+        DrawLibActivity.frameHeight = display.getHeight()/DrawLibActivity.scale;
+        DrawLibActivity.frameWidth = display.getWidth()/DrawLibActivity.scale;
+        view = GetWatchViews(sub, DrawLibActivity.frameWidth);//Finds the watch that will be shown
 
-        //Layoutparams bestemme hvordan denne service skal fungere
+        //Layoutparams decides how the overlay behaves
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 DrawLibActivity.frameWidth,
                 DrawLibActivity.frameHeight,
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,//System overlay er det der tvinger servicen til altid at blive vist
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE//gør at man ikke kan klikke på det
-                        |WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL//hvis FLAG_NOT_FOCUSABLE ikke er slået til endnu så sender den klik events videre til det der ligger nedenunder
-                        |WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
-                PixelFormat.TRANSLUCENT);//Gør vinduet gennemsigtigt, men da vi viser et view gør det intet
+                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,//System overlay forces the overlay to always be visible
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE//Makes the overlay non focusable
+                        |WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL//Sends any touch events to the activity underneath
+                        |WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,//Checks for touch events outside the overlay
+                PixelFormat.TRANSLUCENT);//Makes the overlay transparent
 
 
-        params.gravity = Gravity.RIGHT | Gravity.TOP;//får overlayet til at ligge til højre i toppen
-        params.setTitle("Load Average");
-        wm.addView(view, params);
+        params.gravity = Gravity.RIGHT | Gravity.TOP;//Places the overlay in the top right corner of the screen
+        params.setTitle("Load Average");//Sets the title of the overlay
+        wm.addView(view, params);//Adds the watch to the overlay
 
-        mHandler = new Handler();
-
+        //Intent for starting the donescreen
         final Intent overlayIntent = new Intent(Overlay.this, DoneScreenActivity.class);
         overlayIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        //This runnable is a container that contains code, that will be executed when it's called
         mRunnable = new Runnable() {
             public void run() {
                 getApplicationContext().startActivity(overlayIntent);
@@ -78,21 +74,29 @@ public class Overlay extends Service {
         };
 
         /* Set the delay of the intent to the time of the timer + 1 second
-         * otherwize the user will have a hard time seeing the timer reach 0*/
+         * otherwize the user will have a hard time seeing the timer reach 0
+         * Also the code in the runnable is delayed, so it's called when the timer ends*/
+        mHandler = new Handler();
         mHandler.postDelayed(mRunnable, (sub.get_totalTime()+1)*1000);
 
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        //When the timer ends, it removes the watch
         if(view != null)
         {
             ((WindowManager) getSystemService(WINDOW_SERVICE)).removeView(view);
             view = null;
         }
+
+        //Stops the runnable from being called
         mHandler.removeCallbacks(mRunnable);
     }
 
+    //Finds the appropriate watch that will be shown in the overlay
     public View GetWatchViews(SubProfile sub, int frameWidth) {
         switch (sub.formType()) {
             case ProgressBar:
