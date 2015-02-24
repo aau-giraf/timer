@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <dk.aau.cs.giraf.gui.GToggleButton
+            android:id="@+id/houglassButton"
+            android:layout_width="110dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn"
+            android:drawableTop="@drawable/thumbnail_hourglass"
+            android:paddingTop="20dp"
+            android:text="@string/customize_hourglass_description"
+            android:textSize="14dp" />
+
+        <dk.aau.cs.giraf.gui.GToggleButton
+            android:id="@+id/timetimerButton"
+            android:layout_width="110dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn"
+            android:drawableTop="@drawable/thumbnail_timetimer"
+            android:paddingTop="20dp"
+            android:text="@string/customize_timetimer_description"
+            android:textSize="14dp"
+            android:visibility="gone" />
+
+        <dk.aau.cs.giraf.gui.GToggleButton
+            android:id="@+id/timetimerStandardButton"
+            android:layout_width="110dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn"
+            android:drawableTop="@drawable/thumbnail_timetimer"
+            android:paddingTop="20dp"
+            android:text="@string/customize_timetimer_standard_description"
+            android:textSize="14dp"/>
+
+        <dk.aau.cs.giraf.gui.GToggleButton
+            android:id="@+id/progressbarButton"
+            android:layout_width="110dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn"
+            android:drawableTop="@drawable/thumbnail_progressbar"
+            android:paddingTop="20dp"
+            android:text="@string/customize_progressbar_description"
+            android:textSize="14dp" />
+
+        <dk.aau.cs.giraf.gui.GToggleButton
+            android:id="@+id/digitalButton"
+            android:layout_width="110dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn"
+            android:drawableTop="@drawable/thumbnail_digital"
+            android:paddingTop="20dp"
+            android:text="@string/customize_digital_description"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#FFFFFF" />
+
+    <!-- start 1 her -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <!-- start 2 her -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <kankan.wheel.widget.WheelView
+                        android:id="@+id/minPicker"
+                        android:layout_width="60dp"
+                        android:layout_height="120dp" />
+
+                    <dk.aau.cs.giraf.gui.GTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@string/min_sec_devider"
+                        android:textSize="30dp" />
+
+                    <kankan.wheel.widget.WheelView
+                        android:id="@+id/secPicker"
+                        android:layout_width="60dp"
+                        android:layout_height="120dp" />
+                </LinearLayout>
+
+                <dk.aau.cs.giraf.gui.GTextView
+                    android:id="@+id/showTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|center_horizontal"
+                    android:paddingBottom="2dp" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="20dp">
+
+                <!-- COLOR PICKER -->
+
+                <dk.aau.cs.giraf.gui.GTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/colors"
+                    android:textSize="22dp"
+                    android:layout_marginTop="-10dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <dk.aau.cs.giraf.gui.GTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:layout_centerVertical="true"
+                        android:text="@string/color_time_left"
+                        android:textSize="16dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="65dp"
+                            android:layout_margin="10dp"
+                            android:paddingLeft="175dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical" >
+
+                                <LinearLayout
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:background="@drawable/color_btn_normal">
+                                        <dk.aau.cs.giraf.gui.GCheckBox
+                                            android:id="@+id/gCheckBox"
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_gravity="center_horizontal"/>
+                                </LinearLayout>
+
+                                <dk.aau.cs.giraf.gui.GTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:text="@string/gradient"/>
+                            </LinearLayout>
+
+                            <dk.aau.cs.giraf.gui.GButton
+                                android:id="@+id/gradientButton_1"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/color_btn"
+                                android:layout_marginRight="10dp"/>
+
+                            <dk.aau.cs.giraf.gui.GButton
+                                android:id="@+id/gradientButton_2"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/color_btn"
+                                android:layout_marginLeft="10dp"/>
+                        </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp">
+
+                    <dk.aau.cs.giraf.gui.GTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/frame"
+                        android:textSize="16dp"
+                        android:gravity="left"/>
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"
+
+                        android:layout_centerHorizontal="true">
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/frameColorButton"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/color_btn" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="10dp"
+                    android:layout_height="10dp">
+                    
+                    </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp">
+
+                    <dk.aau.cs.giraf.gui.GTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/background"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="10dp">
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/backgroundColorButton"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+                        </dk.aau.cs.giraf.gui.GButton>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <dk.aau.cs.giraf.gui.GTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/FullScreen"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/color_btn_normal">
+                            <dk.aau.cs.giraf.gui.GCheckBox
+                                android:id="@+id/FullScreenCheckBox"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-20dp">
+
+                <dk.aau.cs.giraf.gui.GTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SlutLyd"
+                    android:paddingLeft="20dp"
+                    android:textSize="16dp">
+                </dk.aau.cs.giraf.gui.GTextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:paddingRight="55dp"
+                    android:layout_marginTop="-10dp">
+
+                    <dk.aau.cs.giraf.gui.GButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sound_button"
+                        android:text="Vælg lyd"
+                        android:textSize="14dp"/>
+                    </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="10dp">
+            </LinearLayout>
+        </LinearLayout>
+        <!-- slut 2 her -->
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#FFFFFF" />
+
+        <!-- start 3 her -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <dk.aau.cs.giraf.gui.GButton
+                        android:id="@+id/customize_attachment"
+                        android:layout_width="110dp"
+                        android:layout_height="125dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/btn"
+                        android:drawableTop="@drawable/thumbnail_attachment"
+                        android:paddingTop="20dp"
+                        android:text="@string/attachment_button_description"
+                        android:textSize="14dp" />
+
+
+                    <dk.aau.cs.giraf.gui.GButton
+                        android:id="@+id/customize_donescreen"
+                        android:layout_width="110dp"
+                        android:layout_height="125dp"
+                        android:layout_gravity="left|bottom"
+                        android:background="@drawable/btn"
+                        android:drawableTop="@drawable/thumbnail_attachment"
+                        android:paddingTop="20dp"
+                        android:text="@string/donescreen_button_description"
+                        android:textSize="13dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/customize_save"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
+                            android:layout_gravity="left|bottom"
+                            android:background="@drawable/btn"
+                            android:drawableTop="@drawable/thumbnail_save"
+                            android:paddingTop="20dp"
+                            android:text="@string/save_button"
+                            android:textSize="14dp"/>
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/switch_activity_button"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
+                            android:drawableTop="@drawable/thumbnail_change_orientation"
+                            android:paddingTop="20dp"
+                            android:text="@string/switch_layout_button"
+                            android:textSize="14dp" />
+
+                    <!--<Button
+                        android:id="@+id/customize_save_as"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="left|bottom"
+                        android:background="@drawable/btn"
+                        android:drawableTop="@drawable/thumbnail_saveas"
+                        android:paddingTop="20dp"
+                        android:text="@string/save_as_button"
+                        android:textSize="14dp" />-->
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/customize_start_button"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
+                            android:paddingTop="20dp"
+                            android:text="@string/start_button"
+                            android:textSize="14dp" />
+
+
+                        <dk.aau.cs.giraf.gui.GButton
+                            android:id="@+id/customize_stop_button"
+                            android:layout_width="110dp"
+                            android:layout_height="125dp"
+                            android:paddingTop="20dp"
+                            android:text="@string/stop_button"
+                            android:textSize="14dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp" >
+
+                    <TextView
+                        android:id="@+id/customize_attachment_text"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:gravity="center"
+                        android:textSize="18dp" />
+                </LinearLayout>
+                -->
+                <!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp" >
+
+
+                </LinearLayout>
+                -->
+            </RelativeLayout>
+        </LinearLayout>
+        <!-- slut 3 her -->
+    </LinearLayout>
+    <!-- slut 1 her -->
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/White" />
+
+</LinearLayout>
