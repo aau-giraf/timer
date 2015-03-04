@@ -15,7 +15,7 @@
         android:targetSdkVersion="19"/>
 
     <application
-        android:icon="@drawable/timer"
+        android:icon="@drawable/timer_icon"
         android:label="@string/app_name"
         tools:replace="icon, label">
         <activity
