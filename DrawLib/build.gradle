@@ -10,6 +10,11 @@ buildscript {
 
 apply plugin: 'android-library'
 
+repositories {
+    maven {
+        url 'http://cs-cust06-int.cs.aau.dk/artifactory/libraries'
+    }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':TimerLib')

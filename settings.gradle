@@ -1,10 +1,1 @@
-include ':Wombat',':DrawLib',':metadata',':GIRAF_Components',':OasisLib',':TimerLib',':',':pictogram-lib',':wheel'
-
-
-
-include ':local-db'
-project(':local-db').projectDir = new File('GIRAF_Components/OasisLib/local-db')
-project(':OasisLib').projectDir = new File('GIRAF_Components/OasisLib')
-project(':metadata').projectDir = new File('GIRAF_Components/OasisLib/metadata')
-include ':metadata_local'
-project(':metadata_local').projectDir = new File('GIRAF_Components/OasisLib/local-db/metadata_local')
+include ':Wombat',':DrawLib',':TimerLib',':wheel'
