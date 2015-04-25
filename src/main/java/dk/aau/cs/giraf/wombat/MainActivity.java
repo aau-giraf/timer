@@ -48,21 +48,27 @@ public class MainActivity extends Activity {
         int color;
 		/* Get the data sent from the launcher (if there is any) */
 
-
-		Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-        	guardianId = extras.getInt("currentGuardianID");
-        	childId = extras.getInt("currentChildID");
-        } else {
-            new AlertDialog.Builder(this)
-                    .setTitle("Tidstager")
-                    .setMessage(R.string.launch_from_giraf)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                            Process.killProcess(Process.myPid());
-                        }
-                    }).show();
+        if (ActivityManager.isUserAMonkey()) {
+            Helper h = new Helper(this);
+            guardianId = h.profilesHelper.getGuardians().get(0).getId();
+            childId = h.profilesHelper.getChildren().get(0).getId();
+        }
+        else {
+            Bundle extras = getIntent().getExtras();
+            if (extras != null) {
+                guardianId = extras.getInt("currentGuardianID");
+                childId = extras.getInt("currentChildID");
+            } else {
+                new AlertDialog.Builder(this)
+                        .setTitle("Tidstager")
+                        .setMessage(R.string.launch_from_giraf)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Process.killProcess(Process.myPid());
+                            }
+                        }).show();
+            }
         }
 
         color = getResources().getColor(R.color.GIRAFOrange);
