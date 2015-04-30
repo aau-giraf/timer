@@ -7,22 +7,23 @@ import java.util.List;
 import java.util.Set;
 
 import android.content.Context;
-import dk.aau.cs.giraf.oasis.lib.Helper;
-import dk.aau.cs.giraf.oasis.lib.models.Application;
-import dk.aau.cs.giraf.oasis.lib.models.Profile;
-import dk.aau.cs.giraf.oasis.lib.models.ProfileApplication;
-import dk.aau.cs.giraf.oasis.lib.models.Setting;
+import dk.aau.cs.giraf.dblib.Helper;
+import dk.aau.cs.giraf.dblib.models.Application;
+import dk.aau.cs.giraf.dblib.models.Profile;
+import dk.aau.cs.giraf.dblib.models.ProfileApplication;
+import dk.aau.cs.giraf.dblib.models.Setting;
+import dk.aau.cs.giraf.dblib.models.Settings;
 
 public class CRUD {
 	Context context;
 	Helper oHelp;
 	Guardian guard = Guardian.getInstance();
-	private int appId; 
+	private long appId;
 	private String _lastUsed = "lastUsed";
 	private String _subprofile = "SUBPROFILE";
 	private ArrayList<String> lastUsedList;
 
-	public CRUD(int appID, Context context){
+	public CRUD(long appID, Context context){
 		this.context = context;
 		oHelp = new Helper(context);
 		this.appId = appID;
@@ -112,7 +113,7 @@ public class CRUD {
 	//		Media m = mp.getMediaById(id)
 	//	}
 
-	public void loadGuardian(int guardianID){
+	public void loadGuardian(long guardianID){
 		// Load the guardian form Oasis
 		Profile mGuardian = oHelp.profilesHelper.getProfileById(guardianID);
 
@@ -181,7 +182,7 @@ public class CRUD {
 
 		// Find the app settings on the profileID
         Application app = oHelp.applicationHelper.getApplicationById(appId);
-        Profile prof = oHelp.profilesHelper.getProfileById((int)c.getProfileId());        
+        Profile prof = oHelp.profilesHelper.getProfileById(c.getProfileId());
         ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app, prof);
         
 		Setting<String, String, String> settings = profApp.getSettings();
@@ -206,7 +207,7 @@ public class CRUD {
 	 * @return
 	 * 		Returns true if it completed, else returns false
 	 */
-	public boolean saveGuardian(int guardianId, SubProfile sp){
+	public boolean saveGuardian(long guardianId, SubProfile sp){
 		// Convert the subprofile to a hashmap
 		HashMap<String, String> hm = sp.getHashMap();
 
@@ -215,14 +216,14 @@ public class CRUD {
         Profile prof = oHelp.profilesHelper.getProfileById(guardianId);
         ProfileApplication profApp = oHelp.profileApplicationHelper.getProfileApplicationByProfileIdAndApplicationId(app,prof);
 
-		Setting<String, String, String> settings = profApp.getSettings();
+        Setting<String, String, String> settings = profApp.getSettings();
 		if(settings == null){
 			settings = new Setting<String, String, String>();
 		}
 
 		// Insert the hashmap with the subprofile ID as key
-		settings.put(String.valueOf(sp.getDB_id()), hm);
-        profApp.setSettings(settings);
+        settings.put(String.valueOf(sp.getDB_id()), hm);
+        prof.setSettings(settings);
 //		Profile newProf = oHelp.profilesHelper.getProfileById(guardianId);
         oHelp.profileApplicationHelper.modifyProfileApplication(profApp);
 
@@ -237,7 +238,7 @@ public class CRUD {
 	 * @return
 	 * 		A list of subprofiles extracted from the settings
 	 */
-	private ArrayList<SubProfile> findProfileSettings(int id) {
+	private ArrayList<SubProfile> findProfileSettings(long id) {
 		ArrayList<SubProfile> mSubs = new ArrayList<SubProfile>();
 
         Application app = oHelp.applicationHelper.getApplicationById(appId);
@@ -377,7 +378,7 @@ public class CRUD {
 	 * @param profileId
 	 * 		The profile which the subprofile is going to be removed from
 	 */
-	public void removeSubprofileFromProfileId(SubProfile p, int profileId) {
+	public void removeSubprofileFromProfileId(SubProfile p, long profileId) {
 		// Find the profile by Id
 
 		// Find the Wombat App

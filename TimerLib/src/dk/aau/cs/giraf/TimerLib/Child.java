@@ -10,8 +10,8 @@ public class Child implements Comparable<Child>{
 	public String img;
 	private boolean _deleteCheck = true;
 	private boolean _lock = false;
-	private int _ProfileId = -2;
-	private int _subProfileId = -1;
+	private long _ProfileId = -2;
+	private long _subProfileId = -1;
 	
 	/**
 	 * Default constructor for Child
@@ -22,22 +22,22 @@ public class Child implements Comparable<Child>{
 		this.name = name;
 	}
 	
-	void setSubProfileId(int id){
+	void setSubProfileId(long id){
 		this._subProfileId = id;
 	}
 	
-	int getNewId(){
+	long getNewId(){
 		this._subProfileId++;
 		return this._subProfileId;
 	}
 	
-	void setProfileId(int id){
+	void setProfileId(long id){
 		if(this._ProfileId == -2){
 			this._ProfileId = id;
 		}
 	}
 	
-	public int getProfileId(){
+	public long getProfileId(){
 		return this._ProfileId;
 	}
 	

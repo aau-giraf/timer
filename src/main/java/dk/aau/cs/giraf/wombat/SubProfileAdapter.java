@@ -21,7 +21,7 @@ import dk.aau.cs.giraf.gui.GButtonProfileSelect;
 import dk.aau.cs.giraf.gui.GProfileSelector;
 import dk.aau.cs.giraf.gui.GTextView;
 import dk.aau.cs.giraf.gui.GToast;
-import dk.aau.cs.giraf.oasis.lib.models.Profile;
+import dk.aau.cs.giraf.dblib.models.Profile;
 
 /**
  * This class is an ArrayAdapter which fit the SubProfile object

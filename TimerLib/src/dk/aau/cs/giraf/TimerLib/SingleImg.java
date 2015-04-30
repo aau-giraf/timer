@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import java.util.HashMap;
 
-import dk.aau.cs.giraf.oasis.lib.Helper;
+import dk.aau.cs.giraf.dblib.Helper;
 
 public class SingleImg extends Attachment {
 	

@@ -18,11 +18,11 @@ public class SubProfile implements Comparable<SubProfile>{
 	public boolean saveAs = true;
 	protected Attachment _attachment = null;
 	boolean _AttaBool = false;
-	private int DB_id = -1;
+	private long DB_id = -1;
 	private Attachment _doneArt = null;
 	int lastUsedTime = -1;
-	int refChild = -1;
-	int refPro = -1;
+	long refChild = -1;
+	long refPro = -1;
 	int timeKey = 0;
 
 	//constructor
@@ -231,7 +231,7 @@ public class SubProfile implements Comparable<SubProfile>{
 		} else {
 		this._id = oldProfile._id;
 		this.refPro = oldProfile.DB_id;
-		int ref = 0;
+		long ref = 0;
 		for(Child c : guard.Children()){
 			for(SubProfile p : c.SubProfiles()){
 				if(p.getId() == this.getId()){
@@ -309,11 +309,11 @@ public class SubProfile implements Comparable<SubProfile>{
 		return form;
 	}
 
-	public int getDB_id() {
+	public long getDB_id() {
 		return DB_id;
 	}
 
-	public void setDB_id(int dB_id) {
+	public void setDB_id(long dB_id) {
 		if(this.DB_id < 0){
 			this.DB_id = dB_id;
 		}

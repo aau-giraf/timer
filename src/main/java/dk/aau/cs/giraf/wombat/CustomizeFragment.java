@@ -15,11 +15,11 @@ import dk.aau.cs.giraf.gui.GTextView;
 import dk.aau.cs.giraf.gui.GButtonSettings;
 import dk.aau.cs.giraf.gui.GToast;
 import dk.aau.cs.giraf.gui.GToggleButton;
-import dk.aau.cs.giraf.oasis.lib.controllers.PictogramCategoryController;
-import dk.aau.cs.giraf.oasis.lib.controllers.PictogramController;
-import dk.aau.cs.giraf.oasis.lib.models.Pictogram;
-import dk.aau.cs.giraf.oasis.lib.models.PictogramCategory;
-import dk.aau.cs.giraf.oasis.lib.models.Profile;
+import dk.aau.cs.giraf.dblib.controllers.PictogramCategoryController;
+import dk.aau.cs.giraf.dblib.controllers.PictogramController;
+import dk.aau.cs.giraf.dblib.models.Pictogram;
+import dk.aau.cs.giraf.dblib.models.PictogramCategory;
+import dk.aau.cs.giraf.dblib.models.Profile;
 import dk.aau.cs.giraf.pictogram.PictoFactory;
 import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
@@ -1590,7 +1590,7 @@ public class CustomizeFragment extends Fragment {
 
 				 public void onClick(View v){
                      currSubP.addLastUsed(preSubP);
-                     guard.saveGuardian(currSubP);
+                     //guard.saveGuardian(currSubP);
                      currSubP.select();
 
                          DrawLibActivity.scale = TempChange;

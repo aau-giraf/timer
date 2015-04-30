@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.TimerLib.SubProfile;
-import dk.aau.cs.giraf.oasis.lib.Helper;
+import dk.aau.cs.giraf.dblib.Helper;
 /**
  * This class is a ListFragment which fit the SubProfile object
  * Layer: Layout

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ListView;
 import dk.aau.cs.giraf.TimerLib.Child;
 import dk.aau.cs.giraf.TimerLib.Guardian;
-import dk.aau.cs.giraf.oasis.lib.models.Profile;
+import dk.aau.cs.giraf.dblib.models.Profile;
 /**
  * This class is a ListFragment used by the Child Object
  * Layer: Layout

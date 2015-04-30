@@ -23,8 +23,8 @@ import com.google.analytics.tracking.android.EasyTracker;
 
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
-import dk.aau.cs.giraf.oasis.lib.Helper;
-import dk.aau.cs.giraf.oasis.lib.models.Pictogram;
+import dk.aau.cs.giraf.dblib.Helper;
+import dk.aau.cs.giraf.dblib.models.Pictogram;
 
 /**
  * This class is an MainActivity used to initiate WOMBAT
@@ -43,8 +43,8 @@ public class MainActivity extends Activity {
 //        Helper ohelp = new Helper(context);
 //        ohelp.CreateDummyData();
 
-        int guardianId = 2;
-        int childId = -1;
+        long guardianId = 2;
+        long childId = -1;
         int color;
 		/* Get the data sent from the launcher (if there is any) */
 
@@ -56,8 +56,8 @@ public class MainActivity extends Activity {
         else {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                guardianId = extras.getInt("currentGuardianID");
-                childId = extras.getInt("currentChildID");
+                guardianId = extras.getLong("currentGuardianID");
+                childId = extras.getLong("currentChildID");
             } else {
                 new AlertDialog.Builder(this)
                         .setTitle("Tidstager")

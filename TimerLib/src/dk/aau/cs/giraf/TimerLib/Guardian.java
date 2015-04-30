@@ -7,10 +7,10 @@ import java.util.List;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import dk.aau.cs.giraf.oasis.lib.Helper;
-import dk.aau.cs.giraf.oasis.lib.models.Application;
-import dk.aau.cs.giraf.oasis.lib.models.Profile;
-import dk.aau.cs.giraf.oasis.lib.models.ProfileApplication;
+import dk.aau.cs.giraf.dblib.Helper;
+import dk.aau.cs.giraf.dblib.models.Application;
+import dk.aau.cs.giraf.dblib.models.Profile;
+import dk.aau.cs.giraf.dblib.models.ProfileApplication;
 
 public class Guardian {
 	
@@ -41,13 +41,13 @@ public class Guardian {
 	private Helper oHelp;
 	public Profile m_oGuard;
 	
-	private int childId;
-	public int guardianId;
+	private long childId;
+	public long guardianId;
 	Context m_context;
 	
 	public int profilePosition;
-	public int profileID;
-	public int subProfileID; 			// Stores the id of the saved subprofile
+	public long profileID;
+	public long subProfileID; 			// Stores the id of the saved subprofile
 	public boolean subProfileFirstClick;	// When a subprofile is saved, this is set to true
 												// When something is clicked in the subprofile list, set to false
 	public boolean profileFirstClick;
@@ -99,7 +99,7 @@ public class Guardian {
 	 * Guardian guard = Guadian.getInstance();
 	 * @return Guardian instance
 	 */
-	public static Guardian getInstance(int m_childId, int m_guardianId, Context c, ArrayList<Bitmap> artList){
+	public static Guardian getInstance(long m_childId, long m_guardianId, Context c, ArrayList<Bitmap> artList){
 		if(_instance == null){
 
 			_instance = new Guardian();
@@ -114,7 +114,7 @@ public class Guardian {
 			
 			_instance.oHelp = new Helper(c);
 			
-			int appId = _instance.findAppId();
+			long appId = _instance.findAppId();
 			_instance.guardianId = _instance.findGuardianId();//finder også hele guardian objektet
 			
 //			_instance.createChildren();
@@ -141,7 +141,7 @@ public class Guardian {
 	 * Find the app specified by the mainActivity, if non is avalible a default one is created
 	 * @return
 	 */
-	private int findAppId() {
+	private long findAppId() {
 		// Find the app which has the same package name as this one
 		for (Application a : oHelp.applicationHelper.getApplications()) {
 			String cname = m_context.getPackageName();
@@ -167,7 +167,7 @@ public class Guardian {
 	 * Search for the guard specified by the mainActivity, if non is existing a default one is created
 	 * @return
 	 */
-	private int findGuardianId() {
+	private long findGuardianId() {
 		
 		if(guardianId != -1){
 			// Does the original guard exist
