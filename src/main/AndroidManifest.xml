@@ -17,6 +17,7 @@
     <application
         android:icon="@drawable/timer_icon"
         android:label="@string/app_name"
+        android:theme="@style/GirafTheme.NoTitleBar"
         tools:replace="icon, label">
         <activity
             android:name=".MainActivity"

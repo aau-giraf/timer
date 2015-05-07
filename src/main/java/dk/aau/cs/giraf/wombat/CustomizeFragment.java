@@ -20,6 +20,7 @@ import dk.aau.cs.giraf.dblib.controllers.PictogramController;
 import dk.aau.cs.giraf.dblib.models.Pictogram;
 import dk.aau.cs.giraf.dblib.models.PictogramCategory;
 import dk.aau.cs.giraf.dblib.models.Profile;
+import dk.aau.cs.giraf.gui.GirafButton;
 import dk.aau.cs.giraf.pictogram.PictoFactory;
 import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
@@ -80,25 +81,25 @@ public class CustomizeFragment extends Fragment {
     private ArrayList<Child> children = guard.publishList();
     private Child child;
 
-	private GToggleButton hourglassButton;
-	private GToggleButton timetimerButton;
-    private GToggleButton timetimerStandardButton;
-	private GToggleButton progressbarButton;
-	private GToggleButton digitalButton;
-	private GButton startButton;
-    private GButton stopButton;
+	private GirafButton hourglassButton;
+	private GirafButton timetimerButton;
+    private GirafButton timetimerStandardButton;
+	private GirafButton progressbarButton;
+	private GirafButton digitalButton;
+	private GirafButton startButton;
+    private GirafButton stopButton;
     private GButton settingButton;
     private GButtonProfileSelect profileButton;
-    private GButton SoundButton;
-    private GButton switchLayoutButton;
-	private GButton saveButton;
+    private GirafButton SoundButton;
+    private GirafButton switchLayoutButton;
+	private GirafButton saveButton;
 	private GButton saveAsButton;
-	private GButton attachmentButton;
-	private GButton donePictureButton;
-	private GButton colorGradientButton1;
-	private GButton colorGradientButton2;
-	private GButton colorFrameButton;
-	private GButton colorBackgroundButton;
+	private GirafButton attachmentButton;
+	private GirafButton donePictureButton;
+	private Button colorGradientButton1;
+	private Button colorGradientButton2;
+	private Button colorFrameButton;
+	private Button colorBackgroundButton;
 
 	private WheelView mins;
 	private WheelView secs;
@@ -109,6 +110,7 @@ public class CustomizeFragment extends Fragment {
     SharedPreferences pref;
     private ArrayList<formFactor> _soundlist = null; // list of sounds
     private MediaPlayer mediaPlayer; //soundplayer
+	private GTextView SoundButtonText;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -138,7 +140,7 @@ public class CustomizeFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		GButton b = (GButton) getActivity()
+		GirafButton b = (GirafButton) getActivity()
 				.findViewById(R.id.new_template_button);
 		b.setOnClickListener(new OnClickListener() {
 
@@ -217,7 +219,7 @@ public class CustomizeFragment extends Fragment {
 
 //        SoundButton = (GButton) getActivity().findViewById(R.id.sound_button);
         DoneScreenActivity.soundindex = R.raw.song;
-        SoundButton.setText("Vælg lyd");
+        //SoundButton.setText("Vælg lyd");
 
 		reloadCustomize();
 	}
@@ -226,7 +228,7 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the style chooser buttons
 	 */
 	private void initStyleChoser() {
-		hourglassButton = (GToggleButton) getActivity().findViewById(R.id.houglassButton);
+		hourglassButton = (GirafButton) getActivity().findViewById(R.id.houglassButton);
 		hourglassButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -234,7 +236,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		timetimerButton = (GToggleButton) getActivity().findViewById(
+		timetimerButton = (GirafButton) getActivity().findViewById(
 				R.id.timetimerButton);
 		timetimerButton.setOnClickListener(new OnClickListener() {
 
@@ -244,7 +246,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-        timetimerStandardButton = (GToggleButton) getActivity().findViewById(R.id.timetimerStandardButton);
+        timetimerStandardButton = (GirafButton) getActivity().findViewById(R.id.timetimerStandardButton);
         timetimerStandardButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
@@ -253,7 +255,7 @@ public class CustomizeFragment extends Fragment {
             }
         });
 
-		progressbarButton = (GToggleButton) getActivity().findViewById(
+		progressbarButton = (GirafButton) getActivity().findViewById(
 				R.id.progressbarButton);
 		progressbarButton.setOnClickListener(new OnClickListener() {
 
@@ -263,7 +265,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		digitalButton = (GToggleButton) getActivity().findViewById(R.id.digitalButton);
+		digitalButton = (GirafButton) getActivity().findViewById(R.id.digitalButton);
 		digitalButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -282,39 +284,39 @@ public class CustomizeFragment extends Fragment {
 	private void selectStyle(formFactor formType) {
 		if (formType == formFactor.Hourglass) {
 			currSubP = currSubP.toHourglass();
-            hourglassButton.setToggled(true);//help
+			hourglassButton.setChecked(true);
 			setSave();
 		} else {
-            hourglassButton.setToggled(false);
+            hourglassButton.setChecked(false);
 		}
 
 		if (formType == formFactor.TimeTimer) {
 			currSubP = currSubP.toTimeTimer();
-            timetimerButton.setToggled(true);
+            timetimerButton.setChecked(true);
 			setSave();
 		} else {
-            timetimerButton.setToggled(false);
+            timetimerButton.setChecked(false);
 		}
         if (formType == formFactor.TimeTimerStandard) {
             currSubP = currSubP.toTimeTimerStandard();
-            timetimerStandardButton.setToggled(true);
+            timetimerStandardButton.setChecked(true);
             setSave();
         } else {
-            timetimerStandardButton.setToggled(false);
+            timetimerStandardButton.setChecked(false);
         }
 		if (formType == formFactor.ProgressBar) {
 			currSubP = currSubP.toProgressBar();
-            progressbarButton.setToggled(true);
+            progressbarButton.setChecked(true);
 			setSave();
 		} else {
-            progressbarButton.setToggled(false);
+            progressbarButton.setChecked(false);
 		}
 		if (formType == formFactor.DigitalClock) {
 			currSubP = currSubP.toDigitalClock();
-            digitalButton.setToggled(true);
+            digitalButton.setChecked(true);
 			setSave();
 		} else {
-            digitalButton.setToggled(false);
+            digitalButton.setChecked(false);
 		}
 		genDescription();
 		initBottomMenu();
@@ -501,7 +503,7 @@ public class CustomizeFragment extends Fragment {
             }
         });
 
-		colorGradientButton1 = (GButton) getActivity().findViewById(
+		colorGradientButton1 = (Button) getActivity().findViewById(
 				R.id.gradientButton_1);
 
 		setColor(colorGradientButton1.getBackground(), currSubP.timeLeftColor);
@@ -521,7 +523,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		colorGradientButton2 = (GButton) getActivity().findViewById(
+		colorGradientButton2 = (Button) getActivity().findViewById(
 				R.id.gradientButton_2);
 		setColor(colorGradientButton2.getBackground(), currSubP.timeSpentColor);
 		colorGradientButton2.setOnClickListener(new OnClickListener() {
@@ -539,7 +541,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		colorFrameButton = (GButton) getActivity().findViewById(
+		colorFrameButton = (Button) getActivity().findViewById(
 				R.id.frameColorButton);
 		setColor(colorFrameButton.getBackground(), currSubP.frameColor);
 		colorFrameButton.setOnClickListener(new OnClickListener() {
@@ -557,7 +559,7 @@ public class CustomizeFragment extends Fragment {
 			}
 		});
 
-		colorBackgroundButton = (GButton) getActivity().findViewById(
+		colorBackgroundButton = (Button) getActivity().findViewById(
 				R.id.backgroundColorButton);
 		setColor(colorBackgroundButton.getBackground(), currSubP.bgcolor);
 		colorBackgroundButton.setOnClickListener(new OnClickListener() {
@@ -590,7 +592,7 @@ public class CustomizeFragment extends Fragment {
     private void initAttachmentButton() {
 
         // Button for attachment
-        attachmentButton = (GButton) getActivity().findViewById(
+        attachmentButton = (GirafButton) getActivity().findViewById(
                 R.id.customize_attachment);
         // Set attachment button onclicklistener
         // 1. window
@@ -913,7 +915,8 @@ public class CustomizeFragment extends Fragment {
      */
     private void initSoundButton(){
         String attachText = getString(R.string.SoundLoaded);
-        SoundButton = (GButton) getActivity().findViewById(R.id.sound_button);
+        SoundButton = (GirafButton) getActivity().findViewById(R.id.sound_button);
+		SoundButtonText = (GTextView) getActivity().findViewById(R.id.sound_button_text);
 
         SoundButton.setOnClickListener(new OnClickListener() {
 
@@ -951,31 +954,31 @@ public class CustomizeFragment extends Fragment {
                         switch (position){
                             case 0:
                                 DoneScreenActivity.soundindex = R.raw.song;
-                                SoundButton.setText("Standard Biip");
+                                SoundButtonText.setText("Standard Biip");
                                 break;
                             case 1:
                                 DoneScreenActivity.soundindex = R.raw.cow;
-                                SoundButton.setText("Ko");
+								SoundButtonText.setText("Ko");
                                 break;
                             case 2:
                                 DoneScreenActivity.soundindex = R.raw.bike;
-                                SoundButton.setText("Cykel horn");
+								SoundButtonText.setText("Cykel horn");
                                 break;
                             case 3:
                                 DoneScreenActivity.soundindex = R.raw.bike2;
-                                SoundButton.setText("Cykel horn to");
+								SoundButtonText.setText("Cykel horn to");
                                 break;
                             case 4:
                                 DoneScreenActivity.soundindex = R.raw.waterdrop;
-                                SoundButton.setText("Dråbe");
+								SoundButtonText.setText("Dråbe");
                                 break;
                             case 5:
                                 DoneScreenActivity.soundindex = R.raw.chicken;
-                                SoundButton.setText("Høne");
+								SoundButtonText.setText("Høne");
                                 break;
                             default:
                                 DoneScreenActivity.soundindex = R.raw.song;
-                                SoundButton.setText("Vælg lyd");
+								SoundButtonText.setText("Vælg lyd");
                                 break;
                         }
                         SoundDialogBox.cancel(); //lukker dialog når lyd er valgt
@@ -1073,9 +1076,9 @@ public class CustomizeFragment extends Fragment {
 
 		ld.setDrawableByLayerId(R.id.second_attachment_layer, getResources().getDrawable(pictureRes));
 
-		attachmentButton.setCompoundDrawablesWithIntrinsicBounds(null, getSingleDrawable(ld), null, null);
+		/*attachmentButton.setCompoundDrawablesWithIntrinsicBounds(null, getSingleDrawable(ld), null, null);
 
-		attachmentButton.setText(textRes);
+		attachmentButton.setText(textRes);*/
 	}
 
     public Drawable getSingleDrawable(LayerDrawable layerDrawable){
@@ -1135,7 +1138,7 @@ public class CustomizeFragment extends Fragment {
 		final ArrayList<formFactor> modeArray = new ArrayList<formFactor>();
 		modeArray.add(formFactor.SingleImg);
 		modeArray.add(formFactor.SplitImg);
-		donePictureButton = (GButton) getActivity().findViewById(
+		donePictureButton = (GirafButton) getActivity().findViewById(
 				R.id.customize_donescreen);
 		donePictureButton.setOnClickListener(new OnClickListener() {
             public void onClick(final View v) {
@@ -1218,7 +1221,7 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the save button
 	 */
 	 private void initSaveButton() {
-		 saveButton = (GButton) getActivity().findViewById(R.id.customize_save);
+		 saveButton = (GirafButton) getActivity().findViewById(R.id.customize_save);
 		 Drawable d;
 		 if (currSubP.save && !guard.getChild().getLock()
 				 && guard.getChild() != null) {
@@ -1306,8 +1309,8 @@ public class CustomizeFragment extends Fragment {
 			 });
 		 }
 
-         saveButton.setText("Gem");//tjaa, godt spørgsmål :) det virker okay..
-		 saveButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+         /*saveButton.setText("Gem");//tjaa, godt spørgsmål :) det virker okay..
+		 saveButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);*/
 	 }
 
 	 /**
@@ -1520,7 +1523,7 @@ public class CustomizeFragment extends Fragment {
      * Initialize the switch button
      */
     private void initSwitchButton() {
-        switchLayoutButton = (GButton) getActivity().findViewById(
+        switchLayoutButton = (GirafButton) getActivity().findViewById(
                 R.id.switch_activity_button);
 
                     switchLayoutButton.setOnClickListener(new OnClickListener() {
@@ -1573,17 +1576,17 @@ public class CustomizeFragment extends Fragment {
 	  * Initialize the start button
 	  */
      private void initStartButton() {
-		 startButton = (GButton) getActivity().findViewById(
+		 startButton = (GirafButton) getActivity().findViewById(
 				 R.id.customize_start_button);
 
 		 if (currSubP.saveAs) {
              if (MainActivity.svc != null){
-                 startButton.setText(R.string.restart_button);
-                 startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_restart), null, null);
+                 /*startButton.setText(R.string.restart_button);
+                 startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_restart), null, null);*/
              }
              else{
-                 startButton.setText(R.string.start_button);
-                 startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_start), null, null);
+                 /*startButton.setText(R.string.start_button);
+                 startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_start), null, null);*/
              }
 
 			 startButton.setOnClickListener(new OnClickListener() {
@@ -1629,8 +1632,8 @@ public class CustomizeFragment extends Fragment {
 			 });
 		 }
          else {
-             startButton.setText(R.string.start_button);
-             startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_start_gray), null, null);
+             /*startButton.setText(R.string.start_button);
+             startButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_start_gray), null, null);*/
 
              startButton.setOnClickListener(new OnClickListener() {
 
@@ -1647,12 +1650,12 @@ public class CustomizeFragment extends Fragment {
     *Initialize the stop button
     */
     private void initStopButton() {
-        stopButton = (GButton)getActivity().findViewById(
+        stopButton = (GirafButton)getActivity().findViewById(
                 R.id.customize_stop_button);
         stopButton.refreshDrawableState();
         if (MainActivity.svc != null) {
-            stopButton.setText(R.string.stop_button);
-            stopButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_stop), null, null);
+            /*stopButton.setText(R.string.stop_button);
+            stopButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_stop), null, null);*/
 
             stopButton.setOnClickListener(new OnClickListener() {
 
@@ -1667,7 +1670,7 @@ public class CustomizeFragment extends Fragment {
             });
         }
         else {
-            stopButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_stop_gray), null, null);
+            //stopButton.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.thumbnail_stop_gray), null, null);
                 stopButton.setOnClickListener(new OnClickListener() {
 
                     public void onClick(View v) {
