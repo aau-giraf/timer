@@ -1,11 +1,8 @@
 package dk.aau.cs.giraf.wombat;
 
-import java.security.Guard;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import dk.aau.cs.giraf.TimerLib.Sounds;
 import dk.aau.cs.giraf.dblib.Helper;
 //import dk.aau.cs.giraf.gui.GButton;
 //import dk.aau.cs.giraf.gui.GButtonProfileSelect;
@@ -16,15 +13,12 @@ import dk.aau.cs.giraf.gui.GTextView;
 //import dk.aau.cs.giraf.gui.GButtonSettings;
 import dk.aau.cs.giraf.gui.GToast;
 //import dk.aau.cs.giraf.gui.GToggleButton;
-import dk.aau.cs.giraf.dblib.controllers.PictogramCategoryController;
 import dk.aau.cs.giraf.dblib.controllers.PictogramController;
 import dk.aau.cs.giraf.dblib.models.Pictogram;
-import dk.aau.cs.giraf.dblib.models.PictogramCategory;
 import dk.aau.cs.giraf.dblib.models.Profile;
 import dk.aau.cs.giraf.gui.GWidgetProfileSelection;
 import dk.aau.cs.giraf.gui.GirafButton;
 import dk.aau.cs.giraf.gui.GirafProfileSelectorDialog;
-import dk.aau.cs.giraf.pictogram.PictoFactory;
 import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
@@ -34,10 +28,8 @@ import kankan.wheel.widget.adapters.NumericWheelAdapter;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ComponentName;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -47,8 +39,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Debug;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,10 +49,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.LinearLayout;
-import dk.aau.cs.giraf.TimerLib.Art;
+
 import dk.aau.cs.giraf.TimerLib.Attachment;
 import dk.aau.cs.giraf.TimerLib.Child;
 import dk.aau.cs.giraf.TimerLib.Guardian;
@@ -126,16 +114,7 @@ public class CustomizeFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
  			Bundle savedInstanceState) {
-		// Populate the fragment according to the details layout
-
-        pref = this.getActivity().getSharedPreferences("LayoutPrefFile", 0);
-        if (pref.getBoolean("verticalLayout", false)){
-            return inflater.inflate(R.layout.customize, container, false);
-        } else {
-            return inflater.inflate(R.layout.customize_vertical, container, false);
-
-        }
-
+		return inflater.inflate(R.layout.customize, container, false);
 	}
 
 	@Override
@@ -1210,7 +1189,6 @@ public class CustomizeFragment extends Fragment {
 		initDonePictureButton();
 		initSaveButton();
 		//initSaveAsButton();
-        initSwitchButton();
 		initStartButton();
         initStopButton();
         //initSettingButton();
@@ -1521,59 +1499,6 @@ public class CustomizeFragment extends Fragment {
 //		 saveAsButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
 //
 //	 }
-
-    /**
-     * Initialize the switch button
-     */
-    private void initSwitchButton() {
-        switchLayoutButton = (GirafButton) getActivity().findViewById(
-                R.id.switch_activity_button);
-
-                    switchLayoutButton.setOnClickListener(new OnClickListener() {
-                @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = pref.edit();
-                if (pref.getBoolean("verticalLayout", false)){
-                    editor.clear();
-                    editor.putBoolean("verticalLayout", false);
-                } else {
-                    editor.clear();
-                    editor.putBoolean("verticalLayout", true);
-                }
-                editor.commit();
-                Intent intent = getActivity().getIntent();
-                getActivity().finish();
-                getActivity().startActivity(intent);
-            }
-        });
-        /*
-        Drawable d;
-        if (currSubP.saveAs) {
-            d = getResources().getDrawable(R.drawable.thumbnail_start);
-            startButton.setOnClickListener(new OnClickListener() {
-
-                public void onClick(View v) {
-                    currSubP.addLastUsed(preSubP);
-                    guard.saveGuardian(currSubP);
-                    currSubP.select();
-                    Intent i = new Intent(
-                            getActivity().getApplicationContext(),
-                            DrawLibActivity.class);
-                    startActivity(i);
-                }
-            });
-        } else {
-            d = getResources().getDrawable(R.drawable.thumbnail_start_gray);
-            startButton.setOnClickListener(new OnClickListener() {
-
-                public void onClick(View v) {
-                    Toast t = Toast.makeText(getActivity(),
-                            getString(R.string.cant_start), Toast.LENGTH_SHORT);
-                    t.show();
-                }
-            });
-            */
-        }
 
 	 /**
 	  * Initialize the start button
