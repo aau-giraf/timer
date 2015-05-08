@@ -317,12 +317,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/sound_button"
-                        app:text="Vælg lyd"/>
+                        app:text="@string/chooseSound"/>
                     <dk.aau.cs.giraf.gui.GTextView
                         android:id="@+id/sound_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@id/sound_button"
+                        android:layout_toRightOf="@id/sound_button"
                         android:text=""
                         android:layout_centerVertical="true"
                         android:paddingLeft="20dp"

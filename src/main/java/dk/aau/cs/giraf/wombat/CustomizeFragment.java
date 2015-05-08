@@ -6,21 +6,24 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import dk.aau.cs.giraf.TimerLib.Sounds;
-import dk.aau.cs.giraf.gui.GButton;
-import dk.aau.cs.giraf.gui.GButtonProfileSelect;
+import dk.aau.cs.giraf.dblib.Helper;
+//import dk.aau.cs.giraf.gui.GButton;
+//import dk.aau.cs.giraf.gui.GButtonProfileSelect;
 import dk.aau.cs.giraf.gui.GCheckBox;
 import dk.aau.cs.giraf.gui.GColorPicker;
-import dk.aau.cs.giraf.gui.GProfileSelector;
+//import dk.aau.cs.giraf.gui.GProfileSelector;
 import dk.aau.cs.giraf.gui.GTextView;
-import dk.aau.cs.giraf.gui.GButtonSettings;
+//import dk.aau.cs.giraf.gui.GButtonSettings;
 import dk.aau.cs.giraf.gui.GToast;
-import dk.aau.cs.giraf.gui.GToggleButton;
+//import dk.aau.cs.giraf.gui.GToggleButton;
 import dk.aau.cs.giraf.dblib.controllers.PictogramCategoryController;
 import dk.aau.cs.giraf.dblib.controllers.PictogramController;
 import dk.aau.cs.giraf.dblib.models.Pictogram;
 import dk.aau.cs.giraf.dblib.models.PictogramCategory;
 import dk.aau.cs.giraf.dblib.models.Profile;
+import dk.aau.cs.giraf.gui.GWidgetProfileSelection;
 import dk.aau.cs.giraf.gui.GirafButton;
+import dk.aau.cs.giraf.gui.GirafProfileSelectorDialog;
 import dk.aau.cs.giraf.pictogram.PictoFactory;
 import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
@@ -88,12 +91,11 @@ public class CustomizeFragment extends Fragment {
 	private GirafButton digitalButton;
 	private GirafButton startButton;
     private GirafButton stopButton;
-    private GButton settingButton;
-    private GButtonProfileSelect profileButton;
+    private GirafButton profileButton;
     private GirafButton SoundButton;
     private GirafButton switchLayoutButton;
 	private GirafButton saveButton;
-	private GButton saveAsButton;
+	//private GButton saveAsButton;
 	private GirafButton attachmentButton;
 	private GirafButton donePictureButton;
 	private Button colorGradientButton1;
@@ -111,6 +113,7 @@ public class CustomizeFragment extends Fragment {
     private ArrayList<formFactor> _soundlist = null; // list of sounds
     private MediaPlayer mediaPlayer; //soundplayer
 	private GTextView SoundButtonText;
+	private static final int CHANGE_USER_SELECTOR_DIALOG = 100;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -1411,113 +1414,113 @@ public class CustomizeFragment extends Fragment {
 	  * Initialize the Save As button
       *
 	  */
-	 private void initSaveAsButton() {
-		 Drawable d;
-        /* Har også fjernet initSaveAsButton for samlet init gruppe
-		 saveAsButton = (Button) getActivity().findViewById(
-				 R.id.customize_save_as);
-         */
-		 // If this is a profile which is "saveable", enable the save
-		 // functionality
-		 if (currSubP.saveAs) {
-			 d = getResources().getDrawable(R.drawable.thumbnail_saveas);
-			 saveAsButton.setOnClickListener(new OnClickListener() {
-
-				 public void onClick(View v) {
-					 ArrayList<Child> child = guard.Children();
-					 ArrayAdapter adapter = new ChildAdapter(getActivity(),
-							 android.R.layout.simple_list_item_1, child);
-					 // Profile and pictogram loader
-					 final WDialog saveAs1 = new WDialog(getActivity(),
-							 R.string.choose_profile);
-					 saveAs1.setAdapter(adapter);
-					 saveAs1.addButton(R.string.cancel, 1,
-							 new OnClickListener() {
-						 public void onClick(View v) {
-							 saveAs1.cancel();
-						 }
-					 });
-
-					 saveAs1.setOnItemClickListener(new OnItemClickListener() {
-
-						 public void onItemClick(AdapterView<?> arg0, View arg1,
-								 final int position, long arg3) {
-							 // Name picker
-							 final WDialog saveAs2 = new WDialog(getActivity(),
-									 R.string.save_button);
-
-							 saveAs2.addEditText(getName(), 1);
-							 saveAs2.addButton(R.string.ok, 2,
-									 new OnClickListener() {
-
-								 public void onClick(View arg0) {
-									 currSubP.name = saveAs2.getEditTextText(1);
-
-									 Child c = guard.Children().get(position);
-									 getName();
-									 c.save(currSubP, false);
-									 guard.saveChild(c, currSubP);
-									 SubProfileFragment df  = new SubProfileFragment();
-                                     df = (SubProfileFragment) getFragmentManager()
-											 .findFragmentById(R.id.subprofileFragment);
-									 df.loadSubProfiles();
-
-									 String toastText = currSubP.name;
-									 toastText += " "
-											 + getActivity()
-											 .getApplicationContext()
-                                             .getText(
-                                                     R.string.was_saved_toast);
-									 toastText += " " + c.name;
-
-									 GToast toast = GToast.makeText(
-											 getActivity(), toastText,
-											 Toast.LENGTH_LONG);
-									 toast.show();
-                                    /* Fjernet profile delen*/
-									 /*ChildFragment cf = (ChildFragment) getFragmentManager()
-											 .findFragmentById(R.id.childFragment);*/
-
-									 SubProfileFragment spf  = new SubProfileFragment();
-                                     spf = (SubProfileFragment) getFragmentManager()
-											 .findFragmentById(R.id.subprofileFragment);
-									 guard.profileID = guard.getChild().getProfileId();
-									 //cf.loadChildren(); //Fjernet profile delen
-									 spf.loadSubProfiles();
-									 saveAs2.dismiss();
-									 saveAs1.dismiss();
-								 }
-							 });
-							 saveAs2.addButton(R.string.cancel, 3,
-									 new OnClickListener() {
-
-								 public void onClick(View arg0) {
-									 saveAs2.cancel();
-									 saveAs1.cancel();
-
-								 }
-							 });
-							 saveAs2.show();
-						 }
-					 });
-					 saveAs1.show();
-				 }
-			 });
-		 } else {
-			 d = getResources().getDrawable(R.drawable.thumbnail_saveas_gray);
-			 saveAsButton.setOnClickListener(new OnClickListener() {
-
-				 public void onClick(View v) {
-					 GToast t = GToast.makeText(getActivity(),
-                             getString(R.string.cant_save), Toast.LENGTH_SHORT);
-					 t.show();
-				 }
-			 });
-		 }
-
-		 saveAsButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
-
-	 }
+//	 private void initSaveAsButton() {
+//		 Drawable d;
+//        /* Har også fjernet initSaveAsButton for samlet init gruppe
+//		 saveAsButton = (Button) getActivity().findViewById(
+//				 R.id.customize_save_as);
+//         */
+//		 // If this is a profile which is "saveable", enable the save
+//		 // functionality
+//		 if (currSubP.saveAs) {
+//			 d = getResources().getDrawable(R.drawable.thumbnail_saveas);
+//			 saveAsButton.setOnClickListener(new OnClickListener() {
+//
+//				 public void onClick(View v) {
+//					 ArrayList<Child> child = guard.Children();
+//					 ArrayAdapter adapter = new ChildAdapter(getActivity(),
+//							 android.R.layout.simple_list_item_1, child);
+//					 // Profile and pictogram loader
+//					 final WDialog saveAs1 = new WDialog(getActivity(),
+//							 R.string.choose_profile);
+//					 saveAs1.setAdapter(adapter);
+//					 saveAs1.addButton(R.string.cancel, 1,
+//							 new OnClickListener() {
+//						 public void onClick(View v) {
+//							 saveAs1.cancel();
+//						 }
+//					 });
+//
+//					 saveAs1.setOnItemClickListener(new OnItemClickListener() {
+//
+//						 public void onItemClick(AdapterView<?> arg0, View arg1,
+//								 final int position, long arg3) {
+//							 // Name picker
+//							 final WDialog saveAs2 = new WDialog(getActivity(),
+//									 R.string.save_button);
+//
+//							 saveAs2.addEditText(getName(), 1);
+//							 saveAs2.addButton(R.string.ok, 2,
+//									 new OnClickListener() {
+//
+//								 public void onClick(View arg0) {
+//									 currSubP.name = saveAs2.getEditTextText(1);
+//
+//									 Child c = guard.Children().get(position);
+//									 getName();
+//									 c.save(currSubP, false);
+//									 guard.saveChild(c, currSubP);
+//									 SubProfileFragment df  = new SubProfileFragment();
+//                                     df = (SubProfileFragment) getFragmentManager()
+//											 .findFragmentById(R.id.subprofileFragment);
+//									 df.loadSubProfiles();
+//
+//									 String toastText = currSubP.name;
+//									 toastText += " "
+//											 + getActivity()
+//											 .getApplicationContext()
+//                                             .getText(
+//                                                     R.string.was_saved_toast);
+//									 toastText += " " + c.name;
+//
+//									 GToast toast = GToast.makeText(
+//											 getActivity(), toastText,
+//											 Toast.LENGTH_LONG);
+//									 toast.show();
+//                                    /* Fjernet profile delen*/
+//									 /*ChildFragment cf = (ChildFragment) getFragmentManager()
+//											 .findFragmentById(R.id.childFragment);*/
+//
+//									 SubProfileFragment spf  = new SubProfileFragment();
+//                                     spf = (SubProfileFragment) getFragmentManager()
+//											 .findFragmentById(R.id.subprofileFragment);
+//									 guard.profileID = guard.getChild().getProfileId();
+//									 //cf.loadChildren(); //Fjernet profile delen
+//									 spf.loadSubProfiles();
+//									 saveAs2.dismiss();
+//									 saveAs1.dismiss();
+//								 }
+//							 });
+//							 saveAs2.addButton(R.string.cancel, 3,
+//									 new OnClickListener() {
+//
+//								 public void onClick(View arg0) {
+//									 saveAs2.cancel();
+//									 saveAs1.cancel();
+//
+//								 }
+//							 });
+//							 saveAs2.show();
+//						 }
+//					 });
+//					 saveAs1.show();
+//				 }
+//			 });
+//		 } else {
+//			 d = getResources().getDrawable(R.drawable.thumbnail_saveas_gray);
+//			 saveAsButton.setOnClickListener(new OnClickListener() {
+//
+//				 public void onClick(View v) {
+//					 GToast t = GToast.makeText(getActivity(),
+//                             getString(R.string.cant_save), Toast.LENGTH_SHORT);
+//					 t.show();
+//				 }
+//			 });
+//		 }
+//
+//		 saveAsButton.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
+//
+//	 }
 
     /**
      * Initialize the switch button
@@ -1730,13 +1733,28 @@ public class CustomizeFragment extends Fragment {
     */
     private void initProfileButton(){
 
-        profileButton = (GButtonProfileSelect) getActivity().findViewById(
-                R.id.customize_profile_button);
+
+		profileButton = (GirafButton) getActivity().findViewById(
+				R.id.customize_profile_button);
+
+		// Set the change user button to open the change user dialog
+		profileButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				MainActivity mainActivity = (MainActivity) getActivity();
+				GirafProfileSelectorDialog changeUser = GirafProfileSelectorDialog.newInstance(mainActivity, guard.m_oGuard.getId(), false, false, "Vælg den borger du vil skifte til.", CHANGE_USER_SELECTOR_DIALOG);
+				changeUser.show(mainActivity.getSupportFragmentManager(), "" + CHANGE_USER_SELECTOR_DIALOG);
+
+			}
+		});
+
+		//profileButton = (GButtonProfileSelect) getActivity().findViewById(
+        //        R.id.customize_profile_button);
 
         //Call the method setup with a Profile guardian, no currentProfile (which means that the guardian is the current Profile) and the onCloseListener
 
 
-        profileButton.setup(guard.m_oGuard, null, new GButtonProfileSelect.onCloseListener() {
+        /*profileButton.setup(guard.m_oGuard, null, new GButtonProfileSelect.onCloseListener() {
             @Override
             public void onClose(Profile guardianProfile, Profile currentProfile) {
                 //If the guardian is the selected profile create GToast displaying the name
@@ -1775,7 +1793,7 @@ public class CustomizeFragment extends Fragment {
 
 
             }
-        });
+        });*/
     }
 
 	 /**
@@ -1827,6 +1845,47 @@ public class CustomizeFragment extends Fragment {
 		 /* Set Done picture */
 		 setDonePicture(currSubP.getDoneArt());
 	 }
+
+	public void onProfileSelected(int i, Profile profile) {
+
+		final GWidgetProfileSelection widgetProfileSelection = (GWidgetProfileSelection) getActivity().findViewById(R.id.profile_widget);
+		Helper h = new Helper(getActivity());
+		// Fetch the profile picture
+		Bitmap profilePicture = h.profilesHelper.getById(profile.getId()).getImage();
+		// If there were no profile picture use the default template
+		if (profilePicture == null) {
+			// Fetch the default template
+			profilePicture = ((BitmapDrawable) this.getResources().getDrawable(R.drawable.no_profile_pic)).getBitmap();
+		}
+
+		// Set the profile picture
+		widgetProfileSelection.setImageBitmap(profilePicture);
+
+		guard.profileID = profile.getId();
+		if (children == null || !children.isEmpty()) {
+			for (Child _child : children) {
+				if (_child.getProfileId() == guard.profileID) {
+					children.get(children.indexOf(_child)).select();
+					child = _child;
+					break;
+				}
+			}
+		}
+
+		GTextView tv = (GTextView) getActivity().findViewById(R.id.customizeHeader);
+		CharSequence cs;
+		if (child != null) {
+			cs = child.name;
+		} else {
+			cs = "Ingen Valgt Profil";
+		}
+		tv.setText(cs);
+		SubProfileFragment spf = new SubProfileFragment();
+		spf = (SubProfileFragment) getFragmentManager()
+				.findFragmentById(R.id.subprofileFragment);
+		spf.loadSubProfiles();
+		setDefaultProfile();
+	}
 }
 /* GOING FOR LEET */
 /* GOING FOR LEET */

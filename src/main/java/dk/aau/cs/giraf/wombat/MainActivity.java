@@ -17,6 +17,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Process;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.google.analytics.tracking.android.EasyTracker;
@@ -25,13 +26,15 @@ import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
 import dk.aau.cs.giraf.dblib.Helper;
 import dk.aau.cs.giraf.dblib.models.Pictogram;
+import dk.aau.cs.giraf.dblib.models.Profile;
+import dk.aau.cs.giraf.gui.GirafProfileSelectorDialog;
 
 /**
  * This class is an MainActivity used to initiate WOMBAT
  * Layer: Main
  *
  */
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity implements GirafProfileSelectorDialog.OnSingleProfileSelectedListener{
 	public static Guardian guard = null;
     public static Context context;
     public static Intent svc = null;
@@ -110,4 +113,11 @@ public class MainActivity extends Activity {
         }
 		finish();
 	}
+
+    @Override
+    public void onProfileSelected(int i, Profile profile) {
+        //This is a hack to make the new giraf profile choose to work with this cluster fuck of code.
+        CustomizeFragment customizeFragment = (CustomizeFragment) getFragmentManager().findFragmentById(R.id.customizeFragment);
+        customizeFragment.onProfileSelected(i, profile);
+    }
 }
