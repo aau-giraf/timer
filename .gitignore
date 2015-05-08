@@ -1,7 +1,10 @@
-﻿#Ignore the build directory
+#Ignore the build directory
 /build
 /.gradle
 /.idea
 local.properties
 *.iml
 *.apk
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+java_pid1746.hprof
