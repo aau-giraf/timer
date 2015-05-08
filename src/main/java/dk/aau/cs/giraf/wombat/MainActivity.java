@@ -24,6 +24,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 
 import dk.aau.cs.giraf.TimerLib.Art;
 import dk.aau.cs.giraf.TimerLib.Guardian;
+import dk.aau.cs.giraf.activity.GirafActivity;
 import dk.aau.cs.giraf.dblib.Helper;
 import dk.aau.cs.giraf.dblib.models.Pictogram;
 import dk.aau.cs.giraf.dblib.models.Profile;
@@ -34,7 +35,7 @@ import dk.aau.cs.giraf.gui.GirafProfileSelectorDialog;
  * Layer: Main
  *
  */
-public class MainActivity extends FragmentActivity implements GirafProfileSelectorDialog.OnSingleProfileSelectedListener{
+public class MainActivity extends GirafActivity implements GirafProfileSelectorDialog.OnSingleProfileSelectedListener{
 	public static Guardian guard = null;
     public static Context context;
     public static Intent svc = null;
