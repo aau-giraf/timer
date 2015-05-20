@@ -1,4 +1,4 @@
-package dk.aau.cs.giraf.wombat;
+package dk.aau.cs.giraf.timer;
 
 import android.app.Dialog;
 import android.content.Context;

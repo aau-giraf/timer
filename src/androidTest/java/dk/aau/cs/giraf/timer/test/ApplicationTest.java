@@ -1,4 +1,4 @@
-package dk.aau.cs.giraf.wombat.test;
+package dk.aau.cs.giraf.timer.test;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

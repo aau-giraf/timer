@@ -1,15 +1,14 @@
-package dk.aau.cs.giraf.wombat;
-
-import java.util.ArrayList;
-import java.util.List;
+package dk.aau.cs.giraf.timer;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+
 import dk.aau.cs.giraf.TimerLib.Child;
 import dk.aau.cs.giraf.TimerLib.Guardian;
-import dk.aau.cs.giraf.dblib.models.Profile;
 /**
  * This class is a ListFragment used by the Child Object
  * Layer: Layout

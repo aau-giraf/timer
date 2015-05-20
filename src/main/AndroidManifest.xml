@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dk.aau.cs.giraf.wombat"
+    package="dk.aau.cs.giraf.timer"
     xmlns:tools="http://schemas.android.com/tools"
     android:versionCode="1"
     android:versionName="1.0">
@@ -29,13 +29,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="dk.aau.cs.giraf.wombat.drawlib.DrawLibActivity"
+            android:name="dk.aau.cs.giraf.timer.drawlib.DrawLibActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
         </activity>
         <activity
-            android:name="dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity"
+            android:name="dk.aau.cs.giraf.timer.drawlib.DoneScreenActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen">
         </activity>

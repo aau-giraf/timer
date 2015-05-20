@@ -1,4 +1,4 @@
-package dk.aau.cs.giraf.wombat;
+package dk.aau.cs.giraf.timer;
 
         import android.app.Service;
         import android.content.Intent;
@@ -15,7 +15,7 @@ package dk.aau.cs.giraf.wombat;
 
         import dk.aau.cs.giraf.TimerLib.Guardian;
         import dk.aau.cs.giraf.TimerLib.SubProfile;
-        import dk.aau.cs.giraf.wombat.drawlib.*;
+        import dk.aau.cs.giraf.timer.drawlib.*;
 
 public class Overlay extends Service {
     View view;

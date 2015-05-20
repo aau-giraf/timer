@@ -1,4 +1,4 @@
-package dk.aau.cs.giraf.wombat;
+package dk.aau.cs.giraf.timer;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +19,7 @@ import dk.aau.cs.giraf.dblib.models.Profile;
 import dk.aau.cs.giraf.gui.GWidgetProfileSelection;
 import dk.aau.cs.giraf.gui.GirafButton;
 import dk.aau.cs.giraf.gui.GirafProfileSelectorDialog;
-import dk.aau.cs.giraf.wombat.drawlib.DoneScreenActivity;
+import dk.aau.cs.giraf.timer.drawlib.DoneScreenActivity;
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.NumericWheelAdapter;
@@ -59,7 +59,7 @@ import dk.aau.cs.giraf.TimerLib.SplitImg;
 import dk.aau.cs.giraf.TimerLib.SubProfile;
 import dk.aau.cs.giraf.TimerLib.Timer;
 import dk.aau.cs.giraf.TimerLib.formFactor;
-import dk.aau.cs.giraf.wombat.drawlib.DrawLibActivity;
+import dk.aau.cs.giraf.timer.drawlib.DrawLibActivity;
 /**
  * This class is a Fragment which which is used to customize SubProfiles
  * Layer: Layout

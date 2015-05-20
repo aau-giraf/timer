@@ -28,7 +28,7 @@
             android:id="@+id/childFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="dk.aau.cs.giraf.wombat.ChildFragment" >
+            class="dk.aau.cs.giraf.timer.ChildFragment" >
         </fragment>
     </LinearLayout>
 
@@ -95,7 +95,7 @@
             android:id="@+id/subprofileFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="dk.aau.cs.giraf.wombat.SubProfileFragment"
+            class="dk.aau.cs.giraf.timer.SubProfileFragment"
             tools:layout="@layout/simple_list_item_1">
         </fragment>
     </LinearLayout>
@@ -131,7 +131,7 @@
             android:id="@+id/customizeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="dk.aau.cs.giraf.wombat.CustomizeFragment"
+            class="dk.aau.cs.giraf.timer.CustomizeFragment"
             tools:layout="@layout/simple_list_item_1" />
     </LinearLayout>
 

@@ -1,4 +1,4 @@
-package dk.aau.cs.giraf.wombat.drawlib;
+package dk.aau.cs.giraf.timer.drawlib;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,15 +9,14 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
-
 import dk.aau.cs.giraf.TimerLib.SubProfile;
-
 /**
  * This class is used to generate a view for Watch
  * Layer: Draw
  *
  */
-public class DrawStandardWatch extends View {
+public class DrawWatch extends View {
+    // Mikkel tvang mig
 	private SubProfile sp;
 
 	private int background;
@@ -27,6 +26,8 @@ public class DrawStandardWatch extends View {
 	private int timespent;
 	private int totalTime;
 	private double endTime;
+    private int scale;
+
 	private double rotation;
 
 	private Paint paint = new Paint();
@@ -43,12 +44,13 @@ public class DrawStandardWatch extends View {
 	private int top;
 	private int bottom;
 
-	public DrawStandardWatch(Context context, SubProfile sub, int frameWidth) {
+	public DrawWatch(Context context, SubProfile sub,int frameWidth) {
 		super(context);
 
 		/* Get the window hight assigned by the draw activity */
 		this.frameWidth = frameWidth;
 		frameHeight = DrawLibActivity.frameHeight;
+        scale = DrawLibActivity.scale;
 
 		if (frameWidth > frameHeight)
 			width = (int) (frameHeight / 1.5);
@@ -60,9 +62,9 @@ public class DrawStandardWatch extends View {
 
 		background = sp.bgcolor;
 		frame = sp.frameColor;
-		timeleft = sp.timeLeftColor;
-		timeleft2 = sp.timeLeftColor;
-		timespent = sp.timeSpentColor;
+		timeleft = sp.timeSpentColor;
+		timeleft2 = sp.timeSpentColor;
+		timespent = sp.timeLeftColor;
 		totalTime = ((sp.get_totalTime() - 1) + 2) * 1000;
 		endTime = System.currentTimeMillis() + totalTime;
 
@@ -79,11 +81,9 @@ public class DrawStandardWatch extends View {
 		double timenow = (endTime - System.currentTimeMillis());
 		
 		/* Fill the canvas with the background color */
-		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background, 0xFF000000, Shader.TileMode.CLAMP);
-		paint.setShader(lg);
-        if(DrawLibActivity.scale != 1) {
-            paint.setColor(background & 0x00);
-        }
+/*		LinearGradient lg = new LinearGradient(DrawLibActivity.frameWidth/2, 0, DrawLibActivity.frameWidth/2, DrawLibActivity.frameHeight, background & 0x00, 0x00000000, Shader.TileMode.CLAMP);
+		paint.setShader(lg);*/
+        paint.setColor(background & 0x00);
 		c.drawPaint(paint);
 		paint.setShader(null);
 
@@ -106,10 +106,14 @@ public class DrawStandardWatch extends View {
 		top = ((frameHeight - height) / 2) + 3;
 		bottom = (((frameHeight - height) / 2) + height) - 3;
 
-        double percent = timenow / totalTime;
-
-        // 0.1 is what 1 second corresponds to in degrees
-        rotation = -((0.1 * (endTime - System.currentTimeMillis()) / 1000) + 0.999);
+        // totalTime is the amount of time the timer needs to run in milliseconds
+        // timenow is the time left, in milliseconds
+        // percent, double between 0..1, is used to determine the current angle and the color
+        // rt is the percent multiplied by 360 to make it fit between 0..360
+        // rotation is then negative rt added to 360, because the clock needs to run counter clockwise
+		double percent = timenow/totalTime;
+        double rt = percent*360.0;
+		rotation = -rt+360;
 
 		// Draw the timer
 		paint.setColor(timeleft2);
@@ -123,22 +127,22 @@ public class DrawStandardWatch extends View {
 		c.drawArc(rf, 270 - (int) rotation, (int) rotation, true, paint);
 
 		/* Draw the center */
-        int indicatorWidth = DrawLibActivity.scale > 6 ? 1 : DrawLibActivity.scale > 3 ? 2 : 3;
-        int indicatorLength = DrawLibActivity.scale >= 6 ? 3 : DrawLibActivity.scale >= 3 ? 2 : 1;
-		paint.setColor(frame);
-		c.drawCircle(frameWidth/2, frameHeight/2, indicatorWidth, paint);
-		
+        int indicatorWidth = scale > 6 ? 1 : scale > 3 ? 2 : 3;
+        int indicatorLength = scale > 6 ? 3 : scale > 3 ? 2 : 1;
+        paint.setColor(frame);
+        c.drawCircle(frameWidth/2, frameHeight/2, indicatorWidth, paint);
+
 		/* Draw the indicators 0, 3, 6, 9 */
-		r = new Rect((frameWidth / 2 - indicatorWidth), (((frameHeight - height) / 2) + 15*indicatorLength),
+        r = new Rect((frameWidth / 2 - indicatorWidth), (((frameHeight - height) / 2) + 15*indicatorLength),
                 (frameWidth / 2 + indicatorWidth), (((frameHeight - height) / 2) + 15 + 40));
 
-		for (int i = 0; i < 4; i++) {
-			c.rotate(90, frameWidth / 2, frameHeight / 2);
-			c.drawRect(r, paint);
-		}
-		// Draw the small indicators
-		r = new Rect(frameWidth / 2 - 1, ((frameHeight - height) / 2) + 15*indicatorLength+((indicatorLength-1)*2),
-				frameWidth / 2 + 1, ((frameHeight - height) / 2) + 15 + 30+(indicatorLength*3));
+        for (int i = 0; i < 4; i++) {
+            c.rotate(90, frameWidth / 2, frameHeight / 2);
+            c.drawRect(r, paint);
+        }
+        // Draw the small indicators
+        r = new Rect(frameWidth / 2 - 1, ((frameHeight - height) / 2) + 15*indicatorLength+((indicatorLength-1)*2),
+                frameWidth / 2 + 1, ((frameHeight - height) / 2) + 15 + 30+(indicatorLength*3));
 
 		for (int i = 0; i < 12; i++) {
 			c.rotate(30, frameWidth / 2, frameHeight / 2);
