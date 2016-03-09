@@ -28,6 +28,28 @@
     <string name="formfactor_sound5">Dråbe</string>
     <string name="formfactor_sound6">Høne</string>
 
+    <!-- Showcase -->
+    <string name="hourglass_pick_icon_showcase_help_title_text">Timeglas</string>
+    <string name="hourglass_pick_icon_showcase_help_content_text">Viser tiden tilbage i et timeglas</string>
+    <string name="timetimerStandardButton_pick_icon_showcase_help_title_text">Ur</string>
+    <string name="timetimerStandardButton_pick_icon_showcase_help_content_text">Viser tiden tilbage med et ur</string>
+    <string name="chooseProgressbarButtonAsIconTarget_pick_icon_showcase_help_title_text">Tidsbar</string>
+    <string name="chooseProgressbarButtonAsIconTarget_pick_icon_showcase_help_content_text">Viser tiden tilbage på en bar</string>
+    <string name="chooseDigitalButtonAsIconTarget_pick_icon_showcase_help_title_text">Digital ur</string>
+    <string name="chooseDigitalButtonAsIconTarget_pick_icon_showcase_help_content_text">Viser tiden digitalt</string>
+    <string name="chooseCustomizeAttachmentAsIconTarget_pick_icon_showcase_help_title_text">Vælg piktogram</string>
+    <string name="chooseCustomizeAttachmentAsIconTarget_pick_icon_showcase_help_content_text">Vælg et piktogram som ikon til kategorien</string>
+    <string name="chooseCustomizeDonescreenAsIconTarget_pick_icon_showcase_help_title_text">Billede for stop</string>
+    <string name="chooseCustomizeDonescreenAsIconTarget_pick_icon_showcase_help_content_text">Her vælges det billede der indikerer at tiden er gået</string>
+    <string name="chooseCustomizeSaveAsIconTarget_pick_icon_showcase_help_title_text">Vælg piktogram</string>
+    <string name="chooseCustomizeSaveAsIconTarget_pick_icon_showcase_help_content_text">Vælg et piktogram som ikon til kategorien</string>
+    <string name="chooseCustomizeStartButtonAsIconTarget_pick_icon_showcase_help_title_text">Start tiden</string>
+    <string name="chooseCustomizeStartButtonAsIconTarget_pick_icon_showcase_help_content_text">Klik her for at starte nedtællingen</string>
+    <string name="chooseCustomizeStopButtonAsIconTarget_pick_icon_showcase_help_title_text">Stop tiden</string>
+    <string name="chooseCustomizeStopButtonAsIconTarget_pick_icon_showcase_help_content_text">Klik her for at stoppe nedtællingen</string>
+    <string name="change_user_pick_icon_showcase_help_title_text">Skift bruger</string>
+    <string name="change_user_pick_icon_showcase_help_content_text">Klik her for at skifte bruger</string>
+
     
     <!-- TEMPLATE LIST -->
     <string name="template_list_header">Gemte Tidstagere</string>

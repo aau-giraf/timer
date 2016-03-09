@@ -14,7 +14,7 @@
 
         <dk.aau.cs.giraf.gui.GirafButton
             android:layout_centerInParent="true"
-            android:id="@+id/houglassButton"
+            android:id="@+id/hourglassButton"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_gravity="center"
@@ -366,7 +366,7 @@
 
             <dk.aau.cs.giraf.gui.GirafButton
                 android:layout_centerInParent="true"
-                android:id="@+id/customize_attachment"
+                android:id="@+id/customizeAttachment"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
@@ -375,7 +375,7 @@
 
             <dk.aau.cs.giraf.gui.GirafButton
                 android:layout_centerInParent="true"
-                android:id="@+id/customize_donescreen"
+                android:id="@+id/customizeDonescreen"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
@@ -384,7 +384,7 @@
 
             <dk.aau.cs.giraf.gui.GirafButton
                 android:layout_centerInParent="true"
-                android:id="@+id/customize_save"
+                android:id="@+id/customizeSave"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
@@ -430,7 +430,7 @@
 
             <dk.aau.cs.giraf.gui.GirafButton
                 android:layout_centerInParent="true"
-                android:id="@+id/customize_start_button"
+                android:id="@+id/customizeStartButton"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
@@ -439,7 +439,7 @@
 
             <dk.aau.cs.giraf.gui.GirafButton
                 android:layout_centerInParent="true"
-                android:id="@+id/customize_stop_button"
+                android:id="@+id/customizeStopButton"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"

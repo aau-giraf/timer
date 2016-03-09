@@ -210,7 +210,7 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the style chooser buttons
 	 */
 	private void initStyleChoser() {
-		hourglassButton = (GirafButton) getActivity().findViewById(R.id.houglassButton);
+		hourglassButton = (GirafButton) getActivity().findViewById(R.id.hourglassButton);
 		hourglassButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -575,7 +575,7 @@ public class CustomizeFragment extends Fragment {
 
         // Button for attachment
         attachmentButton = (GirafButton) getActivity().findViewById(
-                R.id.customize_attachment);
+                R.id.customizeAttachment);
         // Set attachment button onclicklistener
         // 1. window
         attachmentButton.setOnClickListener(new OnClickListener() {
@@ -1121,7 +1121,7 @@ public class CustomizeFragment extends Fragment {
 		modeArray.add(formFactor.SingleImg);
 		modeArray.add(formFactor.SplitImg);
 		donePictureButton = (GirafButton) getActivity().findViewById(
-				R.id.customize_donescreen);
+				R.id.customizeDonescreen);
 		donePictureButton.setOnClickListener(new OnClickListener() {
             public void onClick(final View v) {
                 final WDialog doneDialog = new WDialog(getActivity(), R.string.donescreen_dialog_title);
@@ -1202,7 +1202,7 @@ public class CustomizeFragment extends Fragment {
 	 * Initialize the save button
 	 */
 	 private void initSaveButton() {
-		 saveButton = (GirafButton) getActivity().findViewById(R.id.customize_save);
+		 saveButton = (GirafButton) getActivity().findViewById(R.id.customizeSave);
 		 Drawable d;
 		 if (currSubP.save && !guard.getChild().getLock()
 				 && guard.getChild() != null) {
@@ -1505,7 +1505,7 @@ public class CustomizeFragment extends Fragment {
 	  */
      private void initStartButton() {
 		 startButton = (GirafButton) getActivity().findViewById(
-				 R.id.customize_start_button);
+				 R.id.customizeStartButton);
 
 		 if (currSubP.saveAs) {
              if (MainActivity.svc != null){
@@ -1579,7 +1579,7 @@ public class CustomizeFragment extends Fragment {
     */
     private void initStopButton() {
         stopButton = (GirafButton)getActivity().findViewById(
-                R.id.customize_stop_button);
+                R.id.customizeStopButton);
         stopButton.refreshDrawableState();
         if (MainActivity.svc != null) {
             /*stopButton.setText(R.string.stop_button);
@@ -1776,7 +1776,11 @@ public class CustomizeFragment extends Fragment {
 		final GWidgetProfileSelection widgetProfileSelection = (GWidgetProfileSelection) getActivity().findViewById(R.id.profile_widget);
 		Helper h = new Helper(getActivity());
 		// Fetch the profile picture
+		Helper helper = new Helper(null);
+
 		Bitmap profilePicture = h.profilesHelper.getById(profile.getId()).getImage();
+				//
+				//helper.profilesHelper.getImage(profile);
 		// If there were no profile picture use the default template
 		if (profilePicture == null) {
 			// Fetch the default template

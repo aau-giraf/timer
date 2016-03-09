@@ -13,7 +13,7 @@ buildscript {
     }
 }
 
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 apply plugin: 'dk.giraf.deploy'
 apply plugin: 'com.github.triplet.play'
 
@@ -27,10 +27,11 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile ('com.android.support:support-v4:23.2.0')
     compile(group: 'dk.aau.cs.giraf', name: 'girafComponent', version: '10.4.0', ext: 'aar')
-    compile(group: 'dk.aau.cs.giraf', name: 'localDb', version: '5.1.5', ext: 'aar')
+    compile(group: 'dk.aau.cs.giraf', name: 'localDb', version: '5.1.8', ext: 'aar')
     compile(group: 'dk.aau.cs.giraf', name: 'meta-database', version: '3.2.3')
-    compile(group: 'dk.aau.cs.giraf', name: 'oasisLib', version: '7.2.0', ext: 'aar')
+    compile(group: 'dk.aau.cs.giraf', name: 'oasisLib', version: '4.0.2', ext: 'aar')
     compile(group: 'dk.aau.cs.giraf', name: 'pictogramLib', version: '4.0.0', ext: 'aar')
+    compile(group: 'dk.aau.cs.giraf', name: 'ShowcaseView', version: '1.0.0', ext: 'aar')
     compile project(':TimerLib')
     compile project(':DrawLib')
     compile project(':wheel')
