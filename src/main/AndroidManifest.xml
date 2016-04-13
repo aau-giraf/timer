@@ -13,6 +13,14 @@
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="19"/>
+    
+    <!-- Limit the application to be used only on small tablets and up -->
+    <supports-screens
+        android:smallScreens="false"
+        android:normalScreens="false"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        android:requiresSmallestWidthDp="600" />
 
     <application
         android:icon="@drawable/timer_icon"
